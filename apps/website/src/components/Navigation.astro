@@ -1,0 +1,65 @@
+---
+interface Props {
+  lang: 'fr' | 'en';
+  currentPath?: string;
+  class?: string;
+  mobile?: boolean;
+}
+
+const { lang, currentPath = '', class: className = '', mobile = false } = Astro.props;
+
+// Navigation links based on language
+const navLinks = {
+  fr: [
+    { href: '/fr/', label: 'Accueil' },
+    { href: '/fr/twt/landing', label: 'TWT' },
+    { href: '/fr/events', label: 'Événements' },
+    { href: '/fr/partners', label: 'Partenaires' },
+  ],
+  en: [
+    { href: '/en/', label: 'Home' },
+    { href: '/en/twt/landing', label: 'TWT' },
+    { href: '/en/events', label: 'Events' },
+    { href: '/en/partners', label: 'Partners' },
+  ],
+};
+
+const links = navLinks[lang];
+
+// Check if a link is active
+const isActive = (href: string) => {
+  // Exact match for home page
+  if (href === `/${lang}/` && currentPath === `/${lang}/`) return true;
+  // Prefix match for other pages
+  if (href !== `/${lang}/` && currentPath.startsWith(href)) return true;
+  return false;
+};
+
+// Different styles for desktop vs mobile
+const getLinkClass = (href: string) => {
+  if (mobile) {
+    return `text-base font-medium px-3 py-2 rounded-md transition-colors focus-ring ${
+      isActive(href)
+        ? 'text-primary-600 bg-primary-50'
+        : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+    }`;
+  }
+  return `text-sm font-medium transition-colors focus-ring rounded px-2 py-1 ${
+    isActive(href)
+      ? 'text-primary-600 border-b-2 border-primary-600'
+      : 'text-gray-700 hover:text-primary-600'
+  }`;
+};
+---
+
+<nav class={className} aria-label={lang === 'fr' ? 'Navigation principale' : 'Main navigation'}>
+  {links.map((link) => (
+    <a
+      href={link.href}
+      class={getLinkClass(link.href)}
+      aria-current={isActive(link.href) ? 'page' : undefined}
+    >
+      {link.label}
+    </a>
+  ))}
+</nav>

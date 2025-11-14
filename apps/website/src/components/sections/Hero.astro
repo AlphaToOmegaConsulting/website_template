@@ -1,0 +1,86 @@
+---
+import ButtonLink from '../primitives/ButtonLink.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  cta?: {
+    label: string;
+    href: string;
+    variant?: 'primary' | 'secondary';
+  };
+  image?: {
+    src: string;
+    alt: string;
+  };
+  background?: 'default' | 'gradient' | 'image';
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  cta,
+  image,
+  background = 'default',
+  class: className = '',
+} = Astro.props;
+
+const backgroundClasses = {
+  default: 'bg-white',
+  gradient: 'bg-gradient-to-br from-primary-50 via-white to-secondary-50',
+  image: 'bg-cover bg-center bg-no-repeat',
+};
+
+const sectionClasses = [
+  'relative py-16 md:py-24 lg:py-32',
+  backgroundClasses[background],
+  className,
+].filter(Boolean).join(' ');
+---
+
+<section class={sectionClasses} style={background === 'image' && image ? `background-image: url(${image.src})` : undefined}>
+  {background === 'image' && (
+    <div class="absolute inset-0 bg-black/40" aria-hidden="true"></div>
+  )}
+  
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div class={background === 'image' ? 'text-white' : ''}>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading mb-4 lg:mb-6">
+          {title}
+        </h1>
+        
+        {subtitle && (
+          <p class="text-lg sm:text-xl lg:text-2xl mb-6 lg:mb-8 opacity-90">
+            {subtitle}
+          </p>
+        )}
+        
+        {cta && (
+          <div class="flex flex-wrap gap-4">
+            <ButtonLink
+              href={cta.href}
+              variant={cta.variant || 'primary'}
+              size="lg"
+            >
+              {cta.label}
+            </ButtonLink>
+          </div>
+        )}
+      </div>
+      
+      {image && background !== 'image' && (
+        <div class="order-first lg:order-last">
+          <img
+            src={image.src}
+            alt={image.alt}
+            class="w-full h-auto rounded-lg shadow-xl"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )}
+    </div>
+  </div>
+</section>

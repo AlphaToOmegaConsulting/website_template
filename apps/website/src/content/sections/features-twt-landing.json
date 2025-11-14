@@ -1,0 +1,43 @@
+{
+  "type": "features",
+  "order": 3,
+  "visible": true,
+  "data": {
+    "title": "Ce que nous offrons",
+    "subtitle": "Des opportunités pour développer votre carrière et élargir votre réseau",
+    "features": [
+      {
+        "icon": "🎓",
+        "title": "Formations & Ateliers",
+        "description": "Participez à des sessions de formation pratiques animées par des expertes de l'industrie pour développer vos compétences techniques et professionnelles."
+      },
+      {
+        "icon": "🤝",
+        "title": "Networking",
+        "description": "Connectez-vous avec des professionnelles partageant les mêmes idées, échangez des expériences et construisez des relations durables."
+      },
+      {
+        "icon": "💼",
+        "title": "Opportunités de Carrière",
+        "description": "Accédez à des offres d'emploi exclusives, des programmes de mentorat et des conseils pour faire progresser votre carrière dans la tech."
+      },
+      {
+        "icon": "🎤",
+        "title": "Conférences & Talks",
+        "description": "Assistez à des conférences inspirantes avec des leaders d'opinion et partagez vos propres connaissances avec la communauté."
+      },
+      {
+        "icon": "🌍",
+        "title": "Communauté Inclusive",
+        "description": "Rejoignez un espace bienveillant et inclusif où chaque voix compte et où la diversité est célébrée."
+      },
+      {
+        "icon": "📚",
+        "title": "Ressources & Support",
+        "description": "Bénéficiez d'un accès à des ressources exclusives, des guides de carrière et un support continu de la communauté."
+      }
+    ],
+    "layout": "grid",
+    "columns": 3
+  }
+}

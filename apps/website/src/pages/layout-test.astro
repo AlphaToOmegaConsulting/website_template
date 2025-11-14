@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionLayout from '../layouts/SectionLayout.astro';
+import Button from '../components/primitives/Button.astro';
+import Card from '../components/primitives/Card.astro';
+
+const pageTitle = 'Layout Test Page';
+const pageDescription = 'Testing BaseLayout and SectionLayout components';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang="en"
+  alternateUrls={{
+    en: '/layout-test',
+    fr: '/fr/test-layout'
+  }}
+>
+  <SectionLayout width="default" spacing="lg" background="bg-gray-50">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Layout Test Page</h1>
+    <p class="text-lg text-gray-600 mb-6">
+      This page demonstrates the BaseLayout and SectionLayout components.
+    </p>
+  </SectionLayout>
+
+  <SectionLayout width="narrow" spacing="md">
+    <Card variant="bordered" padding="md">
+      <h2 class="text-2xl font-semibold mb-3">Narrow Width Section</h2>
+      <p class="text-gray-600 mb-4">
+        This section uses the narrow width option (max-width: 640px).
+      </p>
+      <Button variant="primary" size="md">Learn More</Button>
+    </Card>
+  </SectionLayout>
+
+  <SectionLayout width="wide" spacing="lg" background="bg-primary-50">
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">Wide Width Section</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <Card variant="elevated" padding="md">
+        <h3 class="text-xl font-semibold mb-2">Feature 1</h3>
+        <p class="text-gray-600">Wide section with grid layout.</p>
+      </Card>
+      <Card variant="elevated" padding="md">
+        <h3 class="text-xl font-semibold mb-2">Feature 2</h3>
+        <p class="text-gray-600">Responsive columns.</p>
+      </Card>
+      <Card variant="elevated" padding="md">
+        <h3 class="text-xl font-semibold mb-2">Feature 3</h3>
+        <p class="text-gray-600">Max-width: 1280px.</p>
+      </Card>
+    </div>
+  </SectionLayout>
+
+  <SectionLayout width="full" spacing="none" background="bg-gradient-to-r from-primary-600 to-primary-800">
+    <div class="py-16 px-4 text-center text-white">
+      <h2 class="text-3xl font-bold mb-4">Full Width Section</h2>
+      <p class="text-lg mb-6">This section spans the entire viewport width with no spacing.</p>
+      <Button variant="secondary" size="lg">Get Started</Button>
+    </div>
+  </SectionLayout>
+
+  <SectionLayout width="default" spacing="sm">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Small Spacing Section</h2>
+    <p class="text-gray-600">
+      This section demonstrates the small spacing option with default width.
+    </p>
+  </SectionLayout>
+</BaseLayout>

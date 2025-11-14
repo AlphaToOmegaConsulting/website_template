@@ -1,0 +1,37 @@
+{
+  "type": "features",
+  "order": 2,
+  "visible": true,
+  "data": {
+    "title": "Ce que nous offrons",
+    "subtitle": "Tout ce dont vous avez besoin pour réussir dans la tech",
+    "features": [
+      {
+        "title": "Networking",
+        "description": "Connectez-vous avec des professionnelles de la tech et élargissez votre réseau"
+      },
+      {
+        "title": "Formation",
+        "description": "Participez à des ateliers et conférences pour développer vos compétences"
+      },
+      {
+        "title": "Mentorat",
+        "description": "Bénéficiez de l'expérience de mentores expertes dans votre domaine"
+      },
+      {
+        "title": "Événements",
+        "description": "Rejoignez nos événements réguliers : conférences, hackathons, meetups"
+      },
+      {
+        "title": "Communauté",
+        "description": "Faites partie d'une communauté bienveillante et inclusive"
+      },
+      {
+        "title": "Opportunités",
+        "description": "Accédez à des offres d'emploi et opportunités de carrière exclusives"
+      }
+    ],
+    "layout": "grid",
+    "columns": 3
+  }
+}

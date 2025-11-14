@@ -1,0 +1,28 @@
+{
+  "type": "about",
+  "order": 3,
+  "visible": true,
+  "data": {
+    "title": "À propos de Tech Women Together",
+    "content": "Tech Women Together est une communauté dynamique qui rassemble les femmes passionnées par la technologie. Notre mission est de créer un espace inclusif où chacune peut apprendre, partager et grandir professionnellement.\n\nNous organisons des événements, des ateliers et des sessions de networking pour favoriser les échanges et le développement de compétences dans tous les domaines de la tech.",
+    "image": {
+      "src": "/images/about-community.jpg",
+      "alt": "Communauté Tech Women Together",
+      "position": "right"
+    },
+    "stats": [
+      {
+        "value": "500+",
+        "label": "Membres actives"
+      },
+      {
+        "value": "50+",
+        "label": "Événements organisés"
+      },
+      {
+        "value": "20+",
+        "label": "Partenaires"
+      }
+    ]
+  }
+}

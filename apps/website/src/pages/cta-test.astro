@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/sections/CTA.astro';
+---
+
+<BaseLayout
+  title="CTA Section Test"
+  description="Testing CTA section component"
+  lang="fr"
+>
+  <main>
+    <div class="py-8 bg-gray-100">
+      <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold mb-8">CTA Section Tests</h1>
+      </div>
+    </div>
+
+    <!-- Default background with primary CTA only -->
+    <CTA
+      title="Rejoignez notre communauté"
+      description="Découvrez les opportunités qui vous attendent et connectez-vous avec des professionnels passionnés."
+      primaryCta={{
+        label: "S'inscrire maintenant",
+        href: "/signup"
+      }}
+      background="default"
+    />
+
+    <!-- Accent background with both CTAs -->
+    <CTA
+      title="Prêt à transformer votre carrière ?"
+      description="Accédez à des ressources exclusives et développez vos compétences avec nos experts."
+      primaryCta={{
+        label: "Commencer gratuitement",
+        href: "/get-started"
+      }}
+      secondaryCta={{
+        label: "En savoir plus",
+        href: "/about"
+      }}
+      background="accent"
+    />
+
+    <!-- Gradient background with both CTAs -->
+    <CTA
+      title="Ne manquez pas nos prochains événements"
+      description="Inscrivez-vous à notre newsletter pour recevoir les dernières actualités et invitations."
+      primaryCta={{
+        label: "S'abonner",
+        href: "/newsletter"
+      }}
+      secondaryCta={{
+        label: "Voir les événements",
+        href: "/events"
+      }}
+      background="gradient"
+    />
+
+    <!-- Minimal CTA without description -->
+    <CTA
+      title="Une question ? Contactez-nous"
+      primaryCta={{
+        label: "Nous contacter",
+        href: "/contact"
+      }}
+      background="default"
+    />
+  </main>
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Events from '../components/sections/Events.astro';
+---
+
+<BaseLayout
+  title="Events Section Test"
+  description="Testing the Events section component"
+  lang="fr"
+>
+  <div class="space-y-16">
+    <Events
+      title="Événements à venir"
+      subtitle="Découvrez nos prochains événements et inscrivez-vous dès maintenant"
+      displayMode="upcoming"
+      lang="fr"
+    />
+
+    <div class="border-t-4 border-gray-200"></div>
+
+    <Events
+      title="Tous les événements"
+      subtitle="Parcourez l'ensemble de nos événements"
+      displayMode="all"
+      lang="fr"
+    />
+
+    <div class="border-t-4 border-gray-200"></div>
+
+    <Events
+      title="Événements passés"
+      subtitle="Revivez nos événements précédents"
+      displayMode="past"
+      lang="fr"
+    />
+
+    <div class="border-t-4 border-gray-200"></div>
+
+    <Events
+      title="Événements à venir (limité à 2)"
+      displayMode="upcoming"
+      limit={2}
+      lang="fr"
+    />
+  </div>
+</BaseLayout>

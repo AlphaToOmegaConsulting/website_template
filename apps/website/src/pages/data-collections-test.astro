@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Team from '../components/sections/Team.astro';
+import Domains from '../components/sections/Domains.astro';
+
+// Fetch data collections
+const allAuthors = await getCollection('authors');
+const allDomains = await getCollection('domains');
+const allTags = await getCollection('tags');
+
+// Get specific entries for demonstration
+const authors = allAuthors.map(author => author.data);
+const domains = allDomains.map(domain => domain.data);
+const tags = allTags.map(tag => tag.data);
+---
+
+<BaseLayout
+  title="Data Collections Test"
+  description="Testing data collections integration with TypeScript type inference"
+  lang="fr"
+>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-8">Data Collections Test</h1>
+    
+    <div class="mb-12 p-6 bg-blue-50 rounded-lg">
+      <h2 class="text-2xl font-bold mb-4">TypeScript Type Inference Test</h2>
+      <p class="mb-4">This page demonstrates that TypeScript types are correctly inferred from data collections.</p>
+      
+      <div class="space-y-4">
+        <div>
+          <strong>Authors count:</strong> {authors.length}
+          <br />
+          <strong>First author:</strong> {authors[0]?.name} - {authors[0]?.role}
+        </div>
+        
+        <div>
+          <strong>Domains count:</strong> {domains.length}
+          <br />
+          <strong>First domain:</strong> {domains[0]?.name}
+        </div>
+        
+        <div>
+          <strong>Tags count:</strong> {tags.length}
+          <br />
+          <strong>Tags:</strong> {tags.map(tag => tag.name).join(', ')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags Display -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-6">Available Tags</h2>
+      <div class="flex flex-wrap gap-3">
+        {tags.map((tag) => (
+          <span
+            class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium text-white"
+            style={`background-color: ${tag.color || '#6B7280'}`}
+          >
+            {tag.name}
+          </span>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <!-- Team Section -->
+  <Team
+    title="Our Team"
+    subtitle="Meet the experts behind our community"
+    authors={authors}
+    columns={3}
+  />
+
+  <!-- Domains Section -->
+  <Domains
+    title="Our Expertise Domains"
+    subtitle="Explore the different technology domains we cover"
+    domains={domains}
+    columns={3}
+  />
+</BaseLayout>

@@ -1,0 +1,12 @@
+{
+  "id": "marie-dupont",
+  "name": "Marie Dupont",
+  "role": "Développeuse Full Stack",
+  "avatar": "/images/authors/marie-dupont.jpg",
+  "bio": "Passionnée par le développement web moderne et l'accessibilité. Spécialiste React et TypeScript avec 8 ans d'expérience.",
+  "social": {
+    "twitter": "mariedupont",
+    "github": "mariedupont",
+    "linkedin": "marie-dupont"
+  }
+}

@@ -1,0 +1,230 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Card from '../../../components/primitives/Card.astro';
+import ButtonLink from '../../../components/primitives/ButtonLink.astro';
+
+// Partners data (could be moved to a data collection later)
+const partners = [
+  {
+    id: 'partner-1',
+    name: 'TechCorp',
+    logo: '/images/partners/techcorp.svg',
+    description: 'Global leader in cloud solutions and artificial intelligence.',
+    website: 'https://example.com/techcorp',
+    tier: 'platinum',
+  },
+  {
+    id: 'partner-2',
+    name: 'InnovateLab',
+    logo: '/images/partners/innovatelab.svg',
+    description: 'Innovative startup specializing in tech product development.',
+    website: 'https://example.com/innovatelab',
+    tier: 'gold',
+  },
+  {
+    id: 'partner-3',
+    name: 'DataSolutions',
+    logo: '/images/partners/datasolutions.svg',
+    description: 'Expert in data analysis and business intelligence.',
+    website: 'https://example.com/datasolutions',
+    tier: 'gold',
+  },
+  {
+    id: 'partner-4',
+    name: 'DevHub',
+    logo: '/images/partners/devhub.svg',
+    description: 'Collaborative platform for developers.',
+    website: 'https://example.com/devhub',
+    tier: 'silver',
+  },
+  {
+    id: 'partner-5',
+    name: 'CloudFirst',
+    logo: '/images/partners/cloudfirst.svg',
+    description: 'Cloud services and infrastructure for modern businesses.',
+    website: 'https://example.com/cloudfirst',
+    tier: 'silver',
+  },
+  {
+    id: 'partner-6',
+    name: 'CodeAcademy',
+    logo: '/images/partners/codeacademy.svg',
+    description: 'Online training to learn programming.',
+    website: 'https://example.com/codeacademy',
+    tier: 'silver',
+  },
+];
+
+// Group partners by tier
+const platinumPartners = partners.filter(p => p.tier === 'platinum');
+const goldPartners = partners.filter(p => p.tier === 'gold');
+const silverPartners = partners.filter(p => p.tier === 'silver');
+
+// Page metadata
+const pageTitle = 'Our Partners - Tech Women Together';
+const pageDescription = 'Discover the companies and organizations that support our mission to promote diversity in tech.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang="en"
+  alternateUrls={{
+    fr: '/fr/partners',
+    en: '/en/partners'
+  }}
+>
+  <div class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+      <!-- Page Header -->
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Our Partners
+        </h1>
+        <p class="text-xl text-gray-600">
+          We are proud to collaborate with companies and organizations that share our vision of a more inclusive and diverse tech industry.
+        </p>
+      </div>
+
+      <!-- Platinum Partners -->
+      {platinumPartners.length > 0 && (
+        <section class="mb-16">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">
+              Platinum Partners
+            </h2>
+            <p class="text-gray-600">Our major strategic partners</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {platinumPartners.map((partner) => (
+              <Card variant="elevated" padding="lg" class="text-center">
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-32 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                    <span class="text-gray-700 text-sm">Logo</span>
+                  </div>
+                  <h3 class="text-2xl font-semibold text-gray-900 mb-3">
+                    {partner.name}
+                  </h3>
+                  <p class="text-gray-700 mb-6">
+                    {partner.description}
+                  </p>
+                  <ButtonLink 
+                    href={partner.website}
+                    variant="primary" 
+                    size="md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit Website
+                  </ButtonLink>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Gold Partners -->
+      {goldPartners.length > 0 && (
+        <section class="mb-16">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">
+              Gold Partners
+            </h2>
+            <p class="text-gray-600">Our premium partners</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {goldPartners.map((partner) => (
+              <Card variant="bordered" padding="md" class="text-center">
+                <div class="flex flex-col items-center">
+                  <div class="w-24 h-24 bg-gray-200 rounded-lg mb-3 flex items-center justify-center">
+                    <span class="text-gray-700 text-xs">Logo</span>
+                  </div>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                    {partner.name}
+                  </h3>
+                  <p class="text-gray-700 mb-4 text-sm">
+                    {partner.description}
+                  </p>
+                  <ButtonLink 
+                    href={partner.website}
+                    variant="secondary" 
+                    size="sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Learn More
+                  </ButtonLink>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Silver Partners -->
+      {silverPartners.length > 0 && (
+        <section class="mb-16">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">
+              Silver Partners
+            </h2>
+            <p class="text-gray-600">Our supporting partners</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {silverPartners.map((partner) => (
+              <Card variant="bordered" padding="md" class="text-center">
+                <div class="flex flex-col items-center">
+                  <div class="w-20 h-20 bg-gray-200 rounded-lg mb-3 flex items-center justify-center">
+                    <span class="text-gray-700 text-xs">Logo</span>
+                  </div>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                    {partner.name}
+                  </h3>
+                  <p class="text-gray-700 mb-4 text-sm">
+                    {partner.description}
+                  </p>
+                  <ButtonLink 
+                    href={partner.website}
+                    variant="ghost" 
+                    size="sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit
+                  </ButtonLink>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- CTA Section -->
+      <section class="bg-primary-50 rounded-lg p-8 md:p-12 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Become a Partner
+        </h2>
+        <p class="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+          Join our network of partners and help build a more diverse and inclusive tech community.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <ButtonLink 
+            href="mailto:partners@example.com"
+            variant="primary" 
+            size="lg"
+          >
+            Contact Us
+          </ButtonLink>
+          <ButtonLink 
+            href="/en/partners/info"
+            variant="secondary" 
+            size="lg"
+          >
+            Learn More
+          </ButtonLink>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
