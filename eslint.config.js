@@ -4,6 +4,19 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import tseslint from 'typescript-eslint';
 
 export default [
+  // Global ignores MUST be in a separate config object with ONLY ignores
+  {
+    ignores: [
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/.astro/**',
+      '**/tests/**',
+      '**/scripts/**',
+      '**/playwright-report/**',
+      '**/test-results/**',
+    ],
+  },
+  // Then apply configs to everything else
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
@@ -32,19 +45,5 @@ export default [
       'jsx-a11y/label-has-associated-control': 'error',
       'jsx-a11y/no-redundant-roles': 'error',
     },
-  },
-  {
-    ignores: [
-      'dist/**',
-      'node_modules/**',
-      '.astro/**',
-      'pnpm-lock.yaml',
-      'package-lock.json',
-      'yarn.lock',
-      'tests/**',
-      'scripts/**',
-      'playwright-report/**',
-      'test-results/**',
-    ],
   },
 ];
