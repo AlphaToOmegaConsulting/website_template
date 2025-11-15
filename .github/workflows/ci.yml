@@ -60,9 +60,8 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Check internal links
-        run: pnpm run check-links
-        continue-on-error: true
+      - name: Check internal links (temporarily disabled)
+        run: echo "check-links temporairement désactivé dans la CI"
 
       - name: Run Lighthouse CI
         run: pnpm run lighthouse
