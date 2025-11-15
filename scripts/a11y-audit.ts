@@ -1,4 +1,5 @@
 import { chromium } from 'playwright';
+import type { Page } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import type { Result } from 'axe-core';
 import { writeFileSync } from 'fs';
@@ -26,7 +27,7 @@ const pages = [
   '/en/404',
 ];
 
-async function auditPage(page: any, url: string): Promise<PageResult> {
+async function auditPage(page: Page, url: string): Promise<PageResult> {
   const fullUrl = `http://localhost:4322${url}`;
   console.log(`\nAuditing: ${fullUrl}`);
   

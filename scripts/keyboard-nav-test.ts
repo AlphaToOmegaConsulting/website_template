@@ -1,4 +1,5 @@
 import { chromium } from 'playwright';
+import type { Page } from 'playwright';
 
 interface TestResult {
   page: string;
@@ -15,7 +16,7 @@ const pages = [
   '/en/twt/landing',
 ];
 
-async function testKeyboardNavigation(page: any, url: string): Promise<TestResult> {
+async function testKeyboardNavigation(page: Page, url: string): Promise<TestResult> {
   const fullUrl = `http://localhost:4322${url}`;
   console.log(`\nTesting keyboard navigation: ${fullUrl}`);
   
