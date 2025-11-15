@@ -1,0 +1,72 @@
+---
+import ButtonLink from '../primitives/ButtonLink.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  primaryCta: {
+    label: string;
+    href: string;
+  };
+  secondaryCta?: {
+    label: string;
+    href: string;
+  };
+  variant?: 'default' | 'emphasized';
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  primaryCta,
+  secondaryCta,
+  variant = 'default',
+  class: className = '',
+} = Astro.props;
+
+const variantClasses = {
+  default: 'bg-gray-50',
+  emphasized: 'bg-white shadow-md',
+};
+
+const sectionClasses = [
+  'py-16 md:py-20 lg:py-24',
+  variantClasses[variant],
+  className,
+].filter(Boolean).join(' ');
+---
+
+<section class={sectionClasses}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-brand-primary mb-4 lg:mb-6">
+      {title}
+    </h2>
+
+    {description && (
+      <p class="text-lg sm:text-xl text-gray-600 mb-8 lg:mb-10">
+        {description}
+      </p>
+    )}
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <ButtonLink
+        href={primaryCta.href}
+        variant="primary"
+        size="lg"
+      >
+        {primaryCta.label}
+      </ButtonLink>
+
+      {secondaryCta && (
+        <ButtonLink
+          href={secondaryCta.href}
+          variant="secondary"
+          size="lg"
+        >
+          {secondaryCta.label}
+        </ButtonLink>
+      )}
+    </div>
+  </div>
+</section>

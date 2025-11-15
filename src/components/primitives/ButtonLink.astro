@@ -1,0 +1,79 @@
+---
+/**
+ * ButtonLink Component
+ * 
+ * A styled link that looks like a button. Supports multiple variants and sizes.
+ * Uses Alpha Web Core brand colors for primary variant, standard Tailwind for others.
+ * 
+ * @example
+ * ```astro
+ * <!-- Primary button (uses brand colors) -->
+ * <ButtonLink href="/signup" variant="primary" size="lg">
+ *   Get Started
+ * </ButtonLink>
+ * 
+ * <!-- Secondary button (neutral gray) -->
+ * <ButtonLink href="/docs" variant="secondary">
+ *   Learn More
+ * </ButtonLink>
+ * 
+ * <!-- Ghost button (transparent with brand text) -->
+ * <ButtonLink href="/about" variant="ghost" size="sm">
+ *   About Us
+ * </ButtonLink>
+ * ```
+ * 
+ * Theming Notes:
+ * - Primary variant uses `bg-brand-accent` and `hover:bg-brand-primary`
+ * - Secondary variant uses standard Tailwind gray colors
+ * - Ghost variant uses `text-brand-primary` for brand consistency
+ * - Focus ring uses `ring-brand-accent` for accessibility
+ */
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  target?: '_blank' | '_self';
+  rel?: string;
+  class?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  target,
+  rel,
+  class: className = '',
+} = Astro.props;
+
+const variantClasses = {
+  primary: 'bg-brand-accent text-white hover:bg-brand-primary active:opacity-90',
+  secondary: 'bg-gray-600 text-white hover:bg-gray-700 active:bg-gray-800',
+  ghost: 'bg-transparent text-brand-primary hover:bg-gray-50 active:bg-gray-100',
+};
+
+const sizeClasses = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2 text-base',
+  lg: 'px-6 py-3 text-lg',
+};
+
+const baseClasses = 'inline-flex items-center justify-center font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 no-underline';
+
+const classes = [
+  baseClasses,
+  variantClasses[variant],
+  sizeClasses[size],
+  className,
+].filter(Boolean).join(' ');
+---
+
+<a
+  href={href}
+  class={classes}
+  target={target}
+  rel={rel}
+>
+  <slot />
+</a>

@@ -1,0 +1,122 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'fr' | 'en';
+  alternateUrls?: {
+    fr?: string;
+    en?: string;
+  };
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  lang,
+  alternateUrls,
+  ogImage,
+  noindex = false,
+} = Astro.props;
+
+// Get current URL for canonical and OG tags
+const currentUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalUrl = currentUrl.href;
+
+// Default OG image if not provided
+const defaultOgImage = '/og-default.jpg';
+const ogImageUrl = ogImage || defaultOgImage;
+const ogImageFullUrl = new URL(ogImageUrl, Astro.site).href;
+
+// Site name for OG tags
+const siteName = 'Astro Multilingual Website';
+
+// Twitter card type
+const twitterCard = 'summary_large_image';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Robots -->
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- hreflang Links for i18n -->
+    {alternateUrls?.fr && (
+      <link rel="alternate" hreflang="fr" href={new URL(alternateUrls.fr, Astro.site).href} />
+    )}
+    {alternateUrls?.en && (
+      <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en, Astro.site).href} />
+    )}
+    {(alternateUrls?.fr || alternateUrls?.en) && (
+      <link
+        rel="alternate"
+        hreflang="x-default"
+        href={new URL(alternateUrls?.fr || alternateUrls?.en || '/', Astro.site).href}
+      />
+    )}
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageFullUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
+    {alternateUrls?.fr && lang === 'en' && (
+      <meta property="og:locale:alternate" content="fr_FR" />
+    )}
+    {alternateUrls?.en && lang === 'fr' && (
+      <meta property="og:locale:alternate" content="en_US" />
+    )}
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content={twitterCard} />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageFullUrl} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Global Scripts Placeholder -->
+    <!-- Add analytics, tracking, or other global scripts here -->
+    <slot name="head" />
+  </head>
+  <body>
+    <div class="flex flex-col min-h-screen">
+      <!-- Header -->
+      <Header lang={lang} currentPath={Astro.url.pathname} alternateUrls={alternateUrls} />
+      
+      <!-- Main Content -->
+      <main class="flex-grow">
+        <slot />
+      </main>
+      
+      <!-- Footer -->
+      <Footer lang={lang} />
+    </div>
+    
+    <!-- Global Scripts -->
+    <slot name="scripts" />
+  </body>
+</html>

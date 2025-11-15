@@ -1,0 +1,15 @@
+{
+  "type": "hero",
+  "order": 1,
+  "visible": true,
+  "data": {
+    "title": "Bienvenue chez Tech Women Together",
+    "subtitle": "La communauté qui connecte les femmes dans la tech",
+    "cta": {
+      "label": "Découvrir",
+      "href": "/fr/about",
+      "variant": "primary"
+    },
+    "variant": "default"
+  }
+}

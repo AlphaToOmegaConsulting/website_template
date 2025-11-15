@@ -1,0 +1,18 @@
+{
+  "type": "cta",
+  "order": 5,
+  "visible": true,
+  "data": {
+    "title": "Prête à rejoindre la communauté ?",
+    "description": "Inscrivez-vous dès aujourd'hui et commencez à faire partie d'un réseau de femmes inspirantes dans la tech.",
+    "primaryCta": {
+      "label": "S'inscrire maintenant",
+      "href": "/fr/register"
+    },
+    "secondaryCta": {
+      "label": "En savoir plus",
+      "href": "/fr/about"
+    },
+    "variant": "emphasized"
+  }
+}

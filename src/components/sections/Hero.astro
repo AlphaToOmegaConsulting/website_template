@@ -1,0 +1,116 @@
+---
+import ButtonLink from '../primitives/ButtonLink.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  cta?: {
+    label: string;
+    href: string;
+    variant?: 'primary' | 'secondary';
+  };
+  image?: {
+    src: string;
+    alt: string;
+  };
+  variant?: 'default' | 'centered' | 'split';
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  cta,
+  image,
+  variant = 'default',
+  class: className = '',
+} = Astro.props;
+
+const sectionClasses = [
+  'relative py-16 md:py-24 lg:py-32 bg-white',
+  className,
+].filter(Boolean).join(' ');
+
+const isCentered = variant === 'centered';
+const contentClasses = isCentered ? 'text-center mx-auto max-w-3xl' : '';
+---
+
+<section class={sectionClasses}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+    {variant === 'centered' ? (
+      <div class={contentClasses}>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-brand-primary mb-4 lg:mb-6">
+          {title}
+        </h1>
+
+        {subtitle && (
+          <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-6 lg:mb-8">
+            {subtitle}
+          </p>
+        )}
+
+        {cta && (
+          <div class="flex flex-wrap gap-4 justify-center">
+            <ButtonLink
+              href={cta.href}
+              variant={cta.variant || 'primary'}
+              size="lg"
+            >
+              {cta.label}
+            </ButtonLink>
+          </div>
+        )}
+
+        {image && (
+          <div class="mt-8 lg:mt-12">
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="w-full h-auto rounded-lg shadow-xl"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        )}
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-brand-primary mb-4 lg:mb-6">
+            {title}
+          </h1>
+
+          {subtitle && (
+            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-6 lg:mb-8">
+              {subtitle}
+            </p>
+          )}
+
+          {cta && (
+            <div class="flex flex-wrap gap-4">
+              <ButtonLink
+                href={cta.href}
+                variant={cta.variant || 'primary'}
+                size="lg"
+              >
+                {cta.label}
+              </ButtonLink>
+            </div>
+          )}
+        </div>
+
+        {image && (
+          <div class="order-first lg:order-last">
+            <img
+              src={image.src}
+              alt={image.alt}
+              class="w-full h-auto rounded-lg shadow-xl"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+</section>

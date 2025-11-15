@@ -1,0 +1,101 @@
+/**
+ * Alpha Web Core - Minimal Token System
+ *
+ * 8-10 essential CSS variables for brand colors and key visual properties.
+ * Change these values to customize the theme for each brand/project.
+ *
+ * Usage:
+ * - Brand colors: Use .bg-brand-primary, .text-brand-primary classes
+ * - Everything else: Use standard Tailwind utilities (bg-white, shadow-md, rounded-lg, etc.)
+ */
+
+:root {
+  /* ============================================
+     BRAND COLORS (customize per project)
+     ============================================ */
+
+  /* Main brand color - Used for primary CTAs, headers, links */
+  --brand-primary: #334155;
+  --brand-primary-hover: #1e293b;
+
+  /* Secondary brand color - Used for secondary buttons, accents */
+  --brand-secondary: #64748b;
+
+  /* Accent color - Used for special CTAs, highlights */
+  --brand-accent: #3b82f6;
+  --brand-accent-hover: #2563eb;
+
+  /* ============================================
+     NEUTRAL COLORS (optional customization)
+     ============================================ */
+
+  /* Base text colors */
+  --color-text: #1a1a1a;
+  --color-text-muted: #64748b;
+
+  /* Base backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8fafc;
+
+  /* ============================================
+     VISUAL EFFECTS (optional customization)
+     ============================================ */
+
+  /* Standard shadow for cards and elevated elements */
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  /* Standard border radius */
+  --radius: 0.5rem;
+}
+
+/* ============================================
+   BRAND COLOR UTILITIES
+   Minimal semantic classes for brand colors
+   ============================================ */
+
+/* Text colors */
+.text-brand-primary {
+  color: var(--brand-primary);
+}
+
+.text-brand-secondary {
+  color: var(--brand-secondary);
+}
+
+.text-brand-accent {
+  color: var(--brand-accent);
+}
+
+/* Background colors */
+.bg-brand-primary {
+  background-color: var(--brand-primary);
+}
+
+.bg-brand-primary:hover {
+  background-color: var(--brand-primary-hover);
+}
+
+.bg-brand-secondary {
+  background-color: var(--brand-secondary);
+}
+
+.bg-brand-accent {
+  background-color: var(--brand-accent);
+}
+
+.bg-brand-accent:hover {
+  background-color: var(--brand-accent-hover);
+}
+
+/* Border colors */
+.border-brand-primary {
+  border-color: var(--brand-primary);
+}
+
+.border-brand-secondary {
+  border-color: var(--brand-secondary);
+}
+
+.border-brand-accent {
+  border-color: var(--brand-accent);
+}

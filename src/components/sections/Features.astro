@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  features: Array<{
+    icon?: string;
+    title: string;
+    description: string;
+  }>;
+  layout?: 'grid' | 'list';
+  columns?: 2 | 3 | 4;
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  features,
+  layout = 'grid',
+  columns = 3,
+  class: className = '',
+} = Astro.props;
+
+const sectionClasses = [
+  'py-16 md:py-24 bg-white',
+  className,
+].filter(Boolean).join(' ');
+
+const gridColsClasses = {
+  2: 'grid-cols-1 md:grid-cols-2',
+  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
+};
+
+const layoutClasses = layout === 'grid'
+  ? `grid ${gridColsClasses[columns]} gap-8 lg:gap-10`
+  : 'flex flex-col gap-6';
+---
+
+<section class={sectionClasses}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-brand-primary mb-4">
+        {title}
+      </h2>
+
+      {subtitle && (
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class={layoutClasses}>
+      {features.map((feature) => (
+        <div class={layout === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row gap-4'}>
+          {feature.icon && (
+            <div class={layout === 'grid'
+              ? 'text-4xl mb-4'
+              : 'text-4xl md:text-5xl flex-shrink-0'
+            }>
+              {feature.icon}
+            </div>
+          )}
+
+          <div class={layout === 'list' ? 'flex-1' : ''}>
+            <h3 class="text-xl sm:text-2xl font-semibold font-heading text-gray-900 mb-3">
+              {feature.title}
+            </h3>
+
+            <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
