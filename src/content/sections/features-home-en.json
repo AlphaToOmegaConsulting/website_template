@@ -1,0 +1,37 @@
+{
+  "type": "features",
+  "order": 2,
+  "visible": true,
+  "data": {
+    "title": "What We Offer",
+    "subtitle": "Everything you need to succeed in tech",
+    "features": [
+      {
+        "title": "Networking",
+        "description": "Connect with tech professionals and expand your network"
+      },
+      {
+        "title": "Training",
+        "description": "Participate in workshops and conferences to develop your skills"
+      },
+      {
+        "title": "Mentorship",
+        "description": "Benefit from the experience of expert mentors in your field"
+      },
+      {
+        "title": "Events",
+        "description": "Join our regular events: conferences, hackathons, meetups"
+      },
+      {
+        "title": "Community",
+        "description": "Be part of a welcoming and inclusive community"
+      },
+      {
+        "title": "Opportunities",
+        "description": "Access exclusive job offers and career opportunities"
+      }
+    ],
+    "layout": "grid",
+    "columns": 3
+  }
+}

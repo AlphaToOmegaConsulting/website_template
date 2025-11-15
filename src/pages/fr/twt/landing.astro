@@ -12,9 +12,9 @@ const allEvents = await getCollection('events', ({ data }) => {
   return data.lang === 'fr';
 });
 
-// Filter sections for TWT landing page (by filename pattern)
-const twtSections = allSections.filter(section => 
-  section.id.includes('twt-landing')
+// Filter sections for TWT landing page (French version)
+const twtSections = allSections.filter(section =>
+  section.id.includes('twt-landing') && !section.id.includes('twt-landing-en')
 );
 
 // Sort sections by order
@@ -44,7 +44,7 @@ const transformedEvents = allEvents.map(event => ({
 }));
 
 // Page metadata
-const pageTitle = 'Tech Women Together - Landing';
+const pageTitle = 'Tech Women Together - Accueil';
 const pageDescription = 'Rejoignez la communauté Tech Women Together pour connecter, apprendre et grandir ensemble dans le domaine de la technologie.';
 ---
 

@@ -12,9 +12,9 @@ const allEvents = await getCollection('events', ({ data }) => {
   return data.lang === 'en';
 });
 
-// Filter sections for TWT landing page (by filename pattern)
-const twtSections = allSections.filter(section => 
-  section.id.includes('twt-landing')
+// Filter sections for TWT landing page (English version)
+const twtSections = allSections.filter(section =>
+  section.id.includes('twt-landing-en')
 );
 
 // Sort sections by order

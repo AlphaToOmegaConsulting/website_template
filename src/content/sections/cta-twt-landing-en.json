@@ -1,0 +1,18 @@
+{
+  "type": "cta",
+  "order": 5,
+  "visible": true,
+  "data": {
+    "title": "Ready to Join the Community?",
+    "description": "Sign up today and start being part of a network of inspiring women in tech.",
+    "primaryCta": {
+      "label": "Sign Up Now",
+      "href": "/en/register"
+    },
+    "secondaryCta": {
+      "label": "Learn More",
+      "href": "/en/about"
+    },
+    "variant": "emphasized"
+  }
+}

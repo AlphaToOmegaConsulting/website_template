@@ -1,0 +1,18 @@
+{
+  "type": "cta",
+  "order": 5,
+  "visible": true,
+  "data": {
+    "title": "Join Our Community",
+    "description": "Sign up today to receive our news and participate in our events.",
+    "primaryCta": {
+      "label": "Sign Up",
+      "href": "/en/signup"
+    },
+    "secondaryCta": {
+      "label": "Learn More",
+      "href": "/en/about"
+    },
+    "variant": "emphasized"
+  }
+}

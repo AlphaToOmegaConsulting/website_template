@@ -13,9 +13,9 @@ const allEvents = await getCollection('events', ({ data }) => {
   return data.lang === 'en' && data.featured;
 });
 
-// Filter sections for home page
-const homeSections = allSections.filter(section => 
-  section.id.includes('home')
+// Filter sections for home page (English version)
+const homeSections = allSections.filter(section =>
+  section.id.includes('home-en')
 );
 
 // Sort sections by order

@@ -1,0 +1,15 @@
+{
+  "type": "hero",
+  "order": 1,
+  "visible": true,
+  "data": {
+    "title": "Tech Women Together",
+    "subtitle": "Connect, learn and grow with a community of women passionate about technology",
+    "cta": {
+      "label": "Join the Community",
+      "href": "/en/register",
+      "variant": "primary"
+    },
+    "variant": "default"
+  }
+}
