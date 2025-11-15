@@ -1,0 +1,24 @@
+# ESLint ignore file (legacy but stable in CI)
+# Flat config ignores are unstable on Linux CI environments
+
+# Build outputs
+dist/
+.astro/
+
+# Public assets (images, fonts, etc.)
+public/
+
+# Test files
+tests/
+test-results/
+playwright-report/
+
+# Scripts (not part of main codebase)
+scripts/
+
+# Dependencies
+node_modules/
+
+# Config files at root
+*.config.*
+*.setup.*
