@@ -35,16 +35,16 @@ export default [
   },
   {
     ignores: [
-      'dist/',
-      'node_modules/',
-      '.astro/',
+      'dist/**',
+      'node_modules/**',
+      '.astro/**',
       'pnpm-lock.yaml',
       'package-lock.json',
       'yarn.lock',
-      'tests/',
-      'scripts/',
-      'playwright-report/',
-      'test-results/',
+      'tests/**',
+      'scripts/**',
+      'playwright-report/**',
+      'test-results/**',
     ],
   },
 ];
