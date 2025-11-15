@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, template-ready-for-prod ]
   workflow_dispatch:
 
 permissions:
@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PUBLIC_SITE_URL: https://alphatoomegaconsulting.github.io
+      PUBLIC_REPO_NAME: website_template
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,6 +31,8 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: 10.22.0
 
       - name: Install dependencies
         run: pnpm install
