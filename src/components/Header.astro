@@ -1,6 +1,7 @@
 ---
 import Navigation from './Navigation.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import { buildUrl } from '@/utils/url';
 
 interface Props {
   lang: 'fr' | 'en';
@@ -12,6 +13,9 @@ interface Props {
 }
 
 const { lang, currentPath = '', alternateUrls } = Astro.props;
+
+// Build logo link with base path support
+const logoHref = buildUrl(`/${lang}/`);
 ---
 
 <header class="bg-white border-b border-gray-200">
@@ -19,7 +23,7 @@ const { lang, currentPath = '', alternateUrls } = Astro.props;
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <div class="flex-shrink-0">
-        <a href={`/${lang}/`} class="text-2xl font-bold text-brand-primary hover:text-brand-accent transition-colors focus-ring">
+        <a href={logoHref} class="text-2xl font-bold text-brand-primary hover:text-brand-accent transition-colors focus-ring">
           Logo
         </a>
       </div>

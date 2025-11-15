@@ -51,6 +51,7 @@ const sectionClasses = [
           {title}
         </h2>
 
+        {/* eslint-disable-next-line astro/no-set-html-directive */}
         <div class="prose prose-lg max-w-none mb-8 text-gray-700" set:html={content} />
 
         {stats && stats.length > 0 && (

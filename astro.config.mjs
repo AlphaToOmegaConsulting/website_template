@@ -3,7 +3,9 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 // GitHub Pages configuration via environment variables
-const site = process.env.PUBLIC_SITE_URL || '';
+// eslint-disable-next-line no-undef
+const site = process.env.PUBLIC_SITE_URL || undefined;
+// eslint-disable-next-line no-undef
 const repo = process.env.PUBLIC_REPO_NAME || '';
 
 // https://astro.build/config

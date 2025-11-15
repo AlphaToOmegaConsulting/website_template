@@ -9,9 +9,6 @@ import CTA from '../../components/sections/CTA.astro';
 
 // Fetch content from Content Collections
 const allSections = await getCollection('sections');
-const allEvents = await getCollection('events', ({ data }) => {
-  return data.lang === 'en' && data.featured;
-});
 
 // Filter sections for home page (English version)
 const homeSections = allSections.filter(section =>
@@ -31,18 +28,7 @@ const getSectionData = (type: string) => {
 const heroData = getSectionData('hero');
 const aboutData = getSectionData('about');
 const featuresData = getSectionData('features');
-const eventsData = getSectionData('events');
 const ctaData = getSectionData('cta');
-
-// Transform events for the Events component
-const transformedEvents = allEvents.map(event => ({
-  id: event.id,
-  title: event.data.title,
-  date: event.data.date,
-  location: event.data.location,
-  description: event.data.description,
-  link: event.data.registrationUrl,
-}));
 
 // Page metadata
 const pageTitle = 'Home - Tech Women Together';
@@ -87,14 +73,12 @@ const pageDescription = 'Welcome to Tech Women Together, the community connectin
     />
   )}
 
-  {transformedEvents.length > 0 && (
-    <Events
-      title="Upcoming Events"
-      events={transformedEvents}
-      displayMode="upcoming"
-      limit={3}
-    />
-  )}
+  <Events
+    title="Upcoming Events"
+    displayMode="upcoming"
+    limit={3}
+    lang="en"
+  />
 
   {ctaData && (
     <CTA

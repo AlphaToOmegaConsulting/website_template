@@ -100,10 +100,12 @@ const descriptionId = description ? `${dialogId}-description` : undefined;
     triggers.forEach((trigger) => {
       trigger.addEventListener('click', () => {
         const dialogId = trigger.getAttribute('data-dialog-trigger');
-        const dialog = document.getElementById(dialogId) as HTMLDialogElement;
-        if (dialog) {
-          dialog.showModal();
-          trapFocus(dialog);
+        if (dialogId) {
+          const dialog = document.getElementById(dialogId) as HTMLDialogElement;
+          if (dialog) {
+            dialog.showModal();
+            trapFocus(dialog);
+          }
         }
       });
     });
@@ -111,9 +113,11 @@ const descriptionId = description ? `${dialogId}-description` : undefined;
     closeButtons.forEach((button) => {
       button.addEventListener('click', () => {
         const dialogId = button.getAttribute('data-dialog-close');
-        const dialog = document.getElementById(dialogId) as HTMLDialogElement;
-        if (dialog) {
-          dialog.close();
+        if (dialogId) {
+          const dialog = document.getElementById(dialogId) as HTMLDialogElement;
+          if (dialog) {
+            dialog.close();
+          }
         }
       });
     });
@@ -134,7 +138,7 @@ const descriptionId = description ? `${dialogId}-description` : undefined;
       });
 
       // ESC key handling (native dialog behavior)
-      dialog.addEventListener('cancel', (e) => {
+      dialog.addEventListener('cancel', () => {
         // Allow default ESC behavior to close dialog
       });
     });

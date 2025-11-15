@@ -52,7 +52,6 @@ async function testKeyboardNavigation(page: any, url: string): Promise<TestResul
         if (!activeElement || activeElement === document.body) return false;
         
         const styles = window.getComputedStyle(activeElement);
-        const pseudoStyles = window.getComputedStyle(activeElement, ':focus-visible');
         
         // Check if element has visible focus styles
         return (

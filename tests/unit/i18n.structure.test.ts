@@ -33,7 +33,7 @@ describe('i18n pages structure symmetry', () => {
                     files.push(pathWithoutExt);
                 }
             }
-        } catch (error) {
+        } catch {
             // Si le dossier n'existe pas, retourne un tableau vide
             return [];
         }

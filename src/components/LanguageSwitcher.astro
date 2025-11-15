@@ -1,4 +1,6 @@
 ---
+import { buildUrl } from '@/utils/url';
+
 interface Props {
   currentLang: 'fr' | 'en';
   alternateUrls: {
@@ -16,9 +18,11 @@ const languages = {
   en: { label: 'English', shortLabel: 'EN' },
 };
 
-// Get the alternate language URL
+// Get the alternate language URL and resolve with base path
 const alternateLang = currentLang === 'fr' ? 'en' : 'fr';
-const alternateUrl = alternateUrls[alternateLang];
+const alternateUrl = alternateUrls[alternateLang]
+  ? buildUrl(alternateUrls[alternateLang])
+  : undefined;
 ---
 
 {alternateUrl && (

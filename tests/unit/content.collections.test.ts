@@ -31,7 +31,7 @@ describe('i18n content collections symmetry', () => {
                     files.push(relativePath);
                 }
             }
-        } catch (error) {
+        } catch {
             return [];
         }
 

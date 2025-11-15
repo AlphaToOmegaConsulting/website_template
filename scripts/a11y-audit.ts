@@ -1,24 +1,12 @@
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
+import type { Result } from 'axe-core';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 
-interface A11yViolation {
-  id: string;
-  impact: string;
-  description: string;
-  help: string;
-  helpUrl: string;
-  nodes: Array<{
-    html: string;
-    target: string[];
-    failureSummary: string;
-  }>;
-}
-
 interface PageResult {
   url: string;
-  violations: A11yViolation[];
+  violations: Result[];
   passes: number;
   incomplete: number;
 }
@@ -51,7 +39,7 @@ async function auditPage(page: any, url: string): Promise<PageResult> {
   console.log(`  ✗ Violations: ${results.violations.length}`);
   
   if (results.violations.length > 0) {
-    results.violations.forEach((violation: A11yViolation) => {
+    results.violations.forEach((violation) => {
       console.log(`    - [${violation.impact}] ${violation.id}: ${violation.help}`);
     });
   }

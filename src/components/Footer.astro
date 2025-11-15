@@ -1,4 +1,6 @@
 ---
+import { buildUrl } from '@/utils/url';
+
 interface Props {
   lang: 'fr' | 'en';
 }
@@ -22,6 +24,7 @@ const footerText = {
 
 const text = footerText[lang];
 
+// Footer links (relative paths only)
 const footerLinks = {
   fr: [
     { href: '/fr/', label: 'Accueil' },
@@ -64,7 +67,7 @@ const socialLinks = [
           {links.map((link) => (
             <li>
               <a
-                href={link.href}
+                href={buildUrl(link.href)}
                 class="text-sm hover:text-white transition-colors focus-ring rounded"
               >
                 {link.label}

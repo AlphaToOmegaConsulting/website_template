@@ -1,4 +1,6 @@
 ---
+import { buildUrl, isActivePath } from '@/utils/url';
+
 interface Props {
   lang: 'fr' | 'en';
   currentPath?: string;
@@ -6,9 +8,14 @@ interface Props {
   mobile?: boolean;
 }
 
-const { lang, currentPath = '', class: className = '', mobile = false } = Astro.props;
+const {
+    lang,
+    currentPath = '',
+    class: className = '',
+    mobile = false
+} = Astro.props;
 
-// Navigation links based on language
+// Navigation links based on language (relative paths only)
 const navLinks = {
   fr: [
     { href: '/fr/', label: 'Accueil' },
@@ -26,14 +33,8 @@ const navLinks = {
 
 const links = navLinks[lang];
 
-// Check if a link is active
-const isActive = (href: string) => {
-  // Exact match for home page
-  if (href === `/${lang}/` && currentPath === `/${lang}/`) return true;
-  // Prefix match for other pages
-  if (href !== `/${lang}/` && currentPath.startsWith(href)) return true;
-  return false;
-};
+// Check if a link is active using URL utility
+const isActive = (href: string) => isActivePath(currentPath, href);
 
 // Different styles for desktop vs mobile
 const getLinkClass = (href: string) => {
@@ -55,7 +56,7 @@ const getLinkClass = (href: string) => {
 <nav class={className} aria-label={lang === 'fr' ? 'Navigation principale' : 'Main navigation'}>
   {links.map((link) => (
     <a
-      href={link.href}
+      href={buildUrl(link.href)}
       class={getLinkClass(link.href)}
       aria-current={isActive(link.href) ? 'page' : undefined}
     >

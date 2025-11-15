@@ -10,6 +10,10 @@ jobs:
   quality:
     name: Code Quality & Tests
     runs-on: ubuntu-latest
+    
+    env:
+      PUBLIC_SITE_URL: https://alphatoomegaconsulting.github.io
+      PUBLIC_REPO_NAME: website_template
 
     steps:
       - name: Checkout code
@@ -69,6 +73,10 @@ jobs:
     name: E2E Tests
     runs-on: ubuntu-latest
     needs: quality
+    
+    env:
+      PUBLIC_SITE_URL: https://alphatoomegaconsulting.github.io
+      PUBLIC_REPO_NAME: website_template
 
     steps:
       - name: Checkout code

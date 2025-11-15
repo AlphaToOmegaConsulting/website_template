@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Hero from '../../../components/sections/Hero.astro';
 import About from '../../../components/sections/About.astro';
@@ -8,9 +8,6 @@ import Events from '../../../components/sections/Events.astro';
 import CTA from '../../../components/sections/CTA.astro';
 // Fetch content from Content Collections
 const allSections = await getCollection('sections');
-const allEvents = await getCollection('events', ({ data }) => {
-  return data.lang === 'en';
-});
 
 // Filter sections for TWT landing page (English version)
 const twtSections = allSections.filter(section =>
@@ -32,16 +29,6 @@ const aboutData = getSectionData('about');
 const featuresData = getSectionData('features');
 const eventsData = getSectionData('events');
 const ctaData = getSectionData('cta');
-
-// Transform events for the Events component
-const transformedEvents = allEvents.map(event => ({
-  id: event.id,
-  title: event.data.title,
-  date: event.data.date,
-  location: event.data.location,
-  description: event.data.description,
-  link: event.data.registrationUrl,
-}));
 
 // Page metadata
 const pageTitle = 'Tech Women Together - Landing';
@@ -86,12 +73,12 @@ const pageDescription = 'Join the Tech Women Together community to connect, lear
     />
   )}
 
-  {eventsData && transformedEvents.length > 0 && (
+  {eventsData && (
     <Events
       title={eventsData.title || 'Events'}
-      events={transformedEvents}
       displayMode={eventsData.displayMode || 'upcoming'}
       limit={eventsData.limit}
+      lang="en"
     />
   )}
 

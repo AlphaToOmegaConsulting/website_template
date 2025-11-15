@@ -13,6 +13,7 @@ interface Props {
     href: string;
   };
   variant?: 'default' | 'emphasized';
+  background?: string;
   class?: string;
 }
 
@@ -22,6 +23,7 @@ const {
   primaryCta,
   secondaryCta,
   variant = 'default',
+  background: _background,
   class: className = '',
 } = Astro.props;
 

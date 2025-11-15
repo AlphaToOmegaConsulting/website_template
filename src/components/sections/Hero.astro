@@ -14,6 +14,7 @@ interface Props {
     alt: string;
   };
   variant?: 'default' | 'centered' | 'split';
+  background?: string;
   class?: string;
 }
 
@@ -23,6 +24,7 @@ const {
   cta,
   image,
   variant = 'default',
+  background: _background,
   class: className = '',
 } = Astro.props;
 
