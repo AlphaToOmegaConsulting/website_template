@@ -41,6 +41,10 @@ export default [
       'pnpm-lock.yaml',
       'package-lock.json',
       'yarn.lock',
+      'tests/',
+      'scripts/',
+      'playwright-report/',
+      'test-results/',
     ],
   },
 ];
