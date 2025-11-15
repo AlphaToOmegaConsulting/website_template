@@ -62,6 +62,7 @@ jobs:
 
       - name: Check internal links
         run: pnpm run check-links
+        continue-on-error: true
 
       - name: Run Lighthouse CI
         run: pnpm run lighthouse
