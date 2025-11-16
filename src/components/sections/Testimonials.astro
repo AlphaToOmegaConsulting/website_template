@@ -1,0 +1,124 @@
+---
+import Card from '../primitives/Card.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  testimonials: Array<{
+    quote: string;
+    author: {
+      name: string;
+      role?: string;
+      company?: string;
+      avatar?: string;
+    };
+    rating?: number;
+  }>;
+  layout?: 'grid' | 'carousel';
+  columns?: 2 | 3;
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  testimonials,
+  layout = 'grid',
+  columns = 3,
+  class: className = '',
+} = Astro.props;
+
+const sectionClasses = [
+  'py-16 md:py-24 bg-gray-50',
+  className,
+].filter(Boolean).join(' ');
+
+const gridColsClasses = {
+  2: 'grid-cols-1 md:grid-cols-2',
+  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+};
+
+const gridClasses = layout === 'grid'
+  ? `grid ${gridColsClasses[columns]} gap-6 lg:gap-8`
+  : 'flex flex-col gap-6 max-w-3xl mx-auto';
+---
+
+<section class={sectionClasses}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-brand-primary mb-4">
+        {title}
+      </h2>
+
+      {subtitle && (
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class={gridClasses}>
+      {testimonials.map((testimonial) => (
+        <Card variant="bordered" padding="lg">
+          <div class="flex flex-col h-full">
+            {/* Rating stars (if provided) */}
+            {testimonial.rating && (
+              <div class="flex gap-1 mb-4" aria-label={`Rating: ${testimonial.rating} out of 5 stars`}>
+                {Array.from({ length: 5 }, (_, i) => (
+                  <svg
+                    class={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            )}
+
+            {/* Quote */}
+            <blockquote class="flex-1 mb-6">
+              <p class="text-gray-700 leading-relaxed italic">
+                "{testimonial.quote}"
+              </p>
+            </blockquote>
+
+            {/* Author info */}
+            <div class="flex items-center gap-4 mt-auto">
+              {testimonial.author.avatar ? (
+                <img
+                  src={testimonial.author.avatar}
+                  alt={testimonial.author.name}
+                  class="w-12 h-12 rounded-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                  <span class="text-gray-600 font-semibold text-lg">
+                    {testimonial.author.name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+              )}
+
+              <div class="flex-1">
+                <div class="font-semibold text-gray-900">
+                  {testimonial.author.name}
+                </div>
+
+                {(testimonial.author.role || testimonial.author.company) && (
+                  <div class="text-sm text-gray-600">
+                    {[testimonial.author.role, testimonial.author.company]
+                      .filter(Boolean)
+                      .join(' • ')}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

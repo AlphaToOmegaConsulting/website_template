@@ -3,12 +3,18 @@ interface Props {
   title: string;
   subtitle?: string;
   features: Array<{
-    icon?: string;
+    icon?: string | {
+      type: 'emoji' | 'image' | 'svg';
+      value: string;
+      alt?: string;
+      class?: string;
+    };
     title: string;
     description: string;
   }>;
   layout?: 'grid' | 'list';
   columns?: 2 | 3 | 4;
+  iconStyle?: 'default' | 'accent' | 'circle' | 'square';
   class?: string;
 }
 
@@ -18,8 +24,26 @@ const {
   features,
   layout = 'grid',
   columns = 3,
+  iconStyle = 'default',
   class: className = '',
 } = Astro.props;
+
+const iconContainerClasses = {
+  default: '',
+  accent: 'text-brand-accent',
+  circle: 'w-16 h-16 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent',
+  square: 'w-16 h-16 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent',
+};
+
+function renderIcon(icon: typeof features[0]['icon'], style: string) {
+  if (!icon) return null;
+
+  if (typeof icon === 'string') {
+    return { type: 'emoji', value: icon };
+  }
+
+  return icon;
+}
 
 const sectionClasses = [
   'py-16 md:py-24 bg-white',
@@ -52,28 +76,68 @@ const layoutClasses = layout === 'grid'
     </div>
 
     <div class={layoutClasses}>
-      {features.map((feature) => (
-        <div class={layout === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row gap-4'}>
-          {feature.icon && (
-            <div class={layout === 'grid'
-              ? 'text-4xl mb-4'
-              : 'text-4xl md:text-5xl flex-shrink-0'
-            }>
-              {feature.icon}
+      {features.map((feature) => {
+        const iconData = renderIcon(feature.icon, iconStyle);
+
+        return (
+          <div class={layout === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row gap-4'}>
+            {iconData && (
+              <div class={`flex-shrink-0 ${
+                layout === 'grid' ? 'mb-4' : ''
+              }`}>
+                {iconData.type === 'emoji' && (
+                  <div class={`${
+                    iconStyle === 'circle' || iconStyle === 'square'
+                      ? iconContainerClasses[iconStyle]
+                      : `text-4xl ${iconContainerClasses[iconStyle]}`
+                  }`}>
+                    {iconData.value}
+                  </div>
+                )}
+
+                {iconData.type === 'image' && (
+                  <div class={iconStyle === 'circle' || iconStyle === 'square' ? iconContainerClasses[iconStyle] : ''}>
+                    <img
+                      src={iconData.value}
+                      alt={iconData.alt || ''}
+                      class={iconData.class || 'w-12 h-12 object-contain'}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                )}
+
+                {iconData.type === 'svg' && (
+                  <div class={`${
+                    iconStyle === 'circle' || iconStyle === 'square'
+                      ? iconContainerClasses[iconStyle]
+                      : iconContainerClasses[iconStyle]
+                  }`}>
+                    <svg
+                      class={iconData.class || 'w-12 h-12'}
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path d={iconData.value} />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div class={layout === 'list' ? 'flex-1' : ''}>
+              <h3 class="text-xl sm:text-2xl font-semibold font-heading text-gray-900 mb-3">
+                {feature.title}
+              </h3>
+
+              <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+                {feature.description}
+              </p>
             </div>
-          )}
-
-          <div class={layout === 'list' ? 'flex-1' : ''}>
-            <h3 class="text-xl sm:text-2xl font-semibold font-heading text-gray-900 mb-3">
-              {feature.title}
-            </h3>
-
-            <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
-              {feature.description}
-            </p>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>

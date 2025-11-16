@@ -1,0 +1,99 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  questions: Array<{
+    question: string;
+    answer: string;
+    defaultOpen?: boolean;
+  }>;
+  layout?: 'single' | 'two-column';
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  questions,
+  layout = 'single',
+  class: className = '',
+} = Astro.props;
+
+const sectionClasses = [
+  'py-16 md:py-24 bg-white',
+  className,
+].filter(Boolean).join(' ');
+
+const questionsContainerClasses = layout === 'two-column'
+  ? 'grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8'
+  : 'max-w-3xl mx-auto space-y-4';
+---
+
+<section class={sectionClasses}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-brand-primary mb-4">
+        {title}
+      </h2>
+
+      {subtitle && (
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class={questionsContainerClasses}>
+      {questions.map((item) => (
+        <details
+          class="group bg-gray-50 rounded-lg border border-gray-200 overflow-hidden transition-colors hover:border-brand-accent"
+          open={item.defaultOpen}
+        >
+          <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer list-none select-none">
+            <h3 class="text-lg font-semibold text-gray-900 flex-1">
+              {item.question}
+            </h3>
+
+            <svg
+              class="w-5 h-5 text-gray-600 flex-shrink-0 transition-transform group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </summary>
+
+          <div class="px-6 pb-4 pt-2">
+            <p class="text-gray-700 leading-relaxed">
+              {item.answer}
+            </p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Remove default marker/triangle in all browsers */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details summary::marker {
+    display: none;
+  }
+
+  /* Focus styles for accessibility */
+  details summary:focus-visible {
+    outline: 2px solid var(--brand-accent, #3b82f6);
+    outline-offset: 2px;
+  }
+</style>

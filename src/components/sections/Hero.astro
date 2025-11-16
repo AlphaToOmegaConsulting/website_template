@@ -13,6 +13,19 @@ interface Props {
     src: string;
     alt: string;
   };
+  video?: {
+    src: string;
+    poster?: string;
+    autoplay?: boolean;
+    loop?: boolean;
+    muted?: boolean;
+  };
+  videoBackground?: {
+    src: string;
+    poster?: string;
+    overlay?: boolean;
+    overlayOpacity?: 'light' | 'medium' | 'dark';
+  };
   variant?: 'default' | 'centered' | 'split';
   background?: string;
   class?: string;
@@ -23,30 +36,70 @@ const {
   subtitle,
   cta,
   image,
+  video,
+  videoBackground,
   variant = 'default',
-  background: _background,
+  background,
   class: className = '',
 } = Astro.props;
 
+const overlayOpacityClasses = {
+  light: 'bg-black/30',
+  medium: 'bg-black/50',
+  dark: 'bg-black/70',
+};
+
 const sectionClasses = [
-  'relative py-16 md:py-24 lg:py-32 bg-white',
+  'relative py-16 md:py-24 lg:py-32',
+  !videoBackground && !background ? 'bg-white' : '',
   className,
 ].filter(Boolean).join(' ');
 
+const sectionStyles = background && !videoBackground ? `background: ${background};` : '';
+
 const isCentered = variant === 'centered';
 const contentClasses = isCentered ? 'text-center mx-auto max-w-3xl' : '';
+const hasVideoBackground = !!videoBackground;
+const textColorClass = hasVideoBackground ? 'text-white' : 'text-brand-primary';
+const subtitleColorClass = hasVideoBackground ? 'text-gray-100' : 'text-gray-600';
 ---
 
-<section class={sectionClasses}>
+<section class={sectionClasses} style={sectionStyles}>
+  {/* Video Background */}
+  {videoBackground && (
+    <>
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        poster={videoBackground.poster}
+        class="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src={videoBackground.src} type="video/mp4" />
+      </video>
+
+      {/* Overlay */}
+      {videoBackground.overlay !== false && (
+        <div
+          class={`absolute inset-0 z-0 ${
+            overlayOpacityClasses[videoBackground.overlayOpacity || 'medium']
+          }`}
+          aria-hidden="true"
+        ></div>
+      )}
+    </>
+  )}
+
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
     {variant === 'centered' ? (
       <div class={contentClasses}>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-brand-primary mb-4 lg:mb-6">
+        <h1 class={`text-4xl sm:text-5xl lg:text-6xl font-bold font-heading ${textColorClass} mb-4 lg:mb-6`}>
           {title}
         </h1>
 
         {subtitle && (
-          <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-6 lg:mb-8">
+          <p class={`text-lg sm:text-xl lg:text-2xl ${subtitleColorClass} mb-6 lg:mb-8`}>
             {subtitle}
           </p>
         )}
@@ -74,16 +127,32 @@ const contentClasses = isCentered ? 'text-center mx-auto max-w-3xl' : '';
             />
           </div>
         )}
+
+        {video && (
+          <div class="mt-8 lg:mt-12">
+            <video
+              poster={video.poster}
+              autoplay={video.autoplay}
+              loop={video.loop}
+              muted={video.muted}
+              controls
+              class="w-full h-auto rounded-lg shadow-xl"
+            >
+              <source src={video.src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
       </div>
     ) : (
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-brand-primary mb-4 lg:mb-6">
+          <h1 class={`text-4xl sm:text-5xl lg:text-6xl font-bold font-heading ${textColorClass} mb-4 lg:mb-6`}>
             {title}
           </h1>
 
           {subtitle && (
-            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-6 lg:mb-8">
+            <p class={`text-lg sm:text-xl lg:text-2xl ${subtitleColorClass} mb-6 lg:mb-8`}>
               {subtitle}
             </p>
           )}
@@ -110,6 +179,22 @@ const contentClasses = isCentered ? 'text-center mx-auto max-w-3xl' : '';
               loading="lazy"
               decoding="async"
             />
+          </div>
+        )}
+
+        {video && (
+          <div class="order-first lg:order-last">
+            <video
+              poster={video.poster}
+              autoplay={video.autoplay}
+              loop={video.loop}
+              muted={video.muted}
+              controls
+              class="w-full h-auto rounded-lg shadow-xl"
+            >
+              <source src={video.src} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         )}
       </div>

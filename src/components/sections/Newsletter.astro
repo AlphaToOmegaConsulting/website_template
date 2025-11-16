@@ -1,0 +1,101 @@
+---
+import Button from '../primitives/Button.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  formAction?: string;
+  formMethod?: 'GET' | 'POST';
+  placeholder?: string;
+  buttonLabel?: string;
+  variant?: 'default' | 'centered' | 'minimal';
+  privacyText?: string;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  formAction = '#',
+  formMethod = 'POST',
+  placeholder = 'Enter your email',
+  buttonLabel = 'Subscribe',
+  variant = 'default',
+  privacyText,
+  class: className = '',
+} = Astro.props;
+
+const variantClasses = {
+  default: 'bg-gray-50 py-16 md:py-20',
+  centered: 'bg-white py-16 md:py-20',
+  minimal: 'bg-transparent py-12',
+};
+
+const sectionClasses = [
+  variantClasses[variant],
+  className,
+].filter(Boolean).join(' ');
+
+const containerClasses = variant === 'centered'
+  ? 'text-center max-w-2xl mx-auto'
+  : 'max-w-4xl mx-auto';
+---
+
+<section class={sectionClasses}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class={containerClasses}>
+      <h2 class={`font-bold font-heading text-brand-primary mb-4 ${
+        variant === 'minimal'
+          ? 'text-2xl sm:text-3xl'
+          : 'text-3xl sm:text-4xl lg:text-5xl'
+      }`}>
+        {title}
+      </h2>
+
+      {description && (
+        <p class={`text-gray-600 mb-8 ${
+          variant === 'minimal'
+            ? 'text-base'
+            : 'text-lg sm:text-xl'
+        }`}>
+          {description}
+        </p>
+      )}
+
+      <form action={formAction} method={formMethod} class="space-y-4">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <div class="flex-1">
+            <label for="newsletter-email" class="sr-only">
+              Email address
+            </label>
+
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              placeholder={placeholder}
+              required
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-500 transition-colors focus:outline-none focus:border-brand-accent focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
+              aria-label="Email address for newsletter subscription"
+            />
+          </div>
+
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            class="w-full sm:w-auto whitespace-nowrap"
+          >
+            {buttonLabel}
+          </Button>
+        </div>
+
+        {privacyText && (
+          <p class="text-xs text-gray-600 text-left">
+            {privacyText}
+          </p>
+        )}
+      </form>
+    </div>
+  </div>
+</section>

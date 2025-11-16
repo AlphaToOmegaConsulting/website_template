@@ -17,6 +17,8 @@ interface Props {
   subtitle?: string;
   authors: Author[];
   columns?: 2 | 3 | 4;
+  enablePagination?: boolean;
+  itemsPerPage?: number;
   class?: string;
 }
 
@@ -25,6 +27,8 @@ const {
   subtitle,
   authors,
   columns = 3,
+  enablePagination = false,
+  itemsPerPage = 6,
   class: className = '',
 } = Astro.props;
 
@@ -38,9 +42,12 @@ const gridColsClasses = {
   3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
   4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
 };
+
+// Generate a unique ID for this team section
+const sectionId = `team-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
-<section class={sectionClasses}>
+<section class={sectionClasses} id={sectionId} data-pagination={enablePagination} data-items-per-page={itemsPerPage}>
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
     <div class="text-center mb-12 lg:mb-16">
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-brand-primary mb-4">
@@ -54,9 +61,13 @@ const gridColsClasses = {
       )}
     </div>
 
-    <div class={`grid ${gridColsClasses[columns]} gap-8 lg:gap-10`}>
-      {authors.map((author) => (
-        <div class="flex flex-col items-center text-center bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+    <div class={`grid ${gridColsClasses[columns]} gap-8 lg:gap-10`} data-team-grid>
+      {authors.map((author, index) => (
+        <div
+          class="flex flex-col items-center text-center bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+          data-team-member
+          data-index={index}
+        >
           <img
             src={author.avatar}
             alt={author.name}
@@ -125,5 +136,121 @@ const gridColsClasses = {
         </div>
       ))}
     </div>
+
+    {/* Pagination controls */}
+    {enablePagination && authors.length > itemsPerPage && (
+      <div class="flex justify-center items-center gap-2 mt-12" data-pagination-controls>
+        <button
+          type="button"
+          data-pagination-prev
+          class="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          aria-label="Previous page"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <div class="flex gap-2" data-pagination-numbers></div>
+
+        <button
+          type="button"
+          data-pagination-next
+          class="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          aria-label="Next page"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    )}
   </div>
 </section>
+
+{enablePagination && (
+  <script define:vars={{ sectionId }}>
+    function initTeamPagination(id) {
+      const section = document.getElementById(id);
+      if (!section) return;
+
+      const itemsPerPage = parseInt(section.dataset.itemsPerPage || '6');
+      const members = Array.from(section.querySelectorAll('[data-team-member]'));
+      const totalPages = Math.ceil(members.length / itemsPerPage);
+      let currentPage = 1;
+
+      const prevBtn = section.querySelector('[data-pagination-prev]');
+      const nextBtn = section.querySelector('[data-pagination-next]');
+      const numbersContainer = section.querySelector('[data-pagination-numbers]');
+
+      function showPage(page) {
+        currentPage = page;
+
+        // Hide all members
+        members.forEach(member => {
+          member.style.display = 'none';
+        });
+
+        // Show members for current page
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        members.slice(start, end).forEach(member => {
+          member.style.display = '';
+        });
+
+        // Update button states
+        if (prevBtn) prevBtn.disabled = page === 1;
+        if (nextBtn) nextBtn.disabled = page === totalPages;
+
+        // Update page numbers
+        renderPageNumbers();
+
+        // Scroll to section
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function renderPageNumbers() {
+        if (!numbersContainer) return;
+
+        numbersContainer.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = i;
+          btn.className = i === currentPage
+            ? 'px-4 py-2 rounded-lg bg-brand-accent text-white font-semibold'
+            : 'px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-colors';
+          btn.onclick = () => showPage(i);
+          btn.setAttribute('aria-label', `Page ${i}`);
+          btn.setAttribute('aria-current', i === currentPage ? 'page' : 'false');
+
+          numbersContainer.appendChild(btn);
+        }
+      }
+
+      // Event listeners
+      if (prevBtn) {
+        prevBtn.onclick = () => {
+          if (currentPage > 1) showPage(currentPage - 1);
+        };
+      }
+
+      if (nextBtn) {
+        nextBtn.onclick = () => {
+          if (currentPage < totalPages) showPage(currentPage + 1);
+        };
+      }
+
+      // Initialize
+      showPage(1);
+    }
+
+    // Initialize on DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => initTeamPagination(sectionId));
+    } else {
+      initTeamPagination(sectionId);
+    }
+  </script>
+)}
