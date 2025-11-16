@@ -94,4 +94,17 @@ describe('i18n pages structure symmetry', () => {
 
         expect(frDirsArray).toEqual(enDirsArray);
     });
+
+    it('should not contain TWT-specific pages', () => {
+        const frPages = getAstroFiles(frPagesDir);
+        const enPages = getAstroFiles(enPagesDir);
+
+        const allPages = [...frPages, ...enPages];
+        const twtPages = allPages.filter(page => page.includes('twt'));
+
+        expect(
+            twtPages,
+            `Found TWT-specific pages that should be removed: ${twtPages.join(', ')}`
+        ).toHaveLength(0);
+    });
 });
