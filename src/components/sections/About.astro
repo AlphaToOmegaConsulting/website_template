@@ -1,4 +1,6 @@
 ---
+import { sanitizeHtml } from '@/utils/html-sanitizer';
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -32,6 +34,13 @@ const {
   columnsCount = 2,
   class: className = '',
 } = Astro.props;
+
+// Sanitize HTML content for security
+const sanitizedContent = content ? sanitizeHtml(content) : undefined;
+const sanitizedColumns = columns?.map(col => ({
+  ...col,
+  content: sanitizeHtml(col.content),
+}));
 
 // Auto-detect layout if not specified
 const autoLayout = layout === 'single' && image ? 'with-image' :
@@ -85,13 +94,13 @@ const sectionClasses = [
         )}
 
         <div class={imageOnLeft ? 'order-last' : ''}>
-          {content && (
-            <div class="prose prose-lg max-w-none mb-8 text-gray-700" set:html={content} />
+          {sanitizedContent && (
+            <div class="prose prose-lg max-w-none mb-8 text-gray-700" set:html={sanitizedContent} />
           )}
 
-          {hasColumns && (
+          {hasColumns && sanitizedColumns && (
             <div class="space-y-6">
-              {columns!.map((col) => (
+              {sanitizedColumns.map((col) => (
                 <div>
                   {col.title && (
                     <h3 class="text-xl font-semibold text-gray-900 mb-3">
@@ -126,14 +135,14 @@ const sectionClasses = [
     {(autoLayout === 'two-columns' || autoLayout === 'single') && (
       <div>
         {/* Single content block */}
-        {content && !hasColumns && (
-          <div class="prose prose-xl max-w-4xl mx-auto text-gray-700" set:html={content} />
+        {sanitizedContent && !hasColumns && (
+          <div class="prose prose-xl max-w-4xl mx-auto text-gray-700" set:html={sanitizedContent} />
         )}
 
         {/* Multiple columns */}
-        {hasColumns && (
+        {hasColumns && sanitizedColumns && (
           <div class={`grid ${columnsGridClasses[columnsCount]} gap-8 lg:gap-12 max-w-6xl mx-auto`}>
-            {columns!.map((col) => (
+            {sanitizedColumns.map((col) => (
               <div>
                 {col.title && (
                   <h3 class="text-2xl font-bold font-heading text-gray-900 mb-4">
