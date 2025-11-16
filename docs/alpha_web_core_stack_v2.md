@@ -31,8 +31,7 @@ Le template repose sur une organisation simple et directe, sans monorepo, sans p
 │   │   │   ├── CTA.astro
 │   │   │   ├── Events.astro
 │   │   │   ├── About.astro
-│   │   │   ├── Team.astro
-│   │   │   └── Domains.astro
+│   │   │   └── Team.astro
 │   │   ├── Header.astro
 │   │   ├── Footer.astro
 │   │   └── LanguageSwitcher.astro
@@ -148,7 +147,7 @@ Aucun design system avancé n’est implémenté.
 ---
 
 ## 5. Sections Disponibles
-Le template propose **7 sections entièrement fonctionnelles**, prêtes à être utilisées ou modifiées.
+Le template propose **6 sections entièrement fonctionnelles**, prêtes à être utilisées ou modifiées.
 
 - `Hero`
 - `Features`
@@ -156,7 +155,6 @@ Le template propose **7 sections entièrement fonctionnelles**, prêtes à être
 - `Events`
 - `About`
 - `Team`
-- `Domains`
 
 Chaque section :
 - est autonome

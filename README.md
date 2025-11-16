@@ -55,14 +55,13 @@ pnpm build
 │   │   │   ├── Card.astro
 │   │   │   ├── Dialog.astro
 │   │   │   └── Input.astro
-│   │   ├── sections/          # 7 page sections
+│   │   ├── sections/          # 6 page sections
 │   │   │   ├── Hero.astro
 │   │   │   ├── Features.astro
 │   │   │   ├── CTA.astro
 │   │   │   ├── Events.astro
 │   │   │   ├── About.astro
-│   │   │   ├── Team.astro
-│   │   │   └── Domains.astro
+│   │   │   └── Team.astro
 │   │   ├── Header.astro
 │   │   ├── Footer.astro
 │   │   ├── Navigation.astro
@@ -243,16 +242,15 @@ Low-level, reusable UI components:
 - `Dialog.astro` - Modal dialog with a11y
 - `Input.astro` - Form input with validation
 
-### Sections (7 components)
+### Sections (6 components)
 
 High-level page sections:
-- `Hero.astro` - Hero section (3 layouts)
+- `Hero.astro` - Hero section (2 layouts)
 - `Features.astro` - Feature grid/list
 - `CTA.astro` - Call-to-action (2 variants)
 - `Events.astro` - Event listing (collection-aware)
 - `About.astro` - About section with stats
 - `Team.astro` - Team member grid
-- `Domains.astro` - Domain expertise cards
 
 ## Styling Philosophy
 
