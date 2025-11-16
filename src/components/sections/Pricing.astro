@@ -1,0 +1,148 @@
+---
+import Card from '../primitives/Card.astro';
+import ButtonLink from '../primitives/ButtonLink.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  plans: Array<{
+    name: string;
+    description?: string;
+    price: string | number;
+    currency?: string;
+    billingPeriod?: string;
+    features: string[];
+    cta: {
+      label: string;
+      href: string;
+      variant?: 'primary' | 'secondary' | 'ghost';
+    };
+    highlighted?: boolean;
+    badge?: string;
+  }>;
+  columns?: 2 | 3 | 4;
+  variant?: 'default' | 'compact';
+  class?: string;
+}
+
+const {
+  title,
+  subtitle,
+  plans,
+  columns = 3,
+  variant = 'default',
+  class: className = '',
+} = Astro.props;
+
+const sectionClasses = [
+  'py-16 md:py-24 bg-gray-50',
+  className,
+].filter(Boolean).join(' ');
+
+const gridColsClasses = {
+  2: 'grid-cols-1 md:grid-cols-2',
+  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+  4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
+};
+
+const gridClasses = `grid ${gridColsClasses[columns]} gap-6 lg:gap-8`;
+---
+
+<section class={sectionClasses}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-brand-primary mb-4">
+        {title}
+      </h2>
+
+      {subtitle && (
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class={gridClasses}>
+      {plans.map((plan) => (
+        <div class={plan.highlighted ? 'relative' : ''}>
+          {plan.badge && (
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+              <span class="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-brand-accent text-white shadow-md">
+                {plan.badge}
+              </span>
+            </div>
+          )}
+
+          <Card
+            variant={plan.highlighted ? 'elevated' : 'bordered'}
+            padding="lg"
+            class={plan.highlighted ? 'border-2 border-brand-accent h-full' : 'h-full'}
+          >
+            <div class="flex flex-col h-full">
+              <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold font-heading text-gray-900 mb-2">
+                  {plan.name}
+                </h3>
+
+                {plan.description && (
+                  <p class="text-sm text-gray-600">
+                    {plan.description}
+                  </p>
+                )}
+              </div>
+
+              <div class="text-center mb-8">
+                <div class="flex items-baseline justify-center gap-1">
+                  {plan.currency && (
+                    <span class="text-xl text-gray-600">{plan.currency}</span>
+                  )}
+                  <span class="text-5xl font-bold text-brand-primary">
+                    {plan.price}
+                  </span>
+                  {plan.billingPeriod && (
+                    <span class="text-lg text-gray-600">/{plan.billingPeriod}</span>
+                  )}
+                </div>
+              </div>
+
+              <div class="flex-1 mb-8">
+                <ul class="space-y-3">
+                  {plan.features.map((feature) => (
+                    <li class="flex items-start gap-3">
+                      <svg
+                        class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      <span class="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="mt-auto">
+                <ButtonLink
+                  href={plan.cta.href}
+                  variant={plan.cta.variant || (plan.highlighted ? 'primary' : 'secondary')}
+                  size="lg"
+                  class="w-full text-center"
+                >
+                  {plan.cta.label}
+                </ButtonLink>
+              </div>
+            </div>
+          </Card>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

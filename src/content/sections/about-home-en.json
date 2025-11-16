@@ -3,21 +3,21 @@
   "order": 3,
   "visible": true,
   "data": {
-    "title": "About Tech Women Together",
-    "content": "Tech Women Together is a dynamic community that brings together women passionate about technology. Our mission is to create an inclusive space where everyone can learn, share, and grow professionally.\n\nWe organize events, workshops, and networking sessions to foster exchanges and skill development in all areas of tech.",
+    "title": "About Us",
+    "content": "We are a dynamic company specialized in our field of expertise. Our mission is to provide quality services and create innovative solutions for our clients.\n\nWe work with passion and professionalism to deliver the best experiences and support our clients in their success.",
     "image": {
-      "src": "/images/about-community.jpg",
-      "alt": "Tech Women Together Community",
+      "src": "/images/about-company.jpg",
+      "alt": "Our Team",
       "position": "right"
     },
     "stats": [
       {
         "value": "500+",
-        "label": "Active members"
+        "label": "Satisfied clients"
       },
       {
         "value": "50+",
-        "label": "Events organized"
+        "label": "Projects delivered"
       },
       {
         "value": "20+",

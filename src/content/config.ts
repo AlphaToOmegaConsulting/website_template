@@ -22,7 +22,7 @@ const pagesCollection = defineCollection({
 const sectionsCollection = defineCollection({
   type: 'data',
   schema: z.object({
-    type: z.enum(['hero', 'features', 'cta', 'events', 'about', 'team']),
+    type: z.enum(['hero', 'features', 'cta', 'events', 'about', 'team', 'domains']),
     order: z.number(),
     visible: z.boolean().default(true),
     data: z.any(), // Pragmatic - no over-validation, data structure validated by components

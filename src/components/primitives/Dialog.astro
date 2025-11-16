@@ -1,11 +1,14 @@
 ---
+import Button from './Button.astro';
+import type { ButtonVariant, ButtonSize } from '@/utils/button-styles';
+
 interface Props {
   id: string;
   title: string;
   description?: string;
   triggerLabel: string;
-  triggerVariant?: 'primary' | 'secondary' | 'ghost';
-  triggerSize?: 'sm' | 'md' | 'lg';
+  triggerVariant?: ButtonVariant;
+  triggerSize?: ButtonSize;
 }
 
 const {
@@ -23,21 +26,16 @@ const descriptionId = description ? `${dialogId}-description` : undefined;
 ---
 
 <div>
-  <button
+  <!-- Trigger Button using Button component -->
+  <Button
     type="button"
+    variant={triggerVariant}
+    size={triggerSize}
+    class="dialog-trigger"
     data-dialog-trigger={dialogId}
-    class="inline-flex items-center justify-center font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
-    class:list={[
-      triggerVariant === 'primary' && 'bg-brand-accent text-white hover:bg-brand-primary',
-      triggerVariant === 'secondary' && 'bg-gray-600 text-white hover:bg-gray-700',
-      triggerVariant === 'ghost' && 'bg-transparent text-brand-primary hover:bg-gray-50',
-      triggerSize === 'sm' && 'px-3 py-1.5 text-sm',
-      triggerSize === 'md' && 'px-4 py-2 text-base',
-      triggerSize === 'lg' && 'px-6 py-3 text-lg',
-    ]}
   >
     {triggerLabel}
-  </button>
+  </Button>
 
   <dialog
     id={dialogId}

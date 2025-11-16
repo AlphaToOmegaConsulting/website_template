@@ -3,11 +3,11 @@
   "order": 1,
   "visible": true,
   "data": {
-    "title": "Welcome to Tech Women Together",
-    "subtitle": "The community connecting women in tech",
+    "title": "Welcome to Our Website",
+    "subtitle": "Discover our services and expertise",
     "cta": {
       "label": "Learn More",
-      "href": "#",
+      "href": "/en/",
       "variant": "primary"
     },
     "variant": "default"

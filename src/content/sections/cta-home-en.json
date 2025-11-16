@@ -3,15 +3,17 @@
   "order": 5,
   "visible": true,
   "data": {
-    "title": "Join Our Community",
-    "description": "Sign up today to receive our news and participate in our events.",
+    "title": "Ready to Get Started?",
+    "description": "Contact us today to discover how we can help you.",
     "primaryCta": {
-      "label": "Sign Up",
-      "href": "#"
+      "label": "Contact Us",
+      "href": "/en/",
+      "variant": "primary"
     },
     "secondaryCta": {
       "label": "Learn More",
-      "href": "#"
+      "href": "/en/",
+      "variant": "secondary"
     },
     "variant": "emphasized"
   }

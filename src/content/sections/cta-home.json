@@ -3,15 +3,17 @@
   "order": 5,
   "visible": true,
   "data": {
-    "title": "Rejoignez notre communauté",
-    "description": "Inscrivez-vous dès aujourd'hui pour recevoir nos actualités et participer à nos événements.",
+    "title": "Prêt à commencer ?",
+    "description": "Contactez-nous dès aujourd'hui pour découvrir comment nous pouvons vous aider.",
     "primaryCta": {
-      "label": "S'inscrire",
-      "href": "#"
+      "label": "Nous contacter",
+      "href": "/fr/",
+      "variant": "primary"
     },
     "secondaryCta": {
       "label": "En savoir plus",
-      "href": "#"
+      "href": "/fr/",
+      "variant": "secondary"
     },
     "variant": "emphasized"
   }

@@ -1,5 +1,7 @@
 ---
 import { buildUrl } from '@/utils/url';
+import type { ButtonVariant, ButtonSize } from '@/utils/button-styles';
+import { variantClasses, sizeClasses, baseClasses } from '@/utils/button-styles';
 
 /**
  * ButtonLink Component
@@ -35,8 +37,8 @@ import { buildUrl } from '@/utils/url';
  */
 interface Props {
   href: string;
-  variant?: 'primary' | 'secondary' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   target?: '_blank' | '_self';
   rel?: string;
   class?: string;
@@ -54,22 +56,9 @@ const {
 // Build URL with base path support
 const resolvedHref = buildUrl(href);
 
-const variantClasses = {
-  primary: 'bg-brand-accent text-white hover:bg-brand-primary active:opacity-90',
-  secondary: 'bg-gray-600 text-white hover:bg-gray-700 active:bg-gray-800',
-  ghost: 'bg-transparent text-brand-primary hover:bg-gray-50 active:bg-gray-100',
-};
-
-const sizeClasses = {
-  sm: 'px-3 py-1.5 text-sm',
-  md: 'px-4 py-2 text-base',
-  lg: 'px-6 py-3 text-lg',
-};
-
-const baseClasses = 'inline-flex items-center justify-center font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 no-underline';
-
 const classes = [
   baseClasses,
+  'no-underline', // Additional class for links
   variantClasses[variant],
   sizeClasses[size],
   className,

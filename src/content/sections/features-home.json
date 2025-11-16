@@ -3,32 +3,32 @@
   "order": 2,
   "visible": true,
   "data": {
-    "title": "Ce que nous offrons",
-    "subtitle": "Tout ce dont vous avez besoin pour réussir dans la tech",
+    "title": "Nos services",
+    "subtitle": "Découvrez tout ce que nous pouvons faire pour vous",
     "features": [
       {
-        "title": "Networking",
-        "description": "Connectez-vous avec des professionnelles de la tech et élargissez votre réseau"
+        "title": "Service 1",
+        "description": "Description détaillée du premier service que nous proposons"
       },
       {
-        "title": "Formation",
-        "description": "Participez à des ateliers et conférences pour développer vos compétences"
+        "title": "Service 2",
+        "description": "Description détaillée du deuxième service que nous proposons"
       },
       {
-        "title": "Mentorat",
-        "description": "Bénéficiez de l'expérience de mentores expertes dans votre domaine"
+        "title": "Service 3",
+        "description": "Description détaillée du troisième service que nous proposons"
       },
       {
-        "title": "Événements",
-        "description": "Rejoignez nos événements réguliers : conférences, hackathons, meetups"
+        "title": "Service 4",
+        "description": "Description détaillée du quatrième service que nous proposons"
       },
       {
-        "title": "Communauté",
-        "description": "Faites partie d'une communauté bienveillante et inclusive"
+        "title": "Service 5",
+        "description": "Description détaillée du cinquième service que nous proposons"
       },
       {
-        "title": "Opportunités",
-        "description": "Accédez à des offres d'emploi et opportunités de carrière exclusives"
+        "title": "Service 6",
+        "description": "Description détaillée du sixième service que nous proposons"
       }
     ],
     "layout": "grid",
