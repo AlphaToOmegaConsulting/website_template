@@ -98,7 +98,7 @@ async function main() {
   };
   
   // Save report
-  const reportPath = join(process.cwd(), 'a11y-report.json');
+  const reportPath = join(process.cwd(), 'reports', 'a11y-report.json');
   writeFileSync(reportPath, JSON.stringify(report, null, 2));
   
   console.log('\n' + '='.repeat(60));
