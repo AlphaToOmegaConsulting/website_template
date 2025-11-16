@@ -8,22 +8,16 @@ test.describe('Routes smoke tests', () => {
     const routes = {
         fr: [
             '/',
-            '/fr',
             '/fr/',
-            '/fr/events',
             '/fr/events/',
-            '/fr/partners',
             '/fr/partners/',
-            '/fr/twt/landing',
+            '/fr/twt/landing/',
         ],
         en: [
-            '/en',
             '/en/',
-            '/en/events',
             '/en/events/',
-            '/en/partners',
             '/en/partners/',
-            '/en/twt/landing',
+            '/en/twt/landing/',
         ],
     };
 

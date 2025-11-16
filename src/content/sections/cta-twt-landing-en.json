@@ -7,11 +7,11 @@
     "description": "Sign up today and start being part of a network of inspiring women in tech.",
     "primaryCta": {
       "label": "Sign Up Now",
-      "href": "/en/register"
+      "href": "#"
     },
     "secondaryCta": {
       "label": "Learn More",
-      "href": "/en/about"
+      "href": "#"
     },
     "variant": "emphasized"
   }

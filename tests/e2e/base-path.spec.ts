@@ -120,7 +120,7 @@ test.describe('Base path navigation - Consistent across languages', () => {
     });
 
     test('should have parallel routes for both languages', async ({ page }) => {
-        const routes = ['/', '/events', '/partners'];
+        const routes = ['/', '/events/', '/partners/'];
 
         for (const route of routes) {
             // Test French route
@@ -159,7 +159,7 @@ test.describe('Base path navigation - Active link detection', () => {
 
     test('should mark nested routes as active', async ({ page }) => {
         // This tests prefix matching for nested routes
-        await page.goto('/fr/twt/landing');
+        await page.goto('/fr/twt/landing/');
 
         const activeLink = page.locator('nav a[aria-current="page"]');
         await expect(activeLink).toHaveCount(1);

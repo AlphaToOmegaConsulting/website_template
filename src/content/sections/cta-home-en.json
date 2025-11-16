@@ -7,11 +7,11 @@
     "description": "Sign up today to receive our news and participate in our events.",
     "primaryCta": {
       "label": "Sign Up",
-      "href": "/en/signup"
+      "href": "#"
     },
     "secondaryCta": {
       "label": "Learn More",
-      "href": "/en/about"
+      "href": "#"
     },
     "variant": "emphasized"
   }

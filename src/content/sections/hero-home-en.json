@@ -4,10 +4,10 @@
   "visible": true,
   "data": {
     "title": "Welcome to Tech Women Together",
-    "subtitle": "The community that connects women in tech",
+    "subtitle": "The community connecting women in tech",
     "cta": {
-      "label": "Discover",
-      "href": "/en/about",
+      "label": "Learn More",
+      "href": "#",
       "variant": "primary"
     },
     "variant": "default"

@@ -7,11 +7,11 @@
     "description": "Inscrivez-vous dès aujourd'hui pour recevoir nos actualités et participer à nos événements.",
     "primaryCta": {
       "label": "S'inscrire",
-      "href": "/fr/signup"
+      "href": "#"
     },
     "secondaryCta": {
       "label": "En savoir plus",
-      "href": "/fr/about"
+      "href": "#"
     },
     "variant": "emphasized"
   }

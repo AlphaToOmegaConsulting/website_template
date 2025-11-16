@@ -36,7 +36,7 @@ test.describe('LanguageSwitcher functionality', () => {
         test('should switch from FR events page to EN events page', async ({
             page,
         }) => {
-            await page.goto('/fr/events');
+            await page.goto('/fr/events/');
 
             // Vérifie la langue initiale
             const htmlLangBefore = await page.locator('html').getAttribute('lang');
@@ -60,7 +60,7 @@ test.describe('LanguageSwitcher functionality', () => {
         test('should switch from FR partners page to EN partners page', async ({
             page,
         }) => {
-            await page.goto('/fr/partners');
+            await page.goto('/fr/partners/');
 
             const htmlLangBefore = await page.locator('html').getAttribute('lang');
             expect(htmlLangBefore).toBe('fr');
@@ -110,7 +110,7 @@ test.describe('LanguageSwitcher functionality', () => {
         test('should switch from EN events page to FR events page', async ({
             page,
         }) => {
-            await page.goto('/en/events');
+            await page.goto('/en/events/');
 
             const htmlLangBefore = await page.locator('html').getAttribute('lang');
             expect(htmlLangBefore).toBe('en');
@@ -131,7 +131,7 @@ test.describe('LanguageSwitcher functionality', () => {
         test('should switch from EN partners page to FR partners page', async ({
             page,
         }) => {
-            await page.goto('/en/partners');
+            await page.goto('/en/partners/');
 
             const htmlLangBefore = await page.locator('html').getAttribute('lang');
             expect(htmlLangBefore).toBe('en');
@@ -245,12 +245,12 @@ test.describe('LanguageSwitcher functionality', () => {
             page,
         }) => {
             // Navigation directe vers une URL FR
-            await page.goto('/fr/events');
+            await page.goto('/fr/events/');
             let htmlLang = await page.locator('html').getAttribute('lang');
             expect(htmlLang).toBe('fr');
 
             // Navigation directe vers une URL EN
-            await page.goto('/en/events');
+            await page.goto('/en/events/');
             htmlLang = await page.locator('html').getAttribute('lang');
             expect(htmlLang).toBe('en');
         });

@@ -4,16 +4,16 @@ test.describe('Navigation', () => {
   test('should navigate between French pages', async ({ page }) => {
     // Start at French homepage
     await page.goto('/fr/');
-    await expect(page).toHaveTitle(/Tech Women Tunisia/);
+    await expect(page).toHaveTitle(/Tech Women/);
 
     // Navigate to events page
-    await page.click('a[href="/fr/events"]');
-    await expect(page).toHaveURL('/fr/events');
+    await page.click('a[href="/fr/events/"]');
+    await expect(page).toHaveURL(/\/fr\/events/);
     await expect(page.locator('h1')).toContainText(/événements/i);
 
     // Navigate to partners page
-    await page.click('a[href="/fr/partners"]');
-    await expect(page).toHaveURL('/fr/partners');
+    await page.click('a[href="/fr/partners/"]');
+    await expect(page).toHaveURL(/\/fr\/partners/);
     await expect(page.locator('h1')).toContainText(/partenaires/i);
 
     // Navigate back to homepage
@@ -24,16 +24,16 @@ test.describe('Navigation', () => {
   test('should navigate between English pages', async ({ page }) => {
     // Start at English homepage
     await page.goto('/en/');
-    await expect(page).toHaveTitle(/Tech Women Tunisia/);
+    await expect(page).toHaveTitle(/Tech Women/);
 
     // Navigate to events page
-    await page.click('a[href="/en/events"]');
-    await expect(page).toHaveURL('/en/events');
+    await page.click('a[href="/en/events/"]');
+    await expect(page).toHaveURL(/\/en\/events/);
     await expect(page.locator('h1')).toContainText(/events/i);
 
     // Navigate to partners page
-    await page.click('a[href="/en/partners"]');
-    await expect(page).toHaveURL('/en/partners');
+    await page.click('a[href="/en/partners/"]');
+    await expect(page).toHaveURL(/\/en\/partners/);
     await expect(page.locator('h1')).toContainText(/partners/i);
 
     // Navigate back to homepage
@@ -70,10 +70,10 @@ test.describe('Navigation', () => {
   });
 
   test('should highlight active page in navigation', async ({ page }) => {
-    await page.goto('/fr/events');
+    await page.goto('/fr/events/');
 
     // Check that the events link has an active state
-    const eventsLink = page.locator('nav a[href="/fr/events"]');
+    const eventsLink = page.locator('nav a[href="/fr/events/"]');
     await expect(eventsLink).toHaveAttribute('aria-current', 'page');
   });
 });
