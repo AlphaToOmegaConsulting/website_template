@@ -1,5 +1,7 @@
 ---
 import { buildUrl } from '@/utils/url';
+import { siteConfig } from '@/config/site';
+import { getTranslations } from '@/config/i18n';
 
 interface Props {
   lang: 'fr' | 'en';
@@ -8,21 +10,13 @@ interface Props {
 const { lang } = Astro.props;
 
 const currentYear = new Date().getFullYear();
+const t = getTranslations(lang);
 
-const footerText = {
-  fr: {
-    copyright: `© ${currentYear} Tous droits réservés.`,
-    links: 'Liens',
-    social: 'Réseaux sociaux',
-  },
-  en: {
-    copyright: `© ${currentYear} All rights reserved.`,
-    links: 'Links',
-    social: 'Social',
-  },
+const text = {
+  copyright: `© ${currentYear} ${t.common.allRightsReserved}`,
+  links: t.common.links,
+  social: t.common.social,
 };
-
-const text = footerText[lang];
 
 // Footer links (relative paths only)
 const footerLinks = {
@@ -41,9 +35,9 @@ const footerLinks = {
 const links = footerLinks[lang];
 
 const socialLinks = [
-  { href: '#', label: 'Twitter', icon: 'twitter' },
-  { href: '#', label: 'LinkedIn', icon: 'linkedin' },
-  { href: '#', label: 'GitHub', icon: 'github' },
+  { href: siteConfig.social.twitter, label: 'Twitter', icon: 'twitter' },
+  { href: siteConfig.social.linkedin, label: 'LinkedIn', icon: 'linkedin' },
+  { href: siteConfig.social.github, label: 'GitHub', icon: 'github' },
 ];
 ---
 
@@ -52,11 +46,9 @@ const socialLinks = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Brand -->
       <div>
-        <div class="text-2xl font-bold text-white mb-4">Logo</div>
+        <div class="text-2xl font-bold text-white mb-4">{siteConfig.name}</div>
         <p class="text-sm text-gray-400">
-          {lang === 'fr' 
-            ? 'Un site web multilingue moderne construit avec Astro, TypeScript et Tailwind CSS.'
-            : 'A modern multilingual website built with Astro, TypeScript, and Tailwind CSS.'}
+          {t.footer.description}
         </p>
       </div>
 

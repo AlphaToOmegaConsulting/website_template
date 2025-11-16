@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { buildUrl } from '@/utils/url';
+import { siteConfig } from '@/config/site';
 
 interface Props {
   title: string;
@@ -32,7 +33,7 @@ const siteOrigin = Astro.site ? new URL(Astro.site).origin : '';
 const canonicalUrl = Astro.url.href;
 
 // Default OG image if not provided
-const defaultOgImage = '/og-default.jpg';
+const defaultOgImage = siteConfig.seo.defaultOgImage;
 const ogImageUrl = ogImage || defaultOgImage;
 const ogImageFullUrl = `${siteOrigin}${buildUrl(ogImageUrl)}`;
 
@@ -45,7 +46,7 @@ const alternateEnUrl = alternateUrls?.en
     : undefined;
 
 // Site name for OG tags
-const siteName = 'Astro Multilingual Website';
+const siteName = siteConfig.name;
 
 // Twitter card type
 const twitterCard = 'summary_large_image';

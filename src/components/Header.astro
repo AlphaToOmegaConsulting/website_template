@@ -2,6 +2,8 @@
 import Navigation from './Navigation.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import { buildUrl } from '@/utils/url';
+import { siteConfig } from '@/config/site';
+import { getTranslations } from '@/config/i18n';
 
 interface Props {
   lang: 'fr' | 'en';
@@ -14,6 +16,8 @@ interface Props {
 
 const { lang, currentPath = '', alternateUrls } = Astro.props;
 
+const t = getTranslations(lang);
+
 // Build logo link with base path support
 const logoHref = buildUrl(`/${lang}/`);
 ---
@@ -24,7 +28,7 @@ const logoHref = buildUrl(`/${lang}/`);
       <!-- Logo -->
       <div class="flex-shrink-0">
         <a href={logoHref} class="text-2xl font-bold text-brand-primary hover:text-brand-accent transition-colors focus-ring">
-          Logo
+          {siteConfig.name}
         </a>
       </div>
 
@@ -41,7 +45,7 @@ const logoHref = buildUrl(`/${lang}/`);
         type="button"
         class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-brand-primary hover:bg-gray-100 focus-ring"
         aria-expanded="false"
-        aria-label={lang === 'fr' ? 'Ouvrir le menu' : 'Open menu'}
+        aria-label={t.common.openMenu}
         id="mobile-menu-button"
       >
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">

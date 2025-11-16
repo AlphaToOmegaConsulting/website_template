@@ -6,6 +6,8 @@ import About from '../../components/sections/About.astro';
 import Features from '../../components/sections/Features.astro';
 import Events from '../../components/sections/Events.astro';
 import CTA from '../../components/sections/CTA.astro';
+import { siteConfig } from '@/config/site';
+import { getTranslations } from '@/config/i18n';
 
 // Fetch content from Content Collections
 const allSections = await getCollection('sections');
@@ -30,9 +32,11 @@ const aboutData = getSectionData('about');
 const featuresData = getSectionData('features');
 const ctaData = getSectionData('cta');
 
+const t = getTranslations('fr');
+
 // Page metadata
-const pageTitle = 'Accueil - Tech Women Together';
-const pageDescription = 'Bienvenue sur Tech Women Together, la communauté qui connecte les femmes dans la tech.';
+const pageTitle = `${t.nav.home} - ${siteConfig.name}`;
+const pageDescription = siteConfig.description;
 ---
 
 <BaseLayout
@@ -74,7 +78,7 @@ const pageDescription = 'Bienvenue sur Tech Women Together, la communauté qui c
   )}
 
   <Events
-    title="Événements à venir"
+    title={t.events.upcoming}
     displayMode="upcoming"
     limit={3}
     lang="fr"

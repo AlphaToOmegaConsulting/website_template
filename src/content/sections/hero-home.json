@@ -3,11 +3,11 @@
   "order": 1,
   "visible": true,
   "data": {
-    "title": "Bienvenue chez Tech Women Together",
-    "subtitle": "La communauté qui connecte les femmes dans la tech",
+    "title": "Bienvenue sur notre plateforme",
+    "subtitle": "Découvrez nos services et notre communauté",
     "cta": {
       "label": "Découvrir",
-      "href": "#",
+      "href": "/fr/",
       "variant": "primary"
     },
     "variant": "default"

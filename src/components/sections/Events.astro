@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import Card from '../primitives/Card.astro';
 import ButtonLink from '../primitives/ButtonLink.astro';
+import Badge from '../primitives/Badge.astro';
+import Icon from '../primitives/Icon.astro';
+import { getTranslations } from '@/config/i18n';
 
 interface Props {
   title: string;
@@ -20,6 +23,8 @@ const {
   lang = 'fr',
   class: className = '',
 } = Astro.props;
+
+const t = getTranslations(lang);
 
 const allEvents = await getCollection('events', ({ data }) => {
   return data.lang === lang;
@@ -74,8 +79,8 @@ const sectionClasses = [
       <div class="text-center py-12">
         <p class="text-lg text-gray-500">
           {displayMode === 'upcoming'
-            ? lang === 'fr' ? 'Aucun événement à venir pour le moment.' : 'No upcoming events at the moment.'
-            : lang === 'fr' ? 'Aucun événement passé.' : 'No past events.'}
+            ? t.events.noUpcoming
+            : t.events.noPast}
         </p>
       </div>
     ) : (
@@ -84,9 +89,9 @@ const sectionClasses = [
           <Card variant="bordered" padding="lg" class="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
             <div class="flex-1">
               {event.data.featured && (
-                <span class="inline-block px-3 py-1 text-xs font-semibold text-brand-primary bg-blue-50 rounded-full mb-3">
-                  {lang === 'fr' ? 'À la une' : 'Featured'}
-                </span>
+                <Badge variant="primary" class="mb-3">
+                  {t.events.featured}
+                </Badge>
               )}
 
               <h3 class="text-xl font-bold font-heading text-gray-900 mb-3">
@@ -95,9 +100,7 @@ const sectionClasses = [
 
               <div class="space-y-2 mb-4 text-sm text-gray-600">
                 <div class="flex items-start gap-2">
-                  <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+                  <Icon name="calendar" class="mt-0.5" />
                   <span>
                     {formatDate(event.data.date, lang === 'fr' ? 'fr-FR' : 'en-US')}
                     {event.data.endDate && (
@@ -107,10 +110,7 @@ const sectionClasses = [
                 </div>
 
                 <div class="flex items-start gap-2">
-                  <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
+                  <Icon name="location" class="mt-0.5" />
                   <span>{event.data.location}</span>
                 </div>
               </div>
@@ -122,9 +122,9 @@ const sectionClasses = [
               {event.data.tags.length > 0 && (
                 <div class="flex flex-wrap gap-2 mb-4">
                   {event.data.tags.map((tag) => (
-                    <span class="inline-block px-2 py-1 text-xs text-gray-600 bg-gray-100 rounded">
+                    <Badge variant="default" size="sm">
                       {tag}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
               )}
@@ -140,7 +140,7 @@ const sectionClasses = [
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {lang === 'fr' ? "S'inscrire" : 'Register'}
+                  {t.events.register}
                 </ButtonLink>
               </div>
             )}
