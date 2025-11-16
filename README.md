@@ -8,6 +8,7 @@ This template uses a **minimal token system** with just 10 CSS variables, making
 
 - **Minimal Token System**: Only 10 CSS variables to define your brand
 - **Multi-Brand Ready**: Duplicate and customize by changing one file
+- **GitHub Pages Ready**: Native support for root and subfolder deployment
 - **IA-Friendly**: Simple, predictable code structure
 - **TypeScript Strict**: Type-safe throughout
 - **i18n Ready**: Built-in French/English support
@@ -82,10 +83,17 @@ pnpm build
 │   │   ├── tokens.css         # 10 CSS variables (ONLY FILE TO EDIT FOR NEW BRAND)
 │   │   └── global.css         # Global styles + Tailwind
 │   └── utils/
-│       └── date-formatter.ts
+│       ├── date-formatter.ts
+│       └── url.ts             # Base path utilities (GitHub Pages)
+├── docs/                      # 📚 All documentation (see docs/README.md)
+│   ├── README.md              # Documentation index
+│   ├── MULTI_BRAND_GUIDE.md   # Multi-brand setup guide
+│   ├── DEVELOPMENT.md         # Development workflow
+│   ├── GITHUB_PAGES_DEPLOYMENT.md  # Deployment guide
+│   └── ...                    # Technical docs & analyses
 ├── public/                    # Static assets
 ├── scripts/                   # Testing scripts
-├── tests/                     # E2E tests
+├── tests/                     # E2E and unit tests
 ├── astro.config.mjs
 ├── tailwind.config.mjs
 ├── tsconfig.json
@@ -140,7 +148,7 @@ The template provides 9 utility classes based on these tokens:
 
 ## Creating a New Brand
 
-See [MULTI_BRAND_GUIDE.md](MULTI_BRAND_GUIDE.md) for detailed instructions.
+See [docs/MULTI_BRAND_GUIDE.md](docs/MULTI_BRAND_GUIDE.md) for detailed instructions.
 
 **Quick version:**
 
@@ -334,15 +342,45 @@ Strict mode enabled with Astro defaults:
 - `strictNullChecks: true`
 - Full type safety across the codebase
 
+## Documentation
+
+All documentation is organized in the **`docs/`** folder:
+
+- 📖 **[docs/README.md](docs/README.md)** - Documentation index and navigation guide
+- 🚀 **[docs/MULTI_BRAND_GUIDE.md](docs/MULTI_BRAND_GUIDE.md)** - How to create new brands
+- 🔧 **[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)** - Development workflow and tools
+- 🌐 **[docs/GITHUB_PAGES_DEPLOYMENT.md](docs/GITHUB_PAGES_DEPLOYMENT.md)** - GitHub Pages deployment
+- 📘 **[docs/alpha_web_core_stack_v2.md](docs/alpha_web_core_stack_v2.md)** - Complete technical documentation
+
+For a complete list of all documentation files, see **[docs/README.md](docs/README.md)**.
+
 ## Deployment
 
 This template builds to static files (`output: 'static'`). Deploy to:
 
+- **GitHub Pages**: Native support for root and subfolder deployment. See [GitHub Pages Deployment Guide](docs/GITHUB_PAGES_DEPLOYMENT.md)
 - **Vercel**: Zero config, connect Git repo
 - **Netlify**: Zero config, drag & drop `dist/` folder
 - **Cloudflare Pages**: Connect Git repo
-- **GitHub Pages**: Use GitHub Actions workflow
 - **Any static host**: Upload `dist/` folder
+
+### GitHub Pages Configuration
+
+The template includes automatic base path handling for GitHub Pages deployment:
+
+**Root deployment (custom domain):**
+```js
+// astro.config.mjs
+base: '/'
+```
+
+**Subfolder deployment (repository pages):**
+```js
+// astro.config.mjs
+base: '/repository-name/'
+```
+
+All internal links are automatically resolved with the configured base path. See the [full documentation](docs/GITHUB_PAGES_DEPLOYMENT.md) for details.
 
 ## Why This Template?
 
@@ -368,6 +406,14 @@ This template builds to static files (`output: 'static'`). Deploy to:
 - Tests (Vitest + Playwright)
 - Lighthouse + a11y audits
 - SEO optimized
+
+## Getting Started
+
+1. **First time?** Read this README for an overview
+2. **Want to customize?** See [docs/MULTI_BRAND_GUIDE.md](docs/MULTI_BRAND_GUIDE.md)
+3. **Ready to develop?** Check [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)
+4. **Need to deploy?** Follow [docs/GITHUB_PAGES_DEPLOYMENT.md](docs/GITHUB_PAGES_DEPLOYMENT.md)
+5. **Want all the details?** Browse [docs/](docs/) folder
 
 ## License
 
