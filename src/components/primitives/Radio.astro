@@ -1,0 +1,89 @@
+---
+/**
+ * Radio Component
+ *
+ * A neutral, reusable radio button component.
+ * Following Alpha WebCore v3 principles: minimal styling, composable, brand-agnostic.
+ *
+ * Note: Radio buttons with the same 'name' are grouped together.
+ *
+ * @example
+ * ```astro
+ * <Radio name="plan" value="free" label="Free Plan" />
+ * <Radio name="plan" value="pro" label="Pro Plan" checked />
+ * <Radio name="plan" value="enterprise" label="Enterprise Plan" disabled />
+ * ```
+ */
+
+interface Props {
+  name: string;
+  value: string;
+  label: string;
+  required?: boolean;
+  disabled?: boolean;
+  checked?: boolean;
+  error?: string;
+  class?: string;
+}
+
+const {
+  name,
+  value,
+  label,
+  required = false,
+  disabled = false,
+  checked = false,
+  error,
+  class: className = '',
+} = Astro.props;
+
+const radioId = `radio-${name}-${value}`;
+const errorId = error ? `${radioId}-error` : undefined;
+
+const baseClasses = 'w-4 h-4 border-gray-300 text-brand-accent focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 transition-colors';
+
+const disabledClasses = disabled
+  ? 'opacity-60 cursor-not-allowed'
+  : 'cursor-pointer';
+
+const radioClasses = [
+  baseClasses,
+  disabledClasses,
+  className,
+].filter(Boolean).join(' ');
+---
+
+<div class="flex flex-col gap-1.5">
+  <div class="flex items-start gap-2">
+    <input
+      type="radio"
+      id={radioId}
+      name={name}
+      value={value}
+      required={required}
+      disabled={disabled}
+      checked={checked}
+      aria-invalid={error ? 'true' : 'false'}
+      aria-describedby={errorId}
+      class={radioClasses}
+    />
+
+    <label
+      for={radioId}
+      class={`text-sm ${disabled ? 'text-gray-500 cursor-not-allowed' : 'text-gray-700 cursor-pointer'}`}
+    >
+      {label}
+      {required && <span class="text-error ml-0.5">*</span>}
+    </label>
+  </div>
+
+  {error && (
+    <span
+      id={errorId}
+      class="text-sm text-error"
+      role="alert"
+    >
+      {error}
+    </span>
+  )}
+</div>

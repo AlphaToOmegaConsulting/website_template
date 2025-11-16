@@ -1,0 +1,87 @@
+---
+/**
+ * Checkbox Component
+ *
+ * A neutral, reusable checkbox component.
+ * Following Alpha WebCore v3 principles: minimal styling, composable, brand-agnostic.
+ *
+ * @example
+ * ```astro
+ * <Checkbox name="terms" label="I accept the terms and conditions" required />
+ * <Checkbox name="newsletter" label="Subscribe to newsletter" checked />
+ * <Checkbox name="disabled" label="Disabled option" disabled />
+ * ```
+ */
+
+interface Props {
+  name: string;
+  label: string;
+  required?: boolean;
+  disabled?: boolean;
+  checked?: boolean;
+  value?: string;
+  error?: string;
+  class?: string;
+}
+
+const {
+  name,
+  label,
+  required = false,
+  disabled = false,
+  checked = false,
+  value,
+  error,
+  class: className = '',
+} = Astro.props;
+
+const checkboxId = `checkbox-${name}`;
+const errorId = error ? `${checkboxId}-error` : undefined;
+
+const baseClasses = 'w-4 h-4 rounded border-gray-300 text-brand-accent focus:ring-2 focus:ring-brand-accent focus:ring-offset-2 transition-colors';
+
+const disabledClasses = disabled
+  ? 'opacity-60 cursor-not-allowed'
+  : 'cursor-pointer';
+
+const checkboxClasses = [
+  baseClasses,
+  disabledClasses,
+  className,
+].filter(Boolean).join(' ');
+---
+
+<div class="flex flex-col gap-1.5">
+  <div class="flex items-start gap-2">
+    <input
+      type="checkbox"
+      id={checkboxId}
+      name={name}
+      value={value}
+      required={required}
+      disabled={disabled}
+      checked={checked}
+      aria-invalid={error ? 'true' : 'false'}
+      aria-describedby={errorId}
+      class={checkboxClasses}
+    />
+
+    <label
+      for={checkboxId}
+      class={`text-sm ${disabled ? 'text-gray-500 cursor-not-allowed' : 'text-gray-700 cursor-pointer'}`}
+    >
+      {label}
+      {required && <span class="text-error ml-0.5">*</span>}
+    </label>
+  </div>
+
+  {error && (
+    <span
+      id={errorId}
+      class="text-sm text-error"
+      role="alert"
+    >
+      {error}
+    </span>
+  )}
+</div>

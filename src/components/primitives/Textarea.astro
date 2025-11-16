@@ -1,32 +1,46 @@
 ---
+/**
+ * Textarea Component
+ *
+ * A neutral, reusable textarea component for multi-line text input.
+ * Following Alpha WebCore v3 principles: minimal styling, composable, brand-agnostic.
+ *
+ * @example
+ * ```astro
+ * <Textarea name="message" label="Your message" required />
+ * <Textarea name="bio" label="Bio" rows={5} placeholder="Tell us about yourself..." />
+ * <Textarea name="comment" label="Comment" error="This field is required" />
+ * ```
+ */
+
 interface Props {
-  type?: 'text' | 'email' | 'password' | 'number';
   name: string;
   label: string;
   placeholder?: string;
   required?: boolean;
   disabled?: boolean;
   error?: string;
+  rows?: number;
   class?: string;
   value?: string;
 }
 
 const {
-  type = 'text',
   name,
   label,
   placeholder,
   required = false,
   disabled = false,
   error,
+  rows = 4,
   class: className = '',
   value,
 } = Astro.props;
 
-const inputId = `input-${name}`;
-const errorId = error ? `${inputId}-error` : undefined;
+const textareaId = `textarea-${name}`;
+const errorId = error ? `${textareaId}-error` : undefined;
 
-const baseClasses = 'w-full px-3 py-2 border rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2';
+const baseClasses = 'w-full px-3 py-2 border rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 resize-y';
 
 const stateClasses = error
   ? 'border-error focus-visible:ring-error'
@@ -36,7 +50,7 @@ const disabledClasses = disabled
   ? 'bg-surface-secondary cursor-not-allowed opacity-60'
   : 'bg-surface';
 
-const inputClasses = [
+const textareaClasses = [
   baseClasses,
   stateClasses,
   disabledClasses,
@@ -46,26 +60,25 @@ const inputClasses = [
 
 <div class="flex flex-col gap-1.5">
   <label
-    for={inputId}
+    for={textareaId}
     class="text-sm font-medium text-gray-700"
   >
     {label}
     {required && <span class="text-error ml-0.5">*</span>}
   </label>
 
-  <input
-    id={inputId}
-    type={type}
+  <textarea
+    id={textareaId}
     name={name}
     placeholder={placeholder}
     required={required}
     disabled={disabled}
+    rows={rows}
     aria-invalid={error ? 'true' : 'false'}
     aria-describedby={errorId}
-    class={inputClasses}
-    value={value}
-  />
-  
+    class={textareaClasses}
+  >{value}</textarea>
+
   {error && (
     <span
       id={errorId}

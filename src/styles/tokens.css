@@ -36,16 +36,50 @@
   /* Base backgrounds */
   --color-bg: #ffffff;
   --color-bg-alt: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f9fafb;
+
+  /* Borders */
+  --color-border: #e5e7eb;
+  --color-border-secondary: #d1d5db;
+
+  /* ============================================
+     SYSTEM COLORS (semantic feedback)
+     ============================================ */
+
+  /* Success */
+  --color-success: #10b981;
+  --color-success-bg: #ecfdf5;
+  --color-success-border: #d1fae5;
+
+  /* Error */
+  --color-error: #ef4444;
+  --color-error-bg: #fef2f2;
+  --color-error-border: #fecaca;
+
+  /* Warning */
+  --color-warning: #f59e0b;
+  --color-warning-bg: #fffbeb;
+  --color-warning-border: #fde68a;
+
+  /* Info */
+  --color-info: #3b82f6;
+  --color-info-bg: #eff6ff;
+  --color-info-border: #bfdbfe;
 
   /* ============================================
      VISUAL EFFECTS (optional customization)
      ============================================ */
 
-  /* Standard shadow for cards and elevated elements */
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-  /* Standard border radius */
+  /* Border radius */
+  --radius-sm: 0.25rem;
   --radius: 0.5rem;
+  --radius-lg: 0.75rem;
 }
 
 /* ============================================
@@ -98,4 +132,81 @@
 
 .border-brand-accent {
   border-color: var(--brand-accent);
+}
+
+/* ============================================
+   SYSTEM COLOR UTILITIES
+   Semantic classes for system feedback
+   ============================================ */
+
+/* Success */
+.text-success {
+  color: var(--color-success);
+}
+
+.bg-success {
+  background-color: var(--color-success-bg);
+}
+
+.border-success {
+  border-color: var(--color-success-border);
+}
+
+/* Error */
+.text-error {
+  color: var(--color-error);
+}
+
+.bg-error {
+  background-color: var(--color-error-bg);
+}
+
+.border-error {
+  border-color: var(--color-error-border);
+}
+
+/* Warning */
+.text-warning {
+  color: var(--color-warning);
+}
+
+.bg-warning {
+  background-color: var(--color-warning-bg);
+}
+
+.border-warning {
+  border-color: var(--color-warning-border);
+}
+
+/* Info */
+.text-info {
+  color: var(--color-info);
+}
+
+.bg-info {
+  background-color: var(--color-info-bg);
+}
+
+.border-info {
+  border-color: var(--color-info-border);
+}
+
+/* ============================================
+   SURFACE & BORDER UTILITIES
+   ============================================ */
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-surface-secondary {
+  background-color: var(--color-surface-secondary);
+}
+
+.border-default {
+  border-color: var(--color-border);
+}
+
+.border-secondary {
+  border-color: var(--color-border-secondary);
 }

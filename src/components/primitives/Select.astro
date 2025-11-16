@@ -1,0 +1,125 @@
+---
+/**
+ * Select Component
+ *
+ * A neutral, reusable select dropdown component.
+ * Following Alpha WebCore v3 principles: minimal styling, composable, brand-agnostic.
+ *
+ * @example
+ * ```astro
+ * <Select
+ *   name="country"
+ *   label="Country"
+ *   options={[
+ *     { value: 'fr', label: 'France' },
+ *     { value: 'en', label: 'England' }
+ *   ]}
+ * />
+ * <Select name="role" label="Role" required error="Please select a role" />
+ * ```
+ */
+
+interface Option {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
+
+interface Props {
+  name: string;
+  label: string;
+  options: Option[];
+  placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
+  error?: string;
+  class?: string;
+  value?: string;
+}
+
+const {
+  name,
+  label,
+  options,
+  placeholder,
+  required = false,
+  disabled = false,
+  error,
+  class: className = '',
+  value,
+} = Astro.props;
+
+const selectId = `select-${name}`;
+const errorId = error ? `${selectId}-error` : undefined;
+
+const baseClasses = 'w-full px-3 py-2 border rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 appearance-none bg-surface';
+
+const stateClasses = error
+  ? 'border-error focus-visible:ring-error'
+  : 'border-default focus:border-brand-accent';
+
+const disabledClasses = disabled
+  ? 'bg-surface-secondary cursor-not-allowed opacity-60'
+  : '';
+
+const selectClasses = [
+  baseClasses,
+  stateClasses,
+  disabledClasses,
+  className,
+].filter(Boolean).join(' ');
+---
+
+<div class="flex flex-col gap-1.5">
+  <label
+    for={selectId}
+    class="text-sm font-medium text-gray-700"
+  >
+    {label}
+    {required && <span class="text-error ml-0.5">*</span>}
+  </label>
+
+  <div class="relative">
+    <select
+      id={selectId}
+      name={name}
+      required={required}
+      disabled={disabled}
+      aria-invalid={error ? 'true' : 'false'}
+      aria-describedby={errorId}
+      class={selectClasses}
+    >
+      {placeholder && (
+        <option value="" disabled selected={!value}>
+          {placeholder}
+        </option>
+      )}
+      {options.map((option) => (
+        <option
+          value={option.value}
+          disabled={option.disabled}
+          selected={value === option.value}
+        >
+          {option.label}
+        </option>
+      ))}
+    </select>
+
+    <!-- Chevron icon -->
+    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+
+  {error && (
+    <span
+      id={errorId}
+      class="text-sm text-error"
+      role="alert"
+    >
+      {error}
+    </span>
+  )}
+</div>
