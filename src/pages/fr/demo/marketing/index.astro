@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Marketing';
+const description = 'Pages marketing de démonstration';
+
+const alternateUrls = {
+  fr: '/fr/demo/marketing',
+  en: '/en/demo/marketing'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/fr/demo" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Retour aux démos</a>
+
+    <h1 class="text-4xl font-bold mb-6">Marketing</h1>
+    <p class="text-lg text-gray-600 mb-12">
+      Pages de démonstration pour le marketing.
+    </p>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">À venir</h2>
+      <p>Cette section sera complétée avec des exemples de pages marketing.</p>
+    </section>
+  </main>
+</BaseLayout>

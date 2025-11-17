@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Layouts';
+const description = 'Layout and structure components';
+
+const alternateUrls = {
+  fr: '/fr/library/layout',
+  en: '/en/library/layout'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/en/library" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to library</a>
+
+    <h1 class="text-4xl font-bold mb-6">Layouts</h1>
+    <p class="text-lg mb-12">Layout and structure components.</p>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Coming Soon</h2>
+      <p>This section will be completed with available layout components.</p>
+    </section>
+  </main>
+</BaseLayout>

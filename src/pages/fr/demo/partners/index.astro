@@ -1,7 +1,7 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import Card from '../../../components/primitives/Card.astro';
-import ButtonLink from '../../../components/primitives/ButtonLink.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/primitives/Card.astro';
+import ButtonLink from '@/components/primitives/ButtonLink.astro';
 
 // Partners data (could be moved to a data collection later)
 const partners = [
@@ -9,7 +9,7 @@ const partners = [
     id: 'partner-1',
     name: 'TechCorp',
     logo: '/images/partners/techcorp.svg',
-    description: 'Global leader in cloud solutions and artificial intelligence.',
+    description: 'Leader mondial dans les solutions cloud et l\'intelligence artificielle.',
     website: 'https://example.com/techcorp',
     tier: 'platinum',
   },
@@ -17,7 +17,7 @@ const partners = [
     id: 'partner-2',
     name: 'InnovateLab',
     logo: '/images/partners/innovatelab.svg',
-    description: 'Innovative startup specializing in tech product development.',
+    description: 'Startup innovante spécialisée dans le développement de produits tech.',
     website: 'https://example.com/innovatelab',
     tier: 'gold',
   },
@@ -25,7 +25,7 @@ const partners = [
     id: 'partner-3',
     name: 'DataSolutions',
     logo: '/images/partners/datasolutions.svg',
-    description: 'Expert in data analysis and business intelligence.',
+    description: 'Expert en analyse de données et business intelligence.',
     website: 'https://example.com/datasolutions',
     tier: 'gold',
   },
@@ -33,7 +33,7 @@ const partners = [
     id: 'partner-4',
     name: 'DevHub',
     logo: '/images/partners/devhub.svg',
-    description: 'Collaborative platform for developers.',
+    description: 'Plateforme collaborative pour développeurs et développeuses.',
     website: 'https://example.com/devhub',
     tier: 'silver',
   },
@@ -41,7 +41,7 @@ const partners = [
     id: 'partner-5',
     name: 'CloudFirst',
     logo: '/images/partners/cloudfirst.svg',
-    description: 'Cloud services and infrastructure for modern businesses.',
+    description: 'Services cloud et infrastructure pour entreprises modernes.',
     website: 'https://example.com/cloudfirst',
     tier: 'silver',
   },
@@ -49,7 +49,7 @@ const partners = [
     id: 'partner-6',
     name: 'CodeAcademy',
     logo: '/images/partners/codeacademy.svg',
-    description: 'Online training to learn programming.',
+    description: 'Formation en ligne pour apprendre la programmation.',
     website: 'https://example.com/codeacademy',
     tier: 'silver',
   },
@@ -61,17 +61,17 @@ const goldPartners = partners.filter(p => p.tier === 'gold');
 const silverPartners = partners.filter(p => p.tier === 'silver');
 
 // Page metadata
-const pageTitle = 'Our Partners - Tech Women Together';
-const pageDescription = 'Discover the companies and organizations that support our mission to promote diversity in tech.';
+const pageTitle = 'Nos Partenaires - Tech Women Together';
+const pageDescription = 'Découvrez les entreprises et organisations qui soutiennent notre mission de promouvoir la diversité dans la tech.';
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  lang="en"
+  lang="fr"
   alternateUrls={{
-    fr: '/fr/partners',
-    en: '/en/partners'
+    fr: '/fr/demo/partners',
+    en: '/en/demo/partners'
   }}
 >
   <div class="bg-gray-50 py-16">
@@ -79,10 +79,10 @@ const pageDescription = 'Discover the companies and organizations that support o
       <!-- Page Header -->
       <div class="max-w-3xl mx-auto text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Our Partners
+          Nos Partenaires
         </h1>
         <p class="text-xl text-gray-600">
-          We are proud to collaborate with companies and organizations that share our vision of a more inclusive and diverse tech industry.
+          Nous sommes fiers de collaborer avec des entreprises et organisations qui partagent notre vision d'une tech plus inclusive et diverse.
         </p>
       </div>
 
@@ -91,9 +91,9 @@ const pageDescription = 'Discover the companies and organizations that support o
         <section class="mb-16">
           <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-2">
-              Platinum Partners
+              Partenaires Platine
             </h2>
-            <p class="text-gray-600">Our major strategic partners</p>
+            <p class="text-gray-600">Nos partenaires stratégiques majeurs</p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {platinumPartners.map((partner) => (
@@ -115,7 +115,7 @@ const pageDescription = 'Discover the companies and organizations that support o
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Visit Website
+                    Visiter le site
                   </ButtonLink>
                 </div>
               </Card>
@@ -129,9 +129,9 @@ const pageDescription = 'Discover the companies and organizations that support o
         <section class="mb-16">
           <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-2">
-              Gold Partners
+              Partenaires Or
             </h2>
-            <p class="text-gray-600">Our premium partners</p>
+            <p class="text-gray-600">Nos partenaires premium</p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {goldPartners.map((partner) => (
@@ -153,7 +153,7 @@ const pageDescription = 'Discover the companies and organizations that support o
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Learn More
+                    En savoir plus
                   </ButtonLink>
                 </div>
               </Card>
@@ -167,9 +167,9 @@ const pageDescription = 'Discover the companies and organizations that support o
         <section class="mb-16">
           <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-2">
-              Silver Partners
+              Partenaires Argent
             </h2>
-            <p class="text-gray-600">Our supporting partners</p>
+            <p class="text-gray-600">Nos partenaires soutiens</p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {silverPartners.map((partner) => (
@@ -191,7 +191,7 @@ const pageDescription = 'Discover the companies and organizations that support o
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Visit
+                    Visiter
                   </ButtonLink>
                 </div>
               </Card>
@@ -203,10 +203,10 @@ const pageDescription = 'Discover the companies and organizations that support o
       <!-- CTA Section -->
       <section class="bg-blue-50 rounded-lg p-8 md:p-12 text-center">
         <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Become a Partner
+          Devenez Partenaire
         </h2>
         <p class="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
-          Join our network of partners and help build a more diverse and inclusive tech community.
+          Rejoignez notre réseau de partenaires et contribuez à construire une communauté tech plus diverse et inclusive.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <ButtonLink 
@@ -214,14 +214,14 @@ const pageDescription = 'Discover the companies and organizations that support o
             variant="primary" 
             size="lg"
           >
-            Contact Us
+            Nous contacter
           </ButtonLink>
           <ButtonLink 
-            href="/en/partners/info"
+            href="/fr/partners/info"
             variant="secondary" 
             size="lg"
           >
-            Learn More
+            En savoir plus
           </ButtonLink>
         </div>
       </section>
