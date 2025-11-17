@@ -24,10 +24,10 @@ const demos = [
   alternateUrls={alternateUrls}
 >
   <main class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-4xl font-bold mb-6">Démo</h1>
-    <p class="text-lg mb-12">Pages de démonstration du template.</p>
+    <h1 class="text-4xl font-bold mb-6">Pages de démonstration</h1>
+    <p class="text-lg mb-12">Exemples de pages construites avec le template.</p>
 
-    <div class="space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {demos.map(d => (
         <a href={`/fr/demo/${d.slug}`} class="block p-6 border rounded-lg hover:shadow-lg transition">
           <h2 class="text-xl font-semibold mb-2">{d.title}</h2>
