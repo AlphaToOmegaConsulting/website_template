@@ -6,14 +6,14 @@ const title = 'Add a Page - Guide';
 const description = 'Step-by-step guide to add a new page';
 
 const alternateUrls = {
-  fr: '/fr/library/guides/add-page',
-  en: '/en/library/guides/add-page'
+  fr: '/fr/guides/add-page',
+  en: '/en/guides/add-page'
 };
 ---
 
 <BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}>
   <main class="container mx-auto px-4 py-12 max-w-4xl">
-    <a href="/en/library/guides" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to guides</a>
+    <a href="/en/guides" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to guides</a>
 
     <h1 class="text-4xl font-bold mb-6">How to add a page</h1>
     <p class="text-lg text-gray-600 mb-12">
@@ -62,8 +62,8 @@ const title = 'Nos Services';
 const description = 'Découvrez tous nos services professionnels';
 
 const alternateUrls = {'{'}
-  fr: '/fr/services',
-  en: '/en/services'
+  fr: '/fr/demo',
+  en: '/en/demo'
 {'}'};
 ---
 
@@ -165,9 +165,9 @@ import CTA from '@/components/sections/CTA.astro';
 {'{'}lang === 'fr' &amp;&amp; (
   &lt;nav&gt;
     &lt;a href="/fr/"&gt;Accueil&lt;/a&gt;
-    &lt;a href="/fr/services"&gt;Services&lt;/a&gt;  {'{'}/* ← New link */{'}'}
-    &lt;a href="/fr/events"&gt;Événements&lt;/a&gt;
-    &lt;a href="/fr/partners"&gt;Partenaires&lt;/a&gt;
+    &lt;a href="/fr/library"&gt;Library&lt;/a&gt;  {'{'}/* ← New link */{'}'}
+    &lt;a href="/fr/demo/events"&gt;Événements&lt;/a&gt;
+    &lt;a href="/fr/demo/partners"&gt;Partenaires&lt;/a&gt;
   &lt;/nav&gt;
 ){'}'}
 
@@ -175,9 +175,9 @@ import CTA from '@/components/sections/CTA.astro';
 {'{'}lang === 'en' &amp;&amp; (
   &lt;nav&gt;
     &lt;a href="/en/"&gt;Home&lt;/a&gt;
-    &lt;a href="/en/services"&gt;Services&lt;/a&gt;  {'{'}/* ← New link */{'}'}
-    &lt;a href="/en/events"&gt;Events&lt;/a&gt;
-    &lt;a href="/en/partners"&gt;Partners&lt;/a&gt;
+    &lt;a href="/en/library"&gt;Library&lt;/a&gt;  {'{'}/* ← New link */{'}'}
+    &lt;a href="/en/demo/events"&gt;Events&lt;/a&gt;
+    &lt;a href="/en/demo/partners"&gt;Partners&lt;/a&gt;
   &lt;/nav&gt;
 ){'}'}
 </code></pre>
@@ -276,7 +276,7 @@ import CTA from '@/components/sections/CTA.astro';
     <section>
       <h2 class="text-3xl font-semibold mb-4">Next steps</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href="/en/library/guides/add-section" class="border rounded-lg p-4 hover:shadow-lg transition">
+        <a href="/en/guides/add-section" class="border rounded-lg p-4 hover:shadow-lg transition">
           <h3 class="font-semibold mb-2">→ Add a section</h3>
           <p class="text-sm text-gray-600">Create a new reusable section component</p>
         </a>

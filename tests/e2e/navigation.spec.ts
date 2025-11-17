@@ -59,25 +59,23 @@ test.describe('Navigation', () => {
     await expect(nav).toBeVisible();
   });
 
-  test('should navigate to events page from French homepage', async ({ page }) => {
+  test('should navigate to demo page from French homepage', async ({ page }) => {
     await page.goto('/fr/');
 
-    // Look for events link
-    const eventsLink = page.locator('a[href*="/fr/events"]').first();
-    if (await eventsLink.count() > 0) {
-      await eventsLink.click();
-      await expect(page).toHaveURL(/\/fr\/events/);
-    }
+    // Look for demo link in navigation
+    const demoLink = page.locator('nav a[href*="/fr/demo"]').first();
+    await expect(demoLink).toBeVisible();
+    await demoLink.click();
+    await expect(page).toHaveURL(/\/fr\/demo/);
   });
 
-  test('should navigate to events page from English homepage', async ({ page }) => {
+  test('should navigate to demo page from English homepage', async ({ page }) => {
     await page.goto('/en/');
 
-    // Look for events link
-    const eventsLink = page.locator('a[href*="/en/events"]').first();
-    if (await eventsLink.count() > 0) {
-      await eventsLink.click();
-      await expect(page).toHaveURL(/\/en\/events/);
-    }
+    // Look for demo link in navigation
+    const demoLink = page.locator('nav a[href*="/en/demo"]').first();
+    await expect(demoLink).toBeVisible();
+    await demoLink.click();
+    await expect(page).toHaveURL(/\/en\/demo/);
   });
 });

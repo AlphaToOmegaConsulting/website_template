@@ -1,9 +1,12 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Features from '@/components/sections/Features.astro';
+import CTA from '@/components/sections/CTA.astro';
 
 const lang = 'en';
-const title = 'Marketing';
-const description = 'Marketing demo pages';
+const title = 'Marketing Demo';
+const description = 'Complete marketing page demonstration';
 
 const alternateUrls = {
   fr: '/fr/demo/marketing',
@@ -17,17 +20,66 @@ const alternateUrls = {
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <main class="container mx-auto px-4 py-12 max-w-4xl">
-    <a href="/en/demo" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to demos</a>
+  <Hero
+    title="Transform Your Business Today"
+    subtitle="Discover powerful solutions that help companies grow faster, work smarter, and achieve their goals"
+    variant="centered"
+    cta={{
+      label: "Get Started Free",
+      href: "#",
+      variant: "primary"
+    }}
+  />
 
-    <h1 class="text-4xl font-bold mb-6">Marketing</h1>
-    <p class="text-lg text-gray-600 mb-12">
-      Demo pages for marketing.
-    </p>
+  <Features
+    title="Why Choose Us"
+    subtitle="Everything you need to succeed in today's digital world"
+    features={[
+      {
+        icon: "⚡",
+        title: "Lightning Fast",
+        description: "Optimized performance ensuring your users get the best experience possible"
+      },
+      {
+        icon: "🔒",
+        title: "Secure & Reliable",
+        description: "Enterprise-grade security with 99.9% uptime guarantee"
+      },
+      {
+        icon: "📱",
+        title: "Mobile Ready",
+        description: "Fully responsive design that works perfectly on all devices"
+      },
+      {
+        icon: "🎨",
+        title: "Beautiful Design",
+        description: "Modern, clean interface that users love to interact with"
+      },
+      {
+        icon: "🚀",
+        title: "Easy to Scale",
+        description: "Grow your business without worrying about technical limitations"
+      },
+      {
+        icon: "💬",
+        title: "24/7 Support",
+        description: "Our team is always here to help you succeed"
+      }
+    ]}
+    columns={3}
+  />
 
-    <section class="mb-12">
-      <h2 class="text-3xl font-semibold mb-4">Coming Soon</h2>
-      <p>This section will be completed with marketing page examples.</p>
-    </section>
-  </main>
+  <CTA
+    title="Ready to Get Started?"
+    description="Join thousands of satisfied customers who have transformed their business with our platform"
+    primaryCta={{
+      label: "Start Free Trial",
+      href: "#"
+    }}
+    secondaryCta={{
+      label: "Contact Sales",
+      href: "#"
+    }}
+    variant="emphasized"
+  />
 </BaseLayout>

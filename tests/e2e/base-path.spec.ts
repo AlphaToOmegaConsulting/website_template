@@ -36,9 +36,9 @@ test.describe('Base path navigation - Root deployment (/)', () => {
     test('should navigate between pages using header links', async ({ page }) => {
         await page.goto('/fr/');
 
-        // Click on Events link
-        await page.click('nav a[href*="events"]');
-        await expect(page).toHaveURL(/\/fr\/events/);
+        // Click on Demo link
+        await page.click('nav a[href*="/fr/demo"]');
+        await expect(page).toHaveURL(/\/fr\/demo/);
 
         // Click on home link
         await page.click('nav a[href*="/fr/"]');
@@ -52,15 +52,15 @@ test.describe('Base path navigation - Root deployment (/)', () => {
         const homeLink = page.locator('nav a[href*="/fr/"]').first();
         await expect(homeLink).toHaveAttribute('aria-current', 'page');
 
-        // Navigate to events
-        await page.goto('/fr/events');
+        // Navigate to demo section
+        await page.goto('/fr/demo');
 
         // Home link should NOT be active
         await expect(homeLink).not.toHaveAttribute('aria-current', 'page');
 
-        // Events link should be active
-        const eventsLink = page.locator('nav a[href*="events"]').first();
-        await expect(eventsLink).toHaveAttribute('aria-current', 'page');
+        // Demo link should be active
+        const demoLink = page.locator('nav a[href*="/fr/demo"]').first();
+        await expect(demoLink).toHaveAttribute('aria-current', 'page');
     });
 
     test('should switch language correctly', async ({ page }) => {
@@ -91,13 +91,13 @@ test.describe('Base path navigation - Root deployment (/)', () => {
     test('should navigate footer links correctly', async ({ page }) => {
         await page.goto('/fr/');
 
-        // Click on a footer link
-        await page.click('footer a[href*="events"]');
-        await expect(page).toHaveURL(/\/fr\/events/);
+        // Click on a footer link (events is now under demo)
+        await page.click('footer a[href*="demo/events"]');
+        await expect(page).toHaveURL(/\/fr\/demo\/events/);
     });
 
     test('should load logo link to home page', async ({ page }) => {
-        await page.goto('/fr/events');
+        await page.goto('/fr/demo/events');
 
         // Click logo to return home
         await page.click('header a:has-text("Logo")');
@@ -120,7 +120,7 @@ test.describe('Base path navigation - Consistent across languages', () => {
     });
 
     test('should have parallel routes for both languages', async ({ page }) => {
-        const routes = ['/', '/events/', '/partners/'];
+        const routes = ['/', '/demo/', '/library/', '/guides/'];
 
         for (const route of routes) {
             // Test French route
@@ -145,25 +145,25 @@ test.describe('Base path navigation - Active link detection', () => {
     });
 
     test('should not mark home as active on subpages', async ({ page }) => {
-        await page.goto('/fr/events');
+        await page.goto('/fr/demo');
 
         // Check that home link is NOT marked as active
         const homeLink = page.locator('nav a[href*="/fr/"]').first();
         await expect(homeLink).not.toHaveAttribute('aria-current', 'page');
 
-        // Events link should be active
+        // Demo link should be active
         const activeLink = page.locator('nav a[aria-current="page"]');
         await expect(activeLink).toHaveCount(1);
-        await expect(activeLink).toContainText(/Événements|Events/);
+        await expect(activeLink).toContainText(/Demo/);
     });
 
     test('should mark nested routes as active', async ({ page }) => {
         // This tests prefix matching for nested routes
-        await page.goto('/fr/twt/landing/');
+        await page.goto('/fr/demo/events/');
 
         const activeLink = page.locator('nav a[aria-current="page"]');
         await expect(activeLink).toHaveCount(1);
-        await expect(activeLink).toHaveAttribute('href', /\/twt\/landing/);
+        await expect(activeLink).toHaveAttribute('href', /\/fr\/demo/);
     });
 });
 
@@ -197,11 +197,11 @@ test.describe('Base path navigation - Mobile menu', () => {
         // Open mobile menu
         await page.click('#mobile-menu-button');
 
-        // Click on events link in mobile menu
-        await page.click('#mobile-menu a[href*="events"]');
+        // Click on demo link in mobile menu
+        await page.click('#mobile-menu a[href*="/fr/demo"]');
 
-        // Should navigate to events page
-        await expect(page).toHaveURL(/\/fr\/events/);
+        // Should navigate to demo page
+        await expect(page).toHaveURL(/\/fr\/demo/);
     });
 });
 

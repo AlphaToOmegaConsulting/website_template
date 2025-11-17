@@ -1,5 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Features from '@/components/sections/Features.astro';
+import About from '@/components/sections/About.astro';
+import Events from '@/components/sections/Events.astro';
+import CTA from '@/components/sections/CTA.astro';
+import Team from '@/components/sections/Team.astro';
 
 const lang = 'fr';
 const title = 'Sections';
@@ -14,32 +20,38 @@ const sections = [
   {
     name: 'Hero',
     slug: 'hero',
-    description: 'Section de page de type Hero'
+    description: 'Section de page de type Hero',
+    Component: Hero
   },
   {
     name: 'Features',
     slug: 'features',
-    description: 'Présentation des fonctionnalités'
+    description: 'Présentation des fonctionnalités',
+    Component: Features
   },
   {
     name: 'About',
     slug: 'about',
-    description: 'Section à propos de l\'organisation'
+    description: 'Section à propos de l\'organisation',
+    Component: About
   },
   {
     name: 'Events',
     slug: 'events',
-    description: 'Liste d\'événements avec filtres'
+    description: 'Liste d\'événements avec filtres',
+    Component: Events
   },
   {
     name: 'CTA',
     slug: 'cta',
-    description: 'Appel à l\'action (Call To Action)'
+    description: 'Appel à l\'action (Call To Action)',
+    Component: CTA
   },
   {
     name: 'Team',
     slug: 'team',
-    description: 'Présentation de l\'équipe'
+    description: 'Présentation de l\'équipe',
+    Component: Team
   },
 ];
 ---
@@ -50,86 +62,165 @@ const sections = [
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <main class="container mx-auto px-4 py-12 max-w-6xl">
-    <a href="/fr/library" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Retour à la bibliothèque</a>
+  <div class="mb-8 container mx-auto px-4 max-w-6xl">
+    <a href="/fr/library" class="text-sm text-gray-600 hover:underline inline-block">← Retour à la bibliothèque</a>
+    <h1 class="text-4xl font-bold mt-4 mb-2">Sections</h1>
+    <p class="text-lg text-gray-600">Blocs de page complets et réutilisables.</p>
+  </div>
 
-    <h1 class="text-4xl font-bold mb-6">Sections</h1>
-    <p class="text-lg mb-12">Blocs de page complets et réutilisables.</p>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {sections.map(s => (
-        <div class="border rounded-lg overflow-hidden hover:shadow-lg transition">
-          <div class="bg-gray-50 p-8 flex items-center justify-center min-h-[200px]">
-            {s.slug === 'hero' && (
-              <div class="text-center space-y-2">
-                <div class="text-2xl font-bold text-gray-700">Titre Hero</div>
-                <div class="text-sm text-gray-500">Description principale</div>
-                <div class="mt-2 px-4 py-2 bg-blue-600 text-white text-xs rounded inline-block">
-                  CTA
-                </div>
-              </div>
-            )}
-            {s.slug === 'features' && (
-              <div class="grid grid-cols-2 gap-2 w-full max-w-[200px]">
-                {[1, 2, 3, 4].map(i => (
-                  <div class="bg-white p-2 rounded border border-gray-200">
-                    <div class="w-6 h-6 bg-blue-100 rounded mb-1"></div>
-                    <div class="h-2 bg-gray-200 rounded"></div>
-                  </div>
-                ))}
-              </div>
-            )}
-            {s.slug === 'about' && (
-              <div class="flex gap-3 items-center">
-                <div class="w-16 h-16 bg-gray-300 rounded"></div>
-                <div class="space-y-1">
-                  <div class="h-2 w-20 bg-gray-300 rounded"></div>
-                  <div class="h-2 w-16 bg-gray-200 rounded"></div>
-                  <div class="h-2 w-24 bg-gray-200 rounded"></div>
-                </div>
-              </div>
-            )}
-            {s.slug === 'events' && (
-              <div class="space-y-2 w-full max-w-[200px]">
-                {[1, 2].map(i => (
-                  <div class="bg-white p-2 rounded border border-gray-200">
-                    <div class="h-2 w-16 bg-blue-100 rounded mb-1"></div>
-                    <div class="h-2 w-full bg-gray-200 rounded"></div>
-                  </div>
-                ))}
-              </div>
-            )}
-            {s.slug === 'cta' && (
-              <div class="text-center space-y-2">
-                <div class="text-lg font-semibold text-gray-700">Action</div>
-                <div class="px-6 py-2 bg-blue-600 text-white text-sm rounded inline-block">
-                  Bouton
-                </div>
-              </div>
-            )}
-            {s.slug === 'team' && (
-              <div class="flex gap-2">
-                {[1, 2, 3].map(i => (
-                  <div class="text-center">
-                    <div class="w-12 h-12 bg-gray-300 rounded-full mb-1"></div>
-                    <div class="h-1 w-12 bg-gray-200 rounded"></div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-          <div class="p-4 bg-white">
-            <h2 class="text-xl font-semibold mb-2">{s.name}</h2>
-            <p class="text-sm text-gray-600 mb-4">{s.description}</p>
-            <a
-              href={`/fr/library/sections/${s.slug}`}
-              class="text-blue-600 hover:underline text-sm font-medium"
-            >
-              Voir détails →
-            </a>
-          </div>
+  <div class="w-full">
+    <div class="py-16">
+      <div class="container mx-auto px-4 max-w-6xl mb-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl font-bold">Hero</h2>
+          <a href="/fr/library/sections/hero" class="text-blue-600 hover:underline font-medium">
+            Voir détails →
+          </a>
         </div>
-      ))}
+        <p class="text-gray-600 mt-2">Section de page de type Hero</p>
+      </div>
+      <Hero
+        title="Bienvenue sur Notre Plateforme"
+        subtitle="Créez des expériences extraordinaires avec nos outils et composants puissants"
+        variant="centered"
+        cta={{
+          label: "Commencer",
+          href: "#",
+          variant: "primary"
+        }}
+      />
+      <hr class="mt-16 border-gray-200" />
     </div>
-  </main>
+
+    <div class="py-16">
+      <div class="container mx-auto px-4 max-w-6xl mb-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl font-bold">Features</h2>
+          <a href="/fr/library/sections/features" class="text-blue-600 hover:underline font-medium">
+            Voir détails →
+          </a>
+        </div>
+        <p class="text-gray-600 mt-2">Présentation des fonctionnalités</p>
+      </div>
+      <Features
+        title="Fonctionnalités Puissantes"
+        subtitle="Tout ce dont vous avez besoin pour créer des applications web modernes"
+        features={[
+          {
+            icon: "🚀",
+            title: "Performance Rapide",
+            description: "Temps de chargement ultra-rapides et livraison optimisée"
+          },
+          {
+            icon: "🎨",
+            title: "Design Magnifique",
+            description: "Interfaces utilisateur modernes et responsives"
+          },
+          {
+            icon: "🔒",
+            title: "Sécurisé",
+            description: "Sécurité et protection des données de niveau entreprise"
+          }
+        ]}
+        columns={3}
+      />
+      <hr class="mt-16 border-gray-200" />
+    </div>
+
+    <div class="py-16">
+      <div class="container mx-auto px-4 max-w-6xl mb-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl font-bold">About</h2>
+          <a href="/fr/library/sections/about" class="text-blue-600 hover:underline font-medium">
+            Voir détails →
+          </a>
+        </div>
+        <p class="text-gray-600 mt-2">Section à propos de l'organisation</p>
+      </div>
+      <About
+        title="À Propos de Notre Organisation"
+        content="Nous nous consacrons à la création de solutions innovantes qui aident les entreprises à se développer. Notre équipe d'experts apporte des années d'expérience en développement web, design et stratégie numérique pour offrir des résultats exceptionnels."
+        stats={[
+          { value: "10+", label: "Années d'Expérience" },
+          { value: "500+", label: "Projets Réalisés" },
+          { value: "50+", label: "Membres de l'Équipe" }
+        ]}
+      />
+      <hr class="mt-16 border-gray-200" />
+    </div>
+
+    <div class="py-16">
+      <div class="container mx-auto px-4 max-w-6xl mb-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl font-bold">Events</h2>
+          <a href="/fr/library/sections/events" class="text-blue-600 hover:underline font-medium">
+            Voir détails →
+          </a>
+        </div>
+        <p class="text-gray-600 mt-2">Liste d'événements avec filtres</p>
+      </div>
+      <Events lang={lang} />
+      <hr class="mt-16 border-gray-200" />
+    </div>
+
+    <div class="py-16">
+      <div class="container mx-auto px-4 max-w-6xl mb-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl font-bold">CTA</h2>
+          <a href="/fr/library/sections/cta" class="text-blue-600 hover:underline font-medium">
+            Voir détails →
+          </a>
+        </div>
+        <p class="text-gray-600 mt-2">Appel à l'action (Call To Action)</p>
+      </div>
+      <CTA
+        title="Prêt à Commencer ?"
+        description="Rejoignez des milliers de clients satisfaits qui utilisent notre plateforme"
+        primaryCta={{
+          label: "Démarrer Maintenant",
+          href: "#"
+        }}
+      />
+      <hr class="mt-16 border-gray-200" />
+    </div>
+
+    <div class="py-16">
+      <div class="container mx-auto px-4 max-w-6xl mb-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-3xl font-bold">Team</h2>
+          <a href="/fr/library/sections/team" class="text-blue-600 hover:underline font-medium">
+            Voir détails →
+          </a>
+        </div>
+        <p class="text-gray-600 mt-2">Présentation de l'équipe</p>
+      </div>
+      <Team
+        title="Rencontrez Notre Équipe"
+        subtitle="Des personnes talentueuses travaillant ensemble pour créer des produits incroyables"
+        authors={[
+          {
+            id: "john-doe",
+            name: "John Doe",
+            role: "PDG & Fondateur",
+            bio: "Leader visionnaire avec 15 ans d'expérience dans l'industrie",
+            avatar: "https://via.placeholder.com/400x400"
+          },
+          {
+            id: "jane-smith",
+            name: "Jane Smith",
+            role: "Directrice Technique",
+            bio: "Experte en technologie passionnée par l'innovation",
+            avatar: "https://via.placeholder.com/400x400"
+          },
+          {
+            id: "mike-johnson",
+            name: "Mike Johnson",
+            role: "Designer Principal",
+            bio: "L'esprit créatif derrière nos belles interfaces",
+            avatar: "https://via.placeholder.com/400x400"
+          }
+        ]}
+      />
+    </div>
+  </div>
 </BaseLayout>
