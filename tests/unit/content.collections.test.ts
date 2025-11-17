@@ -201,6 +201,19 @@ describe('i18n content collections symmetry', () => {
             expect(statSync(sectionsDir).isDirectory()).toBe(true);
         });
 
+        it('should not contain TWT-specific section files', () => {
+            const sectionFiles = readdirSync(sectionsDir).filter(
+                file => file.endsWith('.json')
+            );
+
+            const twtFiles = sectionFiles.filter(file => file.includes('twt'));
+
+            expect(
+                twtFiles,
+                `Found TWT-specific files that should be removed: ${twtFiles.join(', ')}`
+            ).toHaveLength(0);
+        });
+
         it('should have valid JSON structure in sections', () => {
             const sectionFiles = readdirSync(sectionsDir).filter(
                 file => file.endsWith('.json')
@@ -234,6 +247,44 @@ describe('i18n content collections symmetry', () => {
                     data.data,
                     `${sectionFile}: data manquant`
                 ).toBeDefined();
+            }
+        });
+
+        it('should only have valid section types', () => {
+            const validTypes = ['hero', 'features', 'cta', 'events', 'about', 'team'];
+            const sectionFiles = readdirSync(sectionsDir).filter(
+                file => file.endsWith('.json')
+            );
+
+            for (const sectionFile of sectionFiles) {
+                const fullPath = join(sectionsDir, sectionFile);
+                const content = readFileSync(fullPath, 'utf-8');
+                const data = JSON.parse(content);
+
+                expect(
+                    validTypes,
+                    `${sectionFile}: type "${data.type}" is not valid. Valid types: ${validTypes.join(', ')}`
+                ).toContain(data.type);
+            }
+        });
+
+        it('should have visible property (default true)', () => {
+            const sectionFiles = readdirSync(sectionsDir).filter(
+                file => file.endsWith('.json')
+            );
+
+            for (const sectionFile of sectionFiles) {
+                const fullPath = join(sectionsDir, sectionFile);
+                const content = readFileSync(fullPath, 'utf-8');
+                const data = JSON.parse(content);
+
+                // visible est optionnel avec un défaut à true
+                if (data.visible !== undefined) {
+                    expect(
+                        typeof data.visible,
+                        `${sectionFile}: visible doit être un booléen`
+                    ).toBe('boolean');
+                }
             }
         });
     });

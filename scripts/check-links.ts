@@ -61,21 +61,17 @@ function extractInternalLinks(html: string): string[] {
   return [...new Set(links)]; // Remove duplicates
 }
 
-// Function to check if a link should be ignored
+/**
+ * Check if a link should be ignored during validation
+ * Ignores assets and external placeholder links that may not exist yet
+ */
 function shouldIgnoreLink(link: string): boolean {
   const ignorePatterns = [
     '/favicon.svg',
-    '/en/', // English pages not yet created (task 10)
-    '/fr/about',
-    '/fr/signup',
-    '/fr/register',
-    '/fr/partners/info',
-    '/signup',
-    '/get-started',
-    '/about',
-    '/newsletter',
-    '/events',
-    '/contact',
+    '/assets/',
+    '/_astro/',
+    // Add other patterns here for links that are intentionally external
+    // or placeholder links in the template
   ];
 
   return ignorePatterns.some(pattern => link.startsWith(pattern));

@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import type { Page } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 import type { Result } from 'axe-core';
-import { writeFileSync } from 'fs';
+import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
 interface PageResult {
@@ -12,23 +12,23 @@ interface PageResult {
   incomplete: number;
 }
 
+/**
+ * Pages minimales à auditer
+ * Basé sur la structure actuelle du template (post-nettoyage)
+ */
 const pages = [
   // French pages
   '/fr/',
-  '/fr/twt/landing',
   '/fr/events/',
-  '/fr/partners/',
   '/fr/404',
   // English pages
   '/en/',
-  '/en/twt/landing',
   '/en/events/',
-  '/en/partners/',
   '/en/404',
 ];
 
 async function auditPage(page: Page, url: string): Promise<PageResult> {
-  const fullUrl = `http://localhost:4322${url}`;
+  const fullUrl = `http://localhost:4321${url}`;
   console.log(`\nAuditing: ${fullUrl}`);
   
   await page.goto(fullUrl, { waitUntil: 'networkidle' });
@@ -55,7 +55,7 @@ async function auditPage(page: Page, url: string): Promise<PageResult> {
 
 async function main() {
   console.log('Starting accessibility audit...\n');
-  console.log('Make sure the dev server is running on http://localhost:4322\n');
+  console.log('Make sure the dev server is running on http://localhost:4321\n');
   
   const browser = await chromium.launch();
   const context = await browser.newContext();
@@ -97,8 +97,12 @@ async function main() {
     results,
   };
   
+  // Ensure reports directory exists
+  const reportsDir = join(process.cwd(), 'reports');
+  mkdirSync(reportsDir, { recursive: true });
+
   // Save report
-  const reportPath = join(process.cwd(), 'reports', 'a11y-report.json');
+  const reportPath = join(reportsDir, 'a11y-report.json');
   writeFileSync(reportPath, JSON.stringify(report, null, 2));
   
   console.log('\n' + '='.repeat(60));
