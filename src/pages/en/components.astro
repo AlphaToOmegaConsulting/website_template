@@ -1,0 +1,381 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/primitives/Button.astro';
+import ButtonLink from '../../components/primitives/ButtonLink.astro';
+import Card from '../../components/primitives/Card.astro';
+import Input from '../../components/primitives/Input.astro';
+import Dialog from '../../components/primitives/Dialog.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Features from '../../components/sections/Features.astro';
+import CTA from '../../components/sections/CTA.astro';
+import About from '../../components/sections/About.astro';
+import Team from '../../components/sections/Team.astro';
+import Events from '../../components/sections/Events.astro';
+
+// Page metadata
+const pageTitle = 'Components Library';
+const pageDescription = 'Overview of all available components in the Alpha WebCore template: UI primitives, navigation components, and page sections.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang="en"
+  alternateUrls={{
+    fr: '/fr/components',
+    en: '/en/components'
+  }}
+>
+  <!-- Introduction -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-brand-primary mb-6">
+          {pageTitle}
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-600">
+          This page showcases all available components in the Alpha WebCore v3.1 template.
+          You'll find UI primitives, navigation components, and page sections.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- UI Primitives -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold font-heading text-brand-primary mb-4">
+          UI Primitives
+        </h2>
+        <p class="text-lg text-gray-600">
+          Basic components to build your interfaces.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        <!-- Button -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">Button</h3>
+          <p class="text-gray-600 mb-6">Interactive button with 3 variants and 3 sizes.</p>
+          <Card variant="bordered" padding="lg">
+            <div class="flex flex-wrap gap-4 items-center">
+              <Button variant="primary" size="sm">Primary Small</Button>
+              <Button variant="primary" size="md">Primary Medium</Button>
+              <Button variant="primary" size="lg">Primary Large</Button>
+            </div>
+            <div class="flex flex-wrap gap-4 items-center mt-4">
+              <Button variant="secondary" size="md">Secondary</Button>
+              <Button variant="ghost" size="md">Ghost</Button>
+              <Button variant="primary" size="md" disabled>Disabled</Button>
+            </div>
+          </Card>
+        </div>
+
+        <!-- ButtonLink -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">ButtonLink</h3>
+          <p class="text-gray-600 mb-6">Link styled as a button, with the same API as Button.</p>
+          <Card variant="bordered" padding="lg">
+            <div class="flex flex-wrap gap-4 items-center">
+              <ButtonLink href="/en/" variant="primary" size="md">Primary Link</ButtonLink>
+              <ButtonLink href="/en/" variant="secondary" size="md">Secondary Link</ButtonLink>
+              <ButtonLink href="/en/" variant="ghost" size="md">Ghost Link</ButtonLink>
+            </div>
+          </Card>
+        </div>
+
+        <!-- Card -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">Card</h3>
+          <p class="text-gray-600 mb-6">Container with 3 variants and 4 padding levels.</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card variant="default" padding="md">
+              <h4 class="font-semibold text-gray-900 mb-2">Default</h4>
+              <p class="text-gray-600">Default variant with medium padding.</p>
+            </Card>
+            <Card variant="bordered" padding="md">
+              <h4 class="font-semibold text-gray-900 mb-2">Bordered</h4>
+              <p class="text-gray-600">With a subtle border.</p>
+            </Card>
+            <Card variant="elevated" padding="md">
+              <h4 class="font-semibold text-gray-900 mb-2">Elevated</h4>
+              <p class="text-gray-600">With a shadow.</p>
+            </Card>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">Input</h3>
+          <p class="text-gray-600 mb-6">Input field with error handling and validation.</p>
+          <Card variant="bordered" padding="lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Input
+                type="text"
+                name="example-text"
+                label="Text field"
+                placeholder="Enter text"
+              />
+              <Input
+                type="email"
+                name="example-email"
+                label="Email"
+                placeholder="example@email.com"
+                required
+              />
+              <Input
+                type="text"
+                name="example-error"
+                label="With error"
+                error="This field contains an error"
+              />
+              <Input
+                type="text"
+                name="example-disabled"
+                label="Disabled"
+                value="Disabled value"
+                disabled
+              />
+            </div>
+          </Card>
+        </div>
+
+        <!-- Dialog -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">Dialog</h3>
+          <p class="text-gray-600 mb-6">Accessible modal window with focus management.</p>
+          <Card variant="bordered" padding="lg">
+            <Button variant="primary" size="md">
+              Open modal
+            </Button>
+            <p class="text-sm text-gray-500 mt-4">
+              Note: The Dialog component requires JavaScript for interactive management.
+              It uses ARIA attributes for accessibility (labelledby, describedby).
+            </p>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layout & Navigation -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold font-heading text-brand-primary mb-4">
+          Layout & Navigation
+        </h2>
+        <p class="text-lg text-gray-600">
+          Structure and navigation components used in the main layout.
+        </p>
+      </div>
+
+      <Card variant="elevated" padding="lg">
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-xl font-semibold font-heading text-gray-900 mb-2">Header</h3>
+            <p class="text-gray-600">
+              Site header with navigation and language selector. Visible at the top of this page.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold font-heading text-gray-900 mb-2">Navigation</h3>
+            <p class="text-gray-600">
+              Main navigation menu with keyboard accessibility and ARIA support.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold font-heading text-gray-900 mb-2">Footer</h3>
+            <p class="text-gray-600">
+              Site footer. Visible at the bottom of this page.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold font-heading text-gray-900 mb-2">LanguageSwitcher</h3>
+            <p class="text-gray-600">
+              FR/EN language selector integrated in the header, with route preservation.
+            </p>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </section>
+
+  <!-- Page Sections -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold font-heading text-brand-primary mb-4">
+          Page Sections
+        </h2>
+        <p class="text-lg text-gray-600">
+          Reusable sections to compose your pages (6 sections available).
+        </p>
+      </div>
+
+      <div class="space-y-16">
+        <!-- Hero -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">Hero</h3>
+          <p class="text-gray-600 mb-6">Header section with 2 variants: default and centered.</p>
+
+          <div class="mb-8">
+            <p class="text-sm font-medium text-gray-700 mb-4">Variant: Default</p>
+            <Hero
+              variant="default"
+              title="Welcome to our platform"
+              subtitle="Discover a simple and effective solution for your projects."
+              cta={{
+                label: "Get Started",
+                href: "/en/"
+              }}
+            />
+          </div>
+
+          <div>
+            <p class="text-sm font-medium text-gray-700 mb-4">Variant: Centered</p>
+            <Hero
+              variant="centered"
+              title="Innovation & Simplicity"
+              subtitle="A minimalist template to quickly create your websites."
+            />
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">Features</h3>
+          <p class="text-gray-600 mb-6">Feature list in grid (2 or 3 columns) or list layout.</p>
+
+          <Features
+            title="Main Features"
+            subtitle="Everything you need to get started"
+            layout="grid"
+            columns={3}
+            features={[
+              {
+                icon: "🚀",
+                title: "Fast",
+                description: "Template optimized for maximum performance."
+              },
+              {
+                icon: "♿",
+                title: "Accessible",
+                description: "WCAG 2.0 AA compliant for optimal accessibility."
+              },
+              {
+                icon: "🌍",
+                title: "Multilingual",
+                description: "FR/EN support with duplication-based i18n architecture."
+              }
+            ]}
+          />
+        </div>
+
+        <!-- CTA -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">CTA (Call to Action)</h3>
+          <p class="text-gray-600 mb-6">Call to action section with 2 variants.</p>
+
+          <CTA
+            variant="default"
+            title="Ready to get started?"
+            description="Launch your project now with our template."
+            primaryCta={{
+              label: "Get Started",
+              href: "/en/"
+            }}
+            secondaryCta={{
+              label: "Learn More",
+              href: "/en/"
+            }}
+          />
+        </div>
+
+        <!-- Events -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">Events</h3>
+          <p class="text-gray-600 mb-6">Events listing from Content Collections.</p>
+
+          <Events
+            title="Upcoming Events"
+            displayMode="upcoming"
+            limit={3}
+            lang="en"
+          />
+        </div>
+
+        <!-- About -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">About</h3>
+          <p class="text-gray-600 mb-6">Presentation section with optional statistics.</p>
+
+          <About
+            title="About"
+            content="Alpha WebCore is a minimalist, neutral, and multi-brand Astro template. Designed to serve as a generic foundation, it facilitates the rapid creation of static websites with a simple and extensible architecture."
+            stats={[
+              { value: "136", label: "Passing tests" },
+              { value: "5", label: "UI Primitives" },
+              { value: "6", label: "Sections" }
+            ]}
+          />
+        </div>
+
+        <!-- Team -->
+        <div>
+          <h3 class="text-2xl font-semibold font-heading text-gray-900 mb-4">Team</h3>
+          <p class="text-gray-600 mb-6">Team member grid (2 or 3 columns).</p>
+
+          <Team
+            title="Our Team"
+            subtitle="The people who make this project possible"
+            columns={3}
+            authors={[
+              {
+                id: "1",
+                name: "Alex Martin",
+                role: "Frontend Developer",
+                avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+                bio: "Passionate about user interfaces and web accessibility."
+              },
+              {
+                id: "2",
+                name: "Jordan Dupont",
+                role: "UX/UI Designer",
+                avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jordan",
+                bio: "Creator of simple and elegant user experiences."
+              },
+              {
+                id: "3",
+                name: "Sam Bernard",
+                role: "Backend Developer",
+                avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sam",
+                bio: "Expert in software architecture and optimization."
+              }
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer note -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <Card variant="bordered" padding="lg">
+        <div class="text-center">
+          <h3 class="text-xl font-semibold font-heading text-gray-900 mb-3">
+            Alpha WebCore Template v3.1
+          </h3>
+          <p class="text-gray-600 mb-4">
+            All these components follow the minimalism, neutrality, and accessibility principles defined in the v3.1 specification.
+          </p>
+          <p class="text-sm text-gray-500">
+            For more information, see the <code class="px-2 py-1 bg-gray-100 rounded text-brand-primary">docs/SPECIFICATIONS.md</code> file
+          </p>
+        </div>
+      </Card>
+    </div>
+  </section>
+</BaseLayout>

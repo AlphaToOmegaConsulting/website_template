@@ -10,10 +10,12 @@ test.describe('Routes smoke tests', () => {
             '/',
             '/fr/',
             '/fr/events/',
+            '/fr/components',
         ],
         en: [
             '/en/',
             '/en/events/',
+            '/en/components',
         ],
     };
 
