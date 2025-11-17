@@ -10,14 +10,37 @@ const alternateUrls = {
   en: '/en/library/sections'
 };
 
-// List of sections (manual for Phase 1)
 const sections = [
-  { name: 'Hero', slug: 'hero' },
-  { name: 'Features', slug: 'features' },
-  { name: 'About', slug: 'about' },
-  { name: 'Events', slug: 'events' },
-  { name: 'CTA', slug: 'cta' },
-  { name: 'Team', slug: 'team' },
+  {
+    name: 'Hero',
+    slug: 'hero',
+    description: 'Hero-type page section'
+  },
+  {
+    name: 'Features',
+    slug: 'features',
+    description: 'Features presentation'
+  },
+  {
+    name: 'About',
+    slug: 'about',
+    description: 'About organization section'
+  },
+  {
+    name: 'Events',
+    slug: 'events',
+    description: 'Events list with filters'
+  },
+  {
+    name: 'CTA',
+    slug: 'cta',
+    description: 'Call To Action'
+  },
+  {
+    name: 'Team',
+    slug: 'team',
+    description: 'Team presentation'
+  },
 ];
 ---
 
@@ -27,20 +50,86 @@ const sections = [
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <main class="container mx-auto px-4 py-12 max-w-4xl">
+  <main class="container mx-auto px-4 py-12 max-w-6xl">
     <a href="/en/library" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to library</a>
 
     <h1 class="text-4xl font-bold mb-6">Sections</h1>
     <p class="text-lg mb-12">Complete and reusable page blocks.</p>
 
-    <ul class="space-y-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {sections.map(s => (
-        <li>
-          <a href={`/en/library/sections/${s.slug}`} class="text-blue-600 hover:underline">
-            {s.name}
-          </a>
-        </li>
+        <div class="border rounded-lg overflow-hidden hover:shadow-lg transition">
+          <div class="bg-gray-50 p-8 flex items-center justify-center min-h-[200px]">
+            {s.slug === 'hero' && (
+              <div class="text-center space-y-2">
+                <div class="text-2xl font-bold text-gray-700">Hero Title</div>
+                <div class="text-sm text-gray-500">Main description</div>
+                <div class="mt-2 px-4 py-2 bg-blue-600 text-white text-xs rounded inline-block">
+                  CTA
+                </div>
+              </div>
+            )}
+            {s.slug === 'features' && (
+              <div class="grid grid-cols-2 gap-2 w-full max-w-[200px]">
+                {[1, 2, 3, 4].map(i => (
+                  <div class="bg-white p-2 rounded border border-gray-200">
+                    <div class="w-6 h-6 bg-blue-100 rounded mb-1"></div>
+                    <div class="h-2 bg-gray-200 rounded"></div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {s.slug === 'about' && (
+              <div class="flex gap-3 items-center">
+                <div class="w-16 h-16 bg-gray-300 rounded"></div>
+                <div class="space-y-1">
+                  <div class="h-2 w-20 bg-gray-300 rounded"></div>
+                  <div class="h-2 w-16 bg-gray-200 rounded"></div>
+                  <div class="h-2 w-24 bg-gray-200 rounded"></div>
+                </div>
+              </div>
+            )}
+            {s.slug === 'events' && (
+              <div class="space-y-2 w-full max-w-[200px]">
+                {[1, 2].map(i => (
+                  <div class="bg-white p-2 rounded border border-gray-200">
+                    <div class="h-2 w-16 bg-blue-100 rounded mb-1"></div>
+                    <div class="h-2 w-full bg-gray-200 rounded"></div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {s.slug === 'cta' && (
+              <div class="text-center space-y-2">
+                <div class="text-lg font-semibold text-gray-700">Action</div>
+                <div class="px-6 py-2 bg-blue-600 text-white text-sm rounded inline-block">
+                  Button
+                </div>
+              </div>
+            )}
+            {s.slug === 'team' && (
+              <div class="flex gap-2">
+                {[1, 2, 3].map(i => (
+                  <div class="text-center">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full mb-1"></div>
+                    <div class="h-1 w-12 bg-gray-200 rounded"></div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div class="p-4 bg-white">
+            <h2 class="text-xl font-semibold mb-2">{s.name}</h2>
+            <p class="text-sm text-gray-600 mb-4">{s.description}</p>
+            <a
+              href={`/en/library/sections/${s.slug}`}
+              class="text-blue-600 hover:underline text-sm font-medium"
+            >
+              View details →
+            </a>
+          </div>
+        </div>
       ))}
-    </ul>
+    </div>
   </main>
 </BaseLayout>

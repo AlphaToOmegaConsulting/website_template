@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/primitives/Button.astro';
+import ButtonLink from '@/components/primitives/ButtonLink.astro';
+import Card from '@/components/primitives/Card.astro';
+import Input from '@/components/primitives/Input.astro';
+import Dialog from '@/components/primitives/Dialog.astro';
 
 const lang = 'fr';
 const title = 'Primitives UI';
@@ -10,13 +15,32 @@ const alternateUrls = {
   en: '/en/library/primitives'
 };
 
-// Liste des primitives (manuel pour Phase 1)
 const primitives = [
-  { name: 'Button', slug: 'button' },
-  { name: 'ButtonLink', slug: 'button-link' },
-  { name: 'Card', slug: 'card' },
-  { name: 'Input', slug: 'input' },
-  { name: 'Dialog', slug: 'dialog' },
+  {
+    name: 'Button',
+    slug: 'button',
+    description: 'Composant de base pour les actions'
+  },
+  {
+    name: 'ButtonLink',
+    slug: 'button-link',
+    description: 'Bouton avec apparence de lien'
+  },
+  {
+    name: 'Card',
+    slug: 'card',
+    description: 'Container pour organiser le contenu'
+  },
+  {
+    name: 'Input',
+    slug: 'input',
+    description: 'Champ de saisie de texte'
+  },
+  {
+    name: 'Dialog',
+    slug: 'dialog',
+    description: 'Fenêtre modale pour interactions'
+  },
 ];
 ---
 
@@ -26,20 +50,53 @@ const primitives = [
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <main class="container mx-auto px-4 py-12 max-w-4xl">
+  <main class="container mx-auto px-4 py-12 max-w-6xl">
     <a href="/fr/library" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Retour à la bibliothèque</a>
 
     <h1 class="text-4xl font-bold mb-6">Primitives UI</h1>
     <p class="text-lg mb-12">Composants de base réutilisables.</p>
 
-    <ul class="space-y-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {primitives.map(p => (
-        <li>
-          <a href={`/fr/library/primitives/${p.slug}`} class="text-blue-600 hover:underline">
-            {p.name}
-          </a>
-        </li>
+        <div class="border rounded-lg overflow-hidden hover:shadow-lg transition">
+          <div class="bg-gray-50 p-8 flex items-center justify-center min-h-[200px]">
+            {p.slug === 'button' && (
+              <Button variant="primary" size="md">Exemple</Button>
+            )}
+            {p.slug === 'button-link' && (
+              <ButtonLink href="#" variant="secondary" size="md">Exemple</ButtonLink>
+            )}
+            {p.slug === 'card' && (
+              <Card variant="bordered" padding="md" class="w-full max-w-[200px]">
+                <p class="text-sm">Contenu de la carte</p>
+              </Card>
+            )}
+            {p.slug === 'input' && (
+              <Input
+                type="text"
+                placeholder="Exemple de saisie"
+                class="w-full max-w-[250px]"
+              />
+            )}
+            {p.slug === 'dialog' && (
+              <div class="text-center">
+                <p class="text-sm text-gray-600">Fenêtre modale</p>
+                <p class="text-xs text-gray-400 mt-2">(Voir détails pour demo)</p>
+              </div>
+            )}
+          </div>
+          <div class="p-4 bg-white">
+            <h2 class="text-xl font-semibold mb-2">{p.name}</h2>
+            <p class="text-sm text-gray-600 mb-4">{p.description}</p>
+            <a
+              href={`/fr/library/primitives/${p.slug}`}
+              class="text-blue-600 hover:underline text-sm font-medium"
+            >
+              Voir détails →
+            </a>
+          </div>
+        </div>
       ))}
-    </ul>
+    </div>
   </main>
 </BaseLayout>

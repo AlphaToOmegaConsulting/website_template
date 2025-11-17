@@ -9,6 +9,19 @@ const alternateUrls = {
   fr: '/fr/library/layout',
   en: '/en/library/layout'
 };
+
+const layouts = [
+  {
+    name: 'Header',
+    slug: 'header',
+    description: 'Main navigation header'
+  },
+  {
+    name: 'Footer',
+    slug: 'footer',
+    description: 'Footer with links and information'
+  },
+];
 ---
 
 <BaseLayout
@@ -17,15 +30,53 @@ const alternateUrls = {
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <main class="container mx-auto px-4 py-12 max-w-4xl">
+  <main class="container mx-auto px-4 py-12 max-w-6xl">
     <a href="/en/library" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to library</a>
 
     <h1 class="text-4xl font-bold mb-6">Layouts</h1>
     <p class="text-lg mb-12">Layout and structure components.</p>
 
-    <section class="mb-12">
-      <h2 class="text-3xl font-semibold mb-4">Coming Soon</h2>
-      <p>This section will be completed with available layout components.</p>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {layouts.map(l => (
+        <div class="border rounded-lg overflow-hidden hover:shadow-lg transition">
+          <div class="bg-gray-50 p-8 flex items-center justify-center min-h-[200px]">
+            {l.slug === 'header' && (
+              <div class="w-full max-w-[300px] bg-white border border-gray-300 rounded p-2">
+                <div class="flex justify-between items-center">
+                  <div class="font-bold text-blue-600">Logo</div>
+                  <div class="flex gap-2">
+                    {['Nav1', 'Nav2', 'Nav3'].map(item => (
+                      <div class="text-xs text-gray-600">{item}</div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+            {l.slug === 'footer' && (
+              <div class="w-full max-w-[300px] bg-gray-800 text-white rounded p-3">
+                <div class="grid grid-cols-3 gap-2 mb-2">
+                  {[1, 2, 3].map(i => (
+                    <div>
+                      <div class="h-2 w-12 bg-gray-600 rounded mb-1"></div>
+                      <div class="h-1 w-10 bg-gray-700 rounded"></div>
+                    </div>
+                  ))}
+                </div>
+                <div class="border-t border-gray-700 pt-2 text-center">
+                  <div class="h-1 w-20 bg-gray-700 rounded mx-auto"></div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div class="p-4 bg-white">
+            <h2 class="text-xl font-semibold mb-2">{l.name}</h2>
+            <p class="text-sm text-gray-600 mb-4">{l.description}</p>
+            <span class="text-gray-400 text-sm">
+              See component in action on this page
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
   </main>
 </BaseLayout>
