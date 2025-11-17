@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Features from '@/components/sections/Features.astro';
 
 const lang = 'en';
 const title = 'Features - Sections';
@@ -89,6 +90,66 @@ import Features from '@/components/sections/Features.astro';
     }
   ]}
 /&gt;</code></pre>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Visual Previews</h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">3-column grid</h3>
+          <p class="text-sm text-gray-600 mb-4">Grid display with 3 features.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <Features
+              title="Our features"
+              subtitle="Everything you need to succeed"
+              layout="grid"
+              columns={3}
+              features={[
+                {
+                  title: "Fast",
+                  description: "Optimal performance with Astro",
+                  icon: "⚡"
+                },
+                {
+                  title: "Secure",
+                  description: "Guaranteed data protection",
+                  icon: "🔒"
+                },
+                {
+                  title: "Scalable",
+                  description: "Grows with your needs",
+                  icon: "📈"
+                }
+              ]}
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-3">2-column grid</h3>
+          <p class="text-sm text-gray-600 mb-4">Wider layout with 2 columns.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <Features
+              title="Why Alpha WebCore?"
+              layout="grid"
+              columns={2}
+              features={[
+                {
+                  title: "Modular",
+                  description: "Each component is standalone and reusable",
+                  icon: "🧩"
+                },
+                {
+                  title: "TypeScript",
+                  description: "Full typing to avoid errors",
+                  icon: "📘"
+                }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 </BaseLayout>

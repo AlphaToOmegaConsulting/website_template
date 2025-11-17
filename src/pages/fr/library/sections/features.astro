@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Features from '@/components/sections/Features.astro';
 
 const lang = 'fr';
 const title = 'Features - Sections';
@@ -89,6 +90,66 @@ import Features from '@/components/sections/Features.astro';
     }
   ]}
 /&gt;</code></pre>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Aperçus visuels</h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Grille de 3 colonnes</h3>
+          <p class="text-sm text-gray-600 mb-4">Affichage en grille avec 3 fonctionnalités.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <Features
+              title="Nos fonctionnalités"
+              subtitle="Tout ce dont vous avez besoin pour réussir"
+              layout="grid"
+              columns={3}
+              features={[
+                {
+                  title: "Rapide",
+                  description: "Performance optimale grâce à Astro",
+                  icon: "⚡"
+                },
+                {
+                  title: "Sécurisé",
+                  description: "Protection des données garantie",
+                  icon: "🔒"
+                },
+                {
+                  title: "Évolutif",
+                  description: "Croît avec vos besoins",
+                  icon: "📈"
+                }
+              ]}
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Grille de 2 colonnes</h3>
+          <p class="text-sm text-gray-600 mb-4">Layout plus large avec 2 colonnes.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <Features
+              title="Pourquoi Alpha WebCore ?"
+              layout="grid"
+              columns={2}
+              features={[
+                {
+                  title: "Modulaire",
+                  description: "Chaque composant est autonome et réutilisable",
+                  icon: "🧩"
+                },
+                {
+                  title: "TypeScript",
+                  description: "Typage complet pour éviter les erreurs",
+                  icon: "📘"
+                }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 </BaseLayout>

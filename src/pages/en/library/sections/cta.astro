@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTA from '@/components/sections/CTA.astro';
 
 const lang = 'en';
 const title = 'CTA - Sections';
@@ -79,6 +80,48 @@ import CTA from '@/components/sections/CTA.astro';
     href: "/about"
   }}
 /&gt;</code></pre>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Visual Previews</h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Variant: Default</h3>
+          <p class="text-sm text-gray-600 mb-4">Simple CTA with primary and secondary buttons.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <CTA
+              title="Ready to get started?"
+              description="Join thousands of satisfied users"
+              variant="default"
+              primaryCta={{
+                label: "Sign up now",
+                href: "#"
+              }}
+              secondaryCta={{
+                label: "Learn more",
+                href: "#"
+              }}
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Variant: Emphasized</h3>
+          <p class="text-sm text-gray-600 mb-4">CTA with emphasized background for more impact.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <CTA
+              title="Transform your project today"
+              description="14-day free trial, no credit card required"
+              variant="emphasized"
+              primaryCta={{
+                label: "Start for free",
+                href: "#"
+              }}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 </BaseLayout>

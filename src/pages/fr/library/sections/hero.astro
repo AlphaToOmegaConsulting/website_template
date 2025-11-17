@@ -90,5 +90,45 @@ import Hero from '@/components/sections/Hero.astro';
         <li><strong>centered</strong> : Contenu centré, idéal pour les pages de destination</li>
       </ul>
     </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Aperçus visuels</h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Variante : Default</h3>
+          <p class="text-sm text-gray-600 mb-4">Hero avec layout asymétrique et bouton d'action.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <Hero
+              title="Bienvenue sur Alpha WebCore"
+              subtitle="Un template Astro moderne conçu pour la simplicité et la performance"
+              variant="default"
+              cta={{
+                label: "Découvrir",
+                href: "#",
+                variant: "primary"
+              }}
+            />
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Variante : Centered</h3>
+          <p class="text-sm text-gray-600 mb-4">Hero avec contenu centré, idéal pour les pages de destination.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <Hero
+              title="Créez des sites web exceptionnels"
+              subtitle="Modularité, granularité et neutralité au cœur du développement"
+              variant="centered"
+              cta={{
+                label: "Commencer maintenant",
+                href: "#",
+                variant: "primary"
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </BaseLayout>

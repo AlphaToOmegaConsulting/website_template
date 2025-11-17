@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import About from '@/components/sections/About.astro';
 
 const lang = 'en';
 const title = 'About - Sections';
@@ -46,6 +47,28 @@ import About from '@/components/sections/About.astro';
         <li>Optional support for key statistics</li>
         <li>Optional image for illustration</li>
       </ul>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Visual Previews</h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Complete About Section</h3>
+          <p class="text-sm text-gray-600 mb-4">Presentation with key statistics.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <About
+              title="About our team"
+              description="We are a passionate team dedicated to creating modern and performant web solutions. For over 10 years, we have been supporting our clients in the realization of their digital projects."
+              stats={[
+                { value: "10+", label: "Years of experience" },
+                { value: "500+", label: "Happy clients" },
+                { value: "50+", label: "Completed projects" }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 </BaseLayout>
