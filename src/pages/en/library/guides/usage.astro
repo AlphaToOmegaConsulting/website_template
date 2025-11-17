@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Site Usage - Guide';
+const description = 'Complete usage guide for Alpha WebCore template';
+
+const alternateUrls = {
+  fr: '/fr/library/guides/usage',
+  en: '/en/library/guides/usage'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/en/library/guides" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to guides</a>
+
+    <h1 class="text-4xl font-bold mb-6">Usage Guide</h1>
+
+    <div class="prose prose-lg max-w-none">
+      <p class="text-lg text-gray-600 mb-8">
+        Guide content coming in Phase 3.
+      </p>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Planned sections:</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Introduction and template philosophy</li>
+          <li>Folder architecture</li>
+          <li>FR/EN routing</li>
+          <li>Content collections</li>
+          <li>Components (primitives vs sections)</li>
+          <li>Common workflows</li>
+          <li>Code conventions</li>
+          <li>Troubleshooting</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

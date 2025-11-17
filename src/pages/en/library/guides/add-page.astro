@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Add a Page - Guide';
+const description = 'Step-by-step guide to add a new page';
+
+const alternateUrls = {
+  fr: '/fr/library/guides/add-page',
+  en: '/en/library/guides/add-page'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/en/library/guides" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to guides</a>
+
+    <h1 class="text-4xl font-bold mb-6">How to Add a Page</h1>
+
+    <div class="prose prose-lg max-w-none">
+      <p class="text-lg text-gray-600 mb-8">
+        Guide content coming in Phase 3.
+      </p>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Planned sections:</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Step 1: Create routing files (FR + EN)</li>
+          <li>Step 2: Base structure with BaseLayout</li>
+          <li>Step 3: Add content</li>
+          <li>Step 4: Add navigation</li>
+          <li>Step 5: Test and validate</li>
+          <li>Best practices</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

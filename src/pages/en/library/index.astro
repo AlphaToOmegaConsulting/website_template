@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Alpha WebCore Library';
+const description = 'Complete Astro template documentation';
+
+const alternateUrls = {
+  fr: '/fr/library',
+  en: '/en/library'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">Alpha WebCore Library</h1>
+
+    <p class="text-lg mb-12">
+      Complete template documentation: components, guides, and best practices.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Links to sub-sections -->
+      <a href="/en/library/primitives" class="block p-6 border rounded-lg hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">Primitives</h2>
+        <p class="text-sm text-gray-600">Base UI components</p>
+      </a>
+
+      <a href="/en/library/sections" class="block p-6 border rounded-lg hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">Sections</h2>
+        <p class="text-sm text-gray-600">Complete page blocks</p>
+      </a>
+
+      <a href="/en/library/guides" class="block p-6 border rounded-lg hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">Guides</h2>
+        <p class="text-sm text-gray-600">How to use the template</p>
+      </a>
+    </div>
+  </main>
+</BaseLayout>

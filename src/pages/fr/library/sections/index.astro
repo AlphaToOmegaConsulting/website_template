@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Sections';
+const description = 'Blocs de page complets et réutilisables';
+
+const alternateUrls = {
+  fr: '/fr/library/sections',
+  en: '/en/library/sections'
+};
+
+// Liste des sections (manuel pour Phase 1)
+const sections = [
+  { name: 'Hero', slug: 'hero' },
+  { name: 'Features', slug: 'features' },
+  { name: 'About', slug: 'about' },
+  { name: 'Events', slug: 'events' },
+  { name: 'CTA', slug: 'cta' },
+  { name: 'Team', slug: 'team' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/fr/library" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Retour à la bibliothèque</a>
+
+    <h1 class="text-4xl font-bold mb-6">Sections</h1>
+    <p class="text-lg mb-12">Blocs de page complets et réutilisables.</p>
+
+    <ul class="space-y-2">
+      {sections.map(s => (
+        <li>
+          <a href={`/fr/library/sections/${s.slug}`} class="text-blue-600 hover:underline">
+            {s.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>

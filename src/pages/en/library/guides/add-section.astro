@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Add a Section - Guide';
+const description = 'Step-by-step guide to create a new section component';
+
+const alternateUrls = {
+  fr: '/fr/library/guides/add-section',
+  en: '/en/library/guides/add-section'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/en/library/guides" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to guides</a>
+
+    <h1 class="text-4xl font-bold mb-6">How to Add a Section</h1>
+
+    <div class="prose prose-lg max-w-none">
+      <p class="text-lg text-gray-600 mb-8">
+        Guide content coming in Phase 3.
+      </p>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Planned sections:</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>When to create a new section?</li>
+          <li>Step 1: Create the component</li>
+          <li>Step 2: Define props</li>
+          <li>Step 3: Use SectionLayout (optional)</li>
+          <li>Step 4: Compose with primitives</li>
+          <li>Step 5: Add to library</li>
+          <li>Step 6: Use in a page</li>
+          <li>Complete example</li>
+          <li>Final checklist</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

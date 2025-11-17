@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Guides';
+const description = 'Practical guides to use Alpha WebCore';
+
+const alternateUrls = {
+  fr: '/fr/library/guides',
+  en: '/en/library/guides'
+};
+
+// List of guides
+const guides = [
+  { title: 'Site Usage', slug: 'usage', description: 'Overview and common workflows' },
+  { title: 'Add a Page', slug: 'add-page', description: 'How to create a new page' },
+  { title: 'Add a Section', slug: 'add-section', description: 'How to create a new content block' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/en/library" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to library</a>
+
+    <h1 class="text-4xl font-bold mb-6">Guides</h1>
+    <p class="text-lg mb-12">Practical guides to use and extend the template.</p>
+
+    <div class="space-y-4">
+      {guides.map(g => (
+        <a href={`/en/library/guides/${g.slug}`} class="block p-6 border rounded-lg hover:shadow-lg transition">
+          <h2 class="text-xl font-semibold mb-2">{g.title}</h2>
+          <p class="text-sm text-gray-600">{g.description}</p>
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

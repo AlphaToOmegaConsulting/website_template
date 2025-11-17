@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Primitives UI';
+const description = 'Composants de base du design system';
+
+const alternateUrls = {
+  fr: '/fr/library/primitives',
+  en: '/en/library/primitives'
+};
+
+// Liste des primitives (manuel pour Phase 1)
+const primitives = [
+  { name: 'Button', slug: 'button' },
+  { name: 'ButtonLink', slug: 'button-link' },
+  { name: 'Card', slug: 'card' },
+  { name: 'Input', slug: 'input' },
+  { name: 'Dialog', slug: 'dialog' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/fr/library" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Retour à la bibliothèque</a>
+
+    <h1 class="text-4xl font-bold mb-6">Primitives UI</h1>
+    <p class="text-lg mb-12">Composants de base réutilisables.</p>
+
+    <ul class="space-y-2">
+      {primitives.map(p => (
+        <li>
+          <a href={`/fr/library/primitives/${p.slug}`} class="text-blue-600 hover:underline">
+            {p.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>
