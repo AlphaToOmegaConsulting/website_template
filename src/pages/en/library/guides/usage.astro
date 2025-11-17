@@ -2,8 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
 const lang = 'en';
-const title = 'Site Usage - Guide';
-const description = 'Complete usage guide for Alpha WebCore template';
+const title = 'Usage Guide - Alpha WebCore';
+const description = 'Complete usage guide for the Alpha WebCore template';
 
 const alternateUrls = {
   fr: '/fr/library/guides/usage',
@@ -21,25 +21,342 @@ const alternateUrls = {
     <a href="/en/library/guides" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to guides</a>
 
     <h1 class="text-4xl font-bold mb-6">Usage Guide</h1>
+    <p class="text-lg text-gray-600 mb-12">
+      Complete documentation to understand and use the Alpha WebCore template.
+    </p>
 
-    <div class="prose prose-lg max-w-none">
-      <p class="text-lg text-gray-600 mb-8">
-        Guide content coming in Phase 3.
+    <!-- Introduction -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Introduction</h2>
+      <p class="mb-4">
+        Alpha WebCore is a modern Astro template designed with principles of <strong>modularity</strong>,
+        <strong>granularity</strong> and <strong>neutrality</strong>. It provides a solid foundation for creating
+        performant and maintainable multilingual websites.
+      </p>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+        <p class="font-semibold mb-2">Template philosophy:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Each component exists in its own file</li>
+          <li>Prefer multiple small components over one large generic component</li>
+          <li>Neutral and extensible design, not tied to specific branding</li>
+          <li>Zero over-engineering, always favor simplicity</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Folder Architecture</h2>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-4"><code>src/
+├── components/
+│   ├── primitives/      # Basic UI components
+│   │   ├── Button.astro
+│   │   ├── Card.astro
+│   │   └── Input.astro
+│   ├── sections/        # Complete page blocks
+│   │   ├── Hero.astro
+│   │   ├── Features.astro
+│   │   └── CTA.astro
+│   ├── Header.astro     # Main navigation
+│   └── Footer.astro     # Footer
+├── content/             # Structured content
+│   ├── events/          # Events (Markdown)
+│   │   ├── fr/
+│   │   └── en/
+│   └── sections/        # Section data (JSON)
+├── layouts/
+│   ├── BaseLayout.astro # Main layout
+│   └── SectionLayout.astro
+├── pages/
+│   ├── fr/              # French pages
+│   ├── en/              # English pages
+│   └── index.astro      # Root redirect
+└── utils/
+    ├── i18n.ts          # i18n utilities
+    └── url.ts           # URL management</code></pre>
+
+      <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+        <p class="font-semibold mb-2">Important convention:</p>
+        <p>Always create files in FR/EN pairs to maintain multilingual consistency.</p>
+      </div>
+    </section>
+
+    <!-- Routing -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">FR/EN Routing</h2>
+      <p class="mb-4">
+        The site uses folder-based routing with language prefix:
+      </p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li><code class="bg-gray-100 px-2 py-1 rounded">/fr/*</code> → French pages</li>
+        <li><code class="bg-gray-100 px-2 py-1 rounded">/en/*</code> → English pages</li>
+        <li><code class="bg-gray-100 px-2 py-1 rounded">/</code> → Redirects to /fr or /en based on browser language</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mb-3 mt-6">Typical page structure</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Page title';
+const description = 'Description for SEO';
+
+const alternateUrls = {'{'}
+  fr: '/fr/ma-page',
+  en: '/en/my-page'
+{'}'};
+---
+
+&lt;BaseLayout
+  title={'{'}title{'}'}
+  description={'{'}description{'}'}
+  lang={'{'}lang{'}'}
+  alternateUrls={'{'}alternateUrls{'}'}
+&gt;
+  &lt;!-- Page content --&gt;
+&lt;/BaseLayout&gt;</code></pre>
+
+      <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4">
+        <p class="font-semibold mb-2">Benefits:</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>SEO optimized with automatic hreflang tags</li>
+          <li>Functional language switcher without configuration</li>
+          <li>Clean and predictable URLs</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Content Collections -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Content Collections</h2>
+      <p class="mb-4">
+        Astro Content Collections allows managing structured content with TypeScript validation.
       </p>
 
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Planned sections:</h2>
-        <ul class="list-disc pl-6 space-y-2">
-          <li>Introduction and template philosophy</li>
-          <li>Folder architecture</li>
-          <li>FR/EN routing</li>
-          <li>Content collections</li>
-          <li>Components (primitives vs sections)</li>
-          <li>Common workflows</li>
-          <li>Code conventions</li>
-          <li>Troubleshooting</li>
-        </ul>
-      </section>
-    </div>
+      <h3 class="text-xl font-semibold mb-3">"events" Collection</h3>
+      <p class="mb-2">Markdown files in <code class="bg-gray-100 px-2 py-1 rounded">src/content/events/fr/</code> and <code class="bg-gray-100 px-2 py-1 rounded">/en/</code></p>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-4"><code>---
+title: "Event name"
+date: 2025-03-15
+location: "Paris"
+category: "conference"
+---
+
+Event content in Markdown...</code></pre>
+
+      <h3 class="text-xl font-semibold mb-3 mt-6">Usage in a page</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import {'{'}  getCollection {'}'} from 'astro:content';
+
+// Get all FR events
+const events = await getCollection('events', (entry) =&gt; {'{'}
+  return entry.id.startsWith('fr/');
+{'}'});
+---
+
+{'{'}events.map(event =&gt; (
+  &lt;div&gt;
+    &lt;h2&gt;{'{'}event.data.title{'}'}&lt;/h2&gt;
+    &lt;p&gt;{'{'}event.data.date{'}'}&lt;/p&gt;
+  &lt;/div&gt;
+)){'}'}</code></pre>
+    </section>
+
+    <!-- Components -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Components: Primitives vs Sections</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="border rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-3">Primitives</h3>
+          <p class="text-sm text-gray-600 mb-3">Basic, atomic and reusable UI components</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li>Button, ButtonLink</li>
+            <li>Card</li>
+            <li>Input, Dialog</li>
+            <li>Generally no business logic</li>
+            <li>Highly configurable via props</li>
+          </ul>
+        </div>
+
+        <div class="border rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-3">Sections</h3>
+          <p class="text-sm text-gray-600 mb-3">Complete page blocks composed of primitives</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li>Hero, Features, CTA</li>
+            <li>About, Events, Team</li>
+            <li>Composed of multiple primitives</li>
+            <li>Represent functional areas</li>
+            <li>Can contain business logic</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+        <p class="font-semibold mb-2">Golden rule:</p>
+        <p>If a component is used in multiple different contexts → Primitive</p>
+        <p>If a component represents a specific area of a page → Section</p>
+      </div>
+    </section>
+
+    <!-- Workflows -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Common Workflows</h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">1. Modify existing page content</h3>
+          <ol class="list-decimal pl-6 space-y-1">
+            <li>Locate the file in <code class="bg-gray-100 px-1 rounded">src/pages/fr/</code> or <code class="bg-gray-100 px-1 rounded">/en/</code></li>
+            <li>Modify HTML content or component props</li>
+            <li>Check with <code class="bg-gray-100 px-1 rounded">npm run dev</code></li>
+            <li>Update the EN version if needed</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2">2. Add an image</h3>
+          <ol class="list-decimal pl-6 space-y-1">
+            <li>Place image in <code class="bg-gray-100 px-1 rounded">public/images/</code></li>
+            <li>Reference with <code class="bg-gray-100 px-1 rounded">/images/my-image.jpg</code></li>
+            <li>Always provide a descriptive <code class="bg-gray-100 px-1 rounded">alt</code> attribute</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2">3. Manage translations</h3>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Translations are managed at the file level (no centralized i18n file)</li>
+            <li>Each FR page has its equivalent EN version</li>
+            <li>Use <code class="bg-gray-100 px-1 rounded">alternateUrls</code> to link versions</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2">4. Deploy the site</h3>
+          <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>npm run build    # Generate static site in /dist
+npm run preview  # Preview the build</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conventions -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Code Conventions</h2>
+
+      <div class="space-y-4">
+        <div>
+          <h3 class="text-lg font-semibold mb-2">File naming</h3>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Components: PascalCase (<code class="bg-gray-100 px-1 rounded">Button.astro</code>)</li>
+            <li>Pages: kebab-case or index (<code class="bg-gray-100 px-1 rounded">about-us/index.astro</code>)</li>
+            <li>Utilities: camelCase (<code class="bg-gray-100 px-1 rounded">buildUrl.ts</code>)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Import organization</h3>
+          <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+// 1. Layouts
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+// 2. Components
+import Hero from '@/components/sections/Hero.astro';
+import Button from '@/components/primitives/Button.astro';
+
+// 3. Utilities
+import {'{'}  buildUrl {'}'} from '@/utils/url';
+
+// 4. Data / Content
+import {'{'}  getCollection {'}'} from 'astro:content';
+
+// 5. Props and types
+const {'{'}  title, description {'}'} = Astro.props;
+---</code></pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Astro component structure</h3>
+          <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+// 1. Props Interface (TypeScript)
+interface Props {'{'}
+  title: string;
+  optional?: boolean;
+{'}'}
+
+// 2. Extract props
+const {'{'}  title, optional = false {'}'} = Astro.props;
+
+// 3. Logic / calculations
+const classes = ['base', optional && 'optional'].filter(Boolean).join(' ');
+---
+
+&lt;!-- 4. HTML Template --&gt;
+&lt;div class={'{'}classes{'}'}&gt;
+  &lt;h1&gt;{'{'}title{'}'}&lt;/h1&gt;
+  &lt;slot /&gt;
+&lt;/div&gt;
+
+&lt;!-- 5. Scoped styles (if needed) --&gt;
+&lt;style&gt;
+  /* Styles scoped to component */
+&lt;/style&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Troubleshooting</h2>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-red-500 bg-red-50 p-4">
+          <h3 class="font-semibold mb-2">Error: "Cannot find module '@/components/...'"</h3>
+          <p class="text-sm mb-2"><strong>Cause:</strong> Path alias not resolved</p>
+          <p class="text-sm"><strong>Solution:</strong> Check that <code class="bg-gray-100 px-1 rounded">tsconfig.json</code> contains paths configuration</p>
+        </div>
+
+        <div class="border-l-4 border-red-500 bg-red-50 p-4">
+          <h3 class="font-semibold mb-2">Error: "getCollection is not defined"</h3>
+          <p class="text-sm mb-2"><strong>Cause:</strong> Missing import</p>
+          <p class="text-sm"><strong>Solution:</strong> Add <code class="bg-gray-100 px-1 rounded">import {'{'}  getCollection {'}'} from 'astro:content';</code></p>
+        </div>
+
+        <div class="border-l-4 border-red-500 bg-red-50 p-4">
+          <h3 class="font-semibold mb-2">Language switcher not working</h3>
+          <p class="text-sm mb-2"><strong>Cause:</strong> <code class="bg-gray-100 px-1 rounded">alternateUrls</code> missing or incorrect</p>
+          <p class="text-sm"><strong>Solution:</strong> Ensure each page defines <code class="bg-gray-100 px-1 rounded">alternateUrls</code> with fr and en</p>
+        </div>
+
+        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4">
+          <h3 class="font-semibold mb-2">Build is slow</h3>
+          <p class="text-sm mb-2"><strong>Cause:</strong> Corrupted Astro cache</p>
+          <p class="text-sm"><strong>Solution:</strong> Run <code class="bg-gray-100 px-1 rounded">rm -rf node_modules/.astro && npm run build</code></p>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 p-4 rounded mt-6">
+        <h3 class="font-semibold mb-2">Useful commands</h3>
+        <pre class="text-sm"><code>npm run dev          # Development server
+npm run build        # Production build
+npm run preview      # Preview build
+npm run astro check  # TypeScript check</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Next Steps</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/en/library/guides/add-page" class="border rounded-lg p-4 hover:shadow-lg transition">
+          <h3 class="font-semibold mb-2">→ Add a page</h3>
+          <p class="text-sm text-gray-600">Step-by-step guide to create a new page</p>
+        </a>
+        <a href="/en/library/guides/add-section" class="border rounded-lg p-4 hover:shadow-lg transition">
+          <h3 class="font-semibold mb-2">→ Add a section</h3>
+          <p class="text-sm text-gray-600">How to create a new section component</p>
+        </a>
+      </div>
+    </section>
   </main>
 </BaseLayout>

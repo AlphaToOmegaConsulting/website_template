@@ -61,21 +61,21 @@ const lang = 'fr';
 const title = 'Nos Services';
 const description = 'Découvrez tous nos services professionnels';
 
-const alternateUrls = {
+const alternateUrls = {'{'}
   fr: '/fr/services',
   en: '/en/services'
-};
+{'}'};
 ---
 
 &lt;BaseLayout
-  title={title}
-  description={description}
-  lang={lang}
-  alternateUrls={alternateUrls}
+  title={'{'}title{'}'}
+  description={'{'}description{'}'}
+  lang={'{'}lang{'}'}
+  alternateUrls={'{'}alternateUrls{'}'}
 &gt;
   &lt;main class="container mx-auto px-4 py-12"&gt;
-    &lt;h1 class="text-4xl font-bold mb-6"&gt;{title}&lt;/h1&gt;
-    
+    &lt;h1 class="text-4xl font-bold mb-6"&gt;{'{'}title{'}'}&lt;/h1&gt;
+
     &lt;!-- Votre contenu ici --&gt;
   &lt;/main&gt;
 &lt;/BaseLayout&gt;</code></pre>
@@ -107,7 +107,7 @@ import CTA from '@/components/sections/CTA.astro';
 // ... métadonnées ...
 ---
 
-&lt;BaseLayout {...propsLayout}&gt;
+&lt;BaseLayout {'{'}...propsLayout{'}'}&gt;
   &lt;Hero
     title="Nos Services"
     subtitle="Solutions professionnelles adaptées à vos besoins"
@@ -116,35 +116,35 @@ import CTA from '@/components/sections/CTA.astro';
 
   &lt;Features
     title="Ce que nous proposons"
-    features={[
-      {
+    features={'{'}[
+      {'{'}
         title: "Consulting",
         description: "Expertise technique..."
-      },
-      {
+      {'}'},
+      {'{'}
         title: "Développement",
         description: "Applications sur mesure..."
-      }
-    ]}
+      {'}'}
+    ]{'}'}
   /&gt;
 
   &lt;CTA
     title="Besoin d'un devis ?"
-    primaryCta={{ label: "Nous contacter", href: "/fr/contact" }}
+    primaryCta={'{{'}{'{'} label: "Nous contacter", href: "/fr/contact" {'}'}{'}'}'}
   /&gt;
 &lt;/BaseLayout&gt;</code></pre>
 
       <h3 class="text-xl font-semibold mb-3 mt-6">Option B : HTML personnalisé</h3>
-      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;BaseLayout {...propsLayout}&gt;
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;BaseLayout {'{'}...propsLayout{'}'}&gt;
   &lt;main class="container mx-auto px-4 py-12 max-w-4xl"&gt;
-    &lt;h1 class="text-4xl font-bold mb-6"&gt;{title}&lt;/h1&gt;
-    
+    &lt;h1 class="text-4xl font-bold mb-6"&gt;{'{'}title{'}'}&lt;/h1&gt;
+
     &lt;div class="prose prose-lg"&gt;
       &lt;p&gt;Votre contenu personnalisé...&lt;/p&gt;
-      
+
       &lt;h2&gt;Section 1&lt;/h2&gt;
       &lt;p&gt;...&lt;/p&gt;
-      
+
       &lt;h2&gt;Section 2&lt;/h2&gt;
       &lt;p&gt;...&lt;/p&gt;
     &lt;/div&gt;
@@ -162,24 +162,25 @@ import CTA from '@/components/sections/CTA.astro';
       <h3 class="text-xl font-semibold mb-3">Modifier <code>src/components/Header.astro</code></h3>
       <p class="mb-2">Localiser la section de navigation et ajouter votre lien :</p>
       <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;!-- Navigation FR --&gt;
-{lang === 'fr' && (
+{'{'}lang === 'fr' &amp;&amp; (
   &lt;nav&gt;
     &lt;a href="/fr/"&gt;Accueil&lt;/a&gt;
-    &lt;a href="/fr/services"&gt;Services&lt;/a&gt;  {/* ← Nouveau lien */}
+    &lt;a href="/fr/services"&gt;Services&lt;/a&gt;  {'{'}/* ← Nouveau lien */{'}'}
     &lt;a href="/fr/events"&gt;Événements&lt;/a&gt;
     &lt;a href="/fr/partners"&gt;Partenaires&lt;/a&gt;
   &lt;/nav&gt;
-)}
+){'}'}
 
 &lt;!-- Navigation EN --&gt;
-{lang === 'en' && (
+{'{'}lang === 'en' &amp;&amp; (
   &lt;nav&gt;
     &lt;a href="/en/"&gt;Home&lt;/a&gt;
-    &lt;a href="/en/services"&gt;Services&lt;/a&gt;  {/* ← Nouveau lien */}
+    &lt;a href="/en/services"&gt;Services&lt;/a&gt;  {'{'}/* ← Nouveau lien */{'}'}
     &lt;a href="/en/events"&gt;Events&lt;/a&gt;
     &lt;a href="/en/partners"&gt;Partners&lt;/a&gt;
   &lt;/nav&gt;
-)}</code></pre>
+){'}'}
+</code></pre>
 
       <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4">
         <p class="font-semibold mb-2">✓ Bonne pratique :</p>

@@ -11,33 +11,280 @@ const alternateUrls = {
 };
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  lang={lang}
-  alternateUrls={alternateUrls}
->
+<BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}>
   <main class="container mx-auto px-4 py-12 max-w-4xl">
     <a href="/en/library/guides" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to guides</a>
 
-    <h1 class="text-4xl font-bold mb-6">How to Add a Page</h1>
+    <h1 class="text-4xl font-bold mb-6">How to add a page</h1>
+    <p class="text-lg text-gray-600 mb-12">
+      Step-by-step guide to create a new page in the Alpha WebCore template.
+    </p>
 
-    <div class="prose prose-lg max-w-none">
-      <p class="text-lg text-gray-600 mb-8">
-        Guide content coming in Phase 3.
+    <!-- Step 1 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Step 1: Create the routing files</h2>
+      <p class="mb-4">
+        In Alpha WebCore, each page must exist in both FR and EN versions to maintain multilingual consistency.
       </p>
 
-      <section class="mb-12">
-        <h2 class="text-2xl font-semibold mb-4">Planned sections:</h2>
-        <ul class="list-disc pl-6 space-y-2">
-          <li>Step 1: Create routing files (FR + EN)</li>
-          <li>Step 2: Base structure with BaseLayout</li>
-          <li>Step 3: Add content</li>
-          <li>Step 4: Add navigation</li>
-          <li>Step 5: Test and validate</li>
-          <li>Best practices</li>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+        <p class="font-semibold mb-2">Example: Create a "Services" page</p>
+        <p class="text-sm">We'll create a page accessible via <code>/fr/services</code> and <code>/en/services</code></p>
+      </div>
+
+      <h3 class="text-xl font-semibold mb-3">Create the files</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-4"><code>src/pages/
+├── fr/
+│   └── services/
+│       └── index.astro    # FR Page
+└── en/
+    └── services/
+        └── index.astro    # EN Page</code></pre>
+
+      <p class="text-sm text-gray-600">
+        💡 Using <code class="bg-gray-100 px-1 rounded">index.astro</code> allows clean URLs without extensions.
+      </p>
+    </section>
+
+    <!-- Step 2 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Step 2: Base structure</h2>
+      <p class="mb-4">
+        Each page must use <code class="bg-gray-100 px-1 rounded">BaseLayout</code> and define essential metadata.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-3">Starting code (FR)</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Nos Services';
+const description = 'Découvrez tous nos services professionnels';
+
+const alternateUrls = {'{'}
+  fr: '/fr/services',
+  en: '/en/services'
+{'}'};
+---
+
+&lt;BaseLayout
+  title={'{'}title{'}'}
+  description={'{'}description{'}'}
+  lang={'{'}lang{'}'}
+  alternateUrls={'{'}alternateUrls{'}'}
+&gt;
+  &lt;main class="container mx-auto px-4 py-12"&gt;
+    &lt;h1 class="text-4xl font-bold mb-6"&gt;{'{'}title{'}'}&lt;/h1&gt;
+
+    &lt;!-- Your content here --&gt;
+  &lt;/main&gt;
+&lt;/BaseLayout&gt;</code></pre>
+
+      <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+        <p class="font-semibold mb-2">Key points:</p>
+        <ul class="list-disc pl-6 space-y-1 text-sm">
+          <li><code>lang</code>: 'fr' or 'en' depending on version</li>
+          <li><code>alternateUrls</code>: Links to FR/EN versions for SEO and language switcher</li>
+          <li><code>title</code> and <code>description</code>: SEO metadata</li>
         </ul>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <!-- Step 3 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Step 3: Add content</h2>
+      <p class="mb-4">
+        You can use existing sections or create custom HTML.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-3">Option A: Use existing sections</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-6"><code>---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Features from '@/components/sections/Features.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+// ... metadata ...
+---
+
+&lt;BaseLayout {'{'}...propsLayout{'}'}&gt;
+  &lt;Hero
+    title="Our Services"
+    subtitle="Professional solutions tailored to your needs"
+    variant="centered"
+  /&gt;
+
+  &lt;Features
+    title="What we offer"
+    features={'{'}[
+      {'{'}
+        title: "Consulting",
+        description: "Technical expertise..."
+      {'}'},
+      {'{'}
+        title: "Development",
+        description: "Custom applications..."
+      {'}'}
+    ]{'}'}
+  /&gt;
+
+  &lt;CTA
+    title="Need a quote?"
+    primaryCta={'{{'}{'{'} label: "Contact us", href: "/en/contact" {'}'}{'}'}'}
+  /&gt;
+&lt;/BaseLayout&gt;</code></pre>
+
+      <h3 class="text-xl font-semibold mb-3 mt-6">Option B: Custom HTML</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;BaseLayout {'{'}...propsLayout{'}'}&gt;
+  &lt;main class="container mx-auto px-4 py-12 max-w-4xl"&gt;
+    &lt;h1 class="text-4xl font-bold mb-6"&gt;{'{'}title{'}'}&lt;/h1&gt;
+
+    &lt;div class="prose prose-lg"&gt;
+      &lt;p&gt;Your custom content...&lt;/p&gt;
+
+      &lt;h2&gt;Section 1&lt;/h2&gt;
+      &lt;p&gt;...&lt;/p&gt;
+
+      &lt;h2&gt;Section 2&lt;/h2&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/BaseLayout&gt;</code></pre>
+    </section>
+
+    <!-- Step 4 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Step 4: Add navigation</h2>
+      <p class="mb-4">
+        To make your new page accessible from the main menu, add it to the Header component.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-3">Edit <code>src/components/Header.astro</code></h3>
+      <p class="mb-2">Locate the navigation section and add your link:</p>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;!-- FR Navigation --&gt;
+{'{'}lang === 'fr' &amp;&amp; (
+  &lt;nav&gt;
+    &lt;a href="/fr/"&gt;Accueil&lt;/a&gt;
+    &lt;a href="/fr/services"&gt;Services&lt;/a&gt;  {'{'}/* ← New link */{'}'}
+    &lt;a href="/fr/events"&gt;Événements&lt;/a&gt;
+    &lt;a href="/fr/partners"&gt;Partenaires&lt;/a&gt;
+  &lt;/nav&gt;
+){'}'}
+
+&lt;!-- EN Navigation --&gt;
+{'{'}lang === 'en' &amp;&amp; (
+  &lt;nav&gt;
+    &lt;a href="/en/"&gt;Home&lt;/a&gt;
+    &lt;a href="/en/services"&gt;Services&lt;/a&gt;  {'{'}/* ← New link */{'}'}
+    &lt;a href="/en/events"&gt;Events&lt;/a&gt;
+    &lt;a href="/en/partners"&gt;Partners&lt;/a&gt;
+  &lt;/nav&gt;
+){'}'}
+</code></pre>
+
+      <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4">
+        <p class="font-semibold mb-2">✓ Best practice:</p>
+        <p class="text-sm">Always add the link in both versions (FR and EN) to maintain consistency.</p>
+      </div>
+    </section>
+
+    <!-- Step 5 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Step 5: Test</h2>
+
+      <h3 class="text-xl font-semibold mb-3">1. Start the development server</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-4"><code>npm run dev</code></pre>
+
+      <h3 class="text-xl font-semibold mb-3">2. Check the URLs</h3>
+      <ul class="list-disc pl-6 space-y-2 mb-4">
+        <li>Access <code class="bg-gray-100 px-1 rounded">http://localhost:4321/fr/services</code></li>
+        <li>Access <code class="bg-gray-100 px-1 rounded">http://localhost:4321/en/services</code></li>
+        <li>Verify the language switcher works correctly</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mb-3">3. Validate SEO</h3>
+      <p class="mb-2">Inspect the page source (Ctrl+U) and check:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Correct <code class="bg-gray-100 px-1 rounded">&lt;title&gt;</code> tag</li>
+        <li>Meta description present</li>
+        <li>Hreflang links for FR and EN</li>
+        <li><code class="bg-gray-100 px-1 rounded">&lt;html lang="fr"&gt;</code> tag</li>
+      </ul>
+    </section>
+
+    <!-- Checklist -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Final checklist</h2>
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Files created: <code class="bg-gray-100 px-1 rounded">src/pages/fr/my-page/index.astro</code> and EN version</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>BaseLayout used with all metadata</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span><code class="bg-gray-100 px-1 rounded">alternateUrls</code> configured (FR and EN)</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Content added (sections or custom HTML)</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Navigation updated in Header.astro</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Pages tested locally (FR and EN)</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Language switcher works</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>SEO verified (title, description, hreflang)</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Common issues</h2>
+
+      <div class="space-y-4">
+        <div class="border-l-4 border-red-500 bg-red-50 p-4">
+          <h3 class="font-semibold mb-2">404 - Page not found</h3>
+          <p class="text-sm mb-2"><strong>Possible cause:</strong> File misnomed or misplaced</p>
+          <p class="text-sm"><strong>Solution:</strong> Verify the file is indeed <code>index.astro</code> in the correct folder</p>
+        </div>
+
+        <div class="border-l-4 border-red-500 bg-red-50 p-4">
+          <h3 class="font-semibold mb-2">Language switcher doesn't change page</h3>
+          <p class="text-sm mb-2"><strong>Possible cause:</strong> Incorrect <code>alternateUrls</code></p>
+          <p class="text-sm"><strong>Solution:</strong> Verify URLs exactly match the file paths</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">Next steps</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/en/library/guides/add-section" class="border rounded-lg p-4 hover:shadow-lg transition">
+          <h3 class="font-semibold mb-2">→ Add a section</h3>
+          <p class="text-sm text-gray-600">Create a new reusable section component</p>
+        </a>
+        <a href="/en/library/primitives" class="border rounded-lg p-4 hover:shadow-lg transition">
+          <h3 class="font-semibold mb-2">→ View primitives</h3>
+          <p class="text-sm text-gray-600">Discover all available UI components</p>
+        </a>
+      </div>
+    </section>
   </main>
 </BaseLayout>

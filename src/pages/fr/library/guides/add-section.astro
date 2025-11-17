@@ -73,29 +73,29 @@ const alternateUrls = {
       </p>
 
       <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
-interface Props {
+interface Props {'{'}
   title: string;
   subtitle?: string;
-  testimonials: Array<{
+  testimonials: Array&lt;{'{'}
     author: string;
     role: string;
     content: string;
     avatar?: string;
     rating?: number;
-  }>;
+  {'}'}&gt;;
   layout?: 'grid' | 'carousel';
   columns?: 2 | 3;
   class?: string;
-}
+{'}'}
 
-const {
+const {'{'}
   title,
   subtitle,
   testimonials,
   layout = 'grid',
   columns = 3,
   class: className = '',
-} = Astro.props;
+{'}'} = Astro.props;
 ---</code></pre>
 
       <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
@@ -121,7 +121,7 @@ import SectionLayout from '@/layouts/SectionLayout.astro';
 // ... props ...
 ---
 
-&lt;SectionLayout class={className}&gt;
+&lt;SectionLayout class={'{'}className{'}'}&gt;
   &lt;!-- Contenu de votre section --&gt;
 &lt;/SectionLayout&gt;</code></pre>
 
@@ -143,45 +143,45 @@ import Button from '@/components/primitives/Button.astro';
 
 // ... props ...
 
-const gridClasses = {
+const gridClasses = {'{'}
   2: 'grid-cols-1 md:grid-cols-2',
   3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-};
+{'}'};
 ---
 
-&lt;section class={`py-16 bg-white ${className}`}&gt;
+&lt;section class={'{'}&#96;py-16 bg-white &#36;{'{'}className{'}'}&#96;{'}'}&gt;
   &lt;div class="container mx-auto px-4 max-w-7xl"&gt;
     &lt;!-- En-tête --&gt;
     &lt;div class="text-center mb-12"&gt;
       &lt;h2 class="text-4xl font-bold text-brand-primary mb-4"&gt;
-        {title}
+        {'{'}title{'}'}
       &lt;/h2&gt;
-      {subtitle && (
-        &lt;p class="text-xl text-gray-600"&gt;{subtitle}&lt;/p&gt;
-      )}
+      {'{'}subtitle &amp;&amp; (
+        &lt;p class="text-xl text-gray-600"&gt;{'{'}subtitle{'}'}&lt;/p&gt;
+      ){'}'}
     &lt;/div&gt;
 
     &lt;!-- Grille de témoignages --&gt;
-    &lt;div class={`grid ${gridClasses[columns]} gap-6`}&gt;
-      {testimonials.map((testimonial) =&gt; (
+    &lt;div class={'{'}&#96;grid &#36;{'{'}gridClasses[columns]{'}'} gap-6&#96;{'}'}&gt;
+      {'{'}testimonials.map((testimonial) =&gt; (
         &lt;Card variant="bordered" padding="lg"&gt;
-          &lt;p class="text-gray-700 mb-4"&gt;"{testimonial.content}"&lt;/p&gt;
-          
+          &lt;p class="text-gray-700 mb-4"&gt;"{'{'}testimonial.content{'}'}"&lt;/p&gt;
+
           &lt;div class="flex items-center"&gt;
-            {testimonial.avatar && (
-              &lt;img 
-                src={testimonial.avatar} 
-                alt={testimonial.author}
+            {'{'}testimonial.avatar &amp;&amp; (
+              &lt;img
+                src={'{'}testimonial.avatar{'}'}
+                alt={'{'}testimonial.author{'}'}
                 class="w-12 h-12 rounded-full mr-3"
               /&gt;
-            )}
+            ){'}'}
             &lt;div&gt;
-              &lt;p class="font-semibold"&gt;{testimonial.author}&lt;/p&gt;
-              &lt;p class="text-sm text-gray-600"&gt;{testimonial.role}&lt;/p&gt;
+              &lt;p class="font-semibold"&gt;{'{'}testimonial.author{'}'}&lt;/p&gt;
+              &lt;p class="text-sm text-gray-600"&gt;{'{'}testimonial.role{'}'}&lt;/p&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         &lt;/Card&gt;
-      ))}
+      )){'}'}
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
@@ -206,22 +206,22 @@ const lang = 'fr';
 const title = 'Testimonials - Sections';
 const description = 'Documentation de la section Testimonials';
 
-const alternateUrls = {
+const alternateUrls = {'{'}
   fr: '/fr/library/sections/testimonials',
   en: '/en/library/sections/testimonials'
-};
+{'}'};
 ---
 
-&lt;BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}&gt;
+&lt;BaseLayout title={'{'}title{'}'} description={'{'}description{'}'} lang={'{'}lang{'}'} alternateUrls={'{'}alternateUrls{'}'}&gt;
   &lt;main class="container mx-auto px-4 py-12 max-w-4xl"&gt;
     &lt;h1&gt;Testimonials&lt;/h1&gt;
-    
+
     &lt;!-- Tableau des props --&gt;
     &lt;section&gt;
       &lt;h2&gt;Props&lt;/h2&gt;
       &lt;table&gt;...&lt;/table&gt;
     &lt;/section&gt;
-    
+
     &lt;!-- Exemple d'usage --&gt;
     &lt;section&gt;
       &lt;h2&gt;Exemple d'usage&lt;/h2&gt;
@@ -248,26 +248,26 @@ import Hero from '@/components/sections/Hero.astro';
 import Testimonials from '@/components/sections/Testimonials.astro';
 
 const testimonials = [
-  {
+  {'{'}
     author: "Marie Dupont",
     role: "CEO, TechCorp",
     content: "Service excellent, équipe réactive et professionnelle !",
     avatar: "/avatars/marie.jpg",
     rating: 5
-  },
+  {'}'},
   // ... autres témoignages
 ];
 ---
 
-&lt;BaseLayout {...props}&gt;
+&lt;BaseLayout {'{'}...props{'}'}&gt;
   &lt;Hero title="Notre expertise" /&gt;
-  
+
   &lt;Testimonials
     title="Ce que disent nos clients"
     subtitle="Des centaines de clients satisfaits"
-    testimonials={testimonials}
+    testimonials={'{'}testimonials{'}'}
     layout="grid"
-    columns={3}
+    columns={'{'}3{'}'}
   /&gt;
 &lt;/BaseLayout&gt;</code></pre>
     </section>
@@ -281,52 +281,52 @@ const testimonials = [
 
       <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
 // src/components/sections/Stats.astro
-interface Props {
+interface Props {'{'}
   title: string;
   subtitle?: string;
-  stats: Array<{
+  stats: Array&lt;{'{'}
     value: string;
     label: string;
     icon?: string;
-  }>;
+  {'}'}&gt;;
   variant?: 'default' | 'compact';
   class?: string;
-}
+{'}'}
 
-const {
+const {'{'}
   title,
   subtitle,
   stats,
   variant = 'default',
   class: className = '',
-} = Astro.props;
+{'}'} = Astro.props;
 
 const isCompact = variant === 'compact';
 ---
 
-&lt;section class={`py-16 bg-gray-50 ${className}`}&gt;
+&lt;section class={'{'}&#96;py-16 bg-gray-50 &#36;{'{'}className{'}'}&#96;{'}'}&gt;
   &lt;div class="container mx-auto px-4 max-w-6xl"&gt;
     &lt;div class="text-center mb-12"&gt;
       &lt;h2 class="text-4xl font-bold text-brand-primary mb-4"&gt;
-        {title}
+        {'{'}title{'}'}
       &lt;/h2&gt;
-      {subtitle && (
-        &lt;p class="text-xl text-gray-600"&gt;{subtitle}&lt;/p&gt;
-      )}
+      {'{'}subtitle &amp;&amp; (
+        &lt;p class="text-xl text-gray-600"&gt;{'{'}subtitle{'}'}&lt;/p&gt;
+      ){'}'}
     &lt;/div&gt;
 
-    &lt;div class={`grid grid-cols-1 md:grid-cols-${stats.length} gap-8`}&gt;
-      {stats.map((stat) =&gt; (
+    &lt;div class={'{'}&#96;grid grid-cols-1 md:grid-cols-&#36;{'{'}stats.length{'}'} gap-8&#96;{'}'}&gt;
+      {'{'}stats.map((stat) =&gt; (
         &lt;div class="text-center"&gt;
-          {stat.icon && (
-            &lt;div class="text-4xl mb-3"&gt;{stat.icon}&lt;/div&gt;
-          )}
-          &lt;div class={isCompact ? 'text-3xl' : 'text-5xl'} class="font-bold text-brand-accent mb-2"&gt;
-            {stat.value}
+          {'{'}stat.icon &amp;&amp; (
+            &lt;div class="text-4xl mb-3"&gt;{'{'}stat.icon{'}'}&lt;/div&gt;
+          ){'}'}
+          &lt;div class={'{'}isCompact ? 'text-3xl' : 'text-5xl'{'}'} class="font-bold text-brand-accent mb-2"&gt;
+            {'{'}stat.value{'}'}
           &lt;/div&gt;
-          &lt;div class="text-gray-600"&gt;{stat.label}&lt;/div&gt;
+          &lt;div class="text-gray-600"&gt;{'{'}stat.label{'}'}&lt;/div&gt;
         &lt;/div&gt;
-      ))}
+      )){'}'}
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/section&gt;</code></pre>
