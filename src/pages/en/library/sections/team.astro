@@ -28,24 +28,26 @@ import Team from '@/components/sections/Team.astro';
 &lt;Team
   title="Our team"
   subtitle="The people behind the project"
-  members={[
+  authors={[
     {
+      id: "alice",
       name: "Alice Smith",
       role: "CEO & Founder",
-      image: "/team/alice.jpg",
+      avatar: "/team/alice.jpg",
       bio: "10 years of experience...",
       social: {
-        linkedin: "https://linkedin.com/in/alice",
-        twitter: "https://twitter.com/alice"
+        linkedin: "alice",
+        twitter: "alice"
       }
     },
     {
+      id: "bob",
       name: "Bob Johnson",
       role: "CTO",
-      image: "/team/bob.jpg"
+      avatar: "/team/bob.jpg",
+      bio: "Technical expert"
     }
   ]}
-  layout="grid"
   columns={3}
 /&gt;</code></pre>
     </section>

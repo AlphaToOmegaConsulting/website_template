@@ -28,24 +28,26 @@ import Team from '@/components/sections/Team.astro';
 &lt;Team
   title="Notre équipe"
   subtitle="Les personnes derrière le projet"
-  members={[
+  authors={[
     {
+      id: "alice",
       name: "Alice Dupont",
       role: "CEO & Fondatrice",
-      image: "/team/alice.jpg",
+      avatar: "/team/alice.jpg",
       bio: "10 ans d'expérience...",
       social: {
-        linkedin: "https://linkedin.com/in/alice",
-        twitter: "https://twitter.com/alice"
+        linkedin: "alice",
+        twitter: "alice"
       }
     },
     {
+      id: "bob",
       name: "Bob Martin",
       role: "CTO",
-      image: "/team/bob.jpg"
+      avatar: "/team/bob.jpg",
+      bio: "Expert technique"
     }
   ]}
-  layout="grid"
   columns={3}
 /&gt;</code></pre>
     </section>
