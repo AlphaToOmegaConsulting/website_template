@@ -1,0 +1,258 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Dialog from '@/components/primitives/Dialog.astro';
+import Button from '@/components/primitives/Button.astro';
+
+const lang = 'fr';
+const title = 'Dialog - Primitives';
+const description = 'Documentation du composant Dialog';
+
+const alternateUrls = {
+  fr: '/fr/library/primitives/dialog',
+  en: '/en/library/primitives/dialog'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/fr/library/primitives" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Retour aux primitives</a>
+
+    <h1 class="text-4xl font-bold mb-6">Dialog</h1>
+    <p class="text-lg mb-8">Modal dialog accessible avec backdrop, focus trap et fermeture au clic extérieur.</p>
+
+    <!-- Props -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Props</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 p-3 text-left">Nom</th>
+              <th class="border border-gray-300 p-3 text-left">Type</th>
+              <th class="border border-gray-300 p-3 text-left">Défaut</th>
+              <th class="border border-gray-300 p-3 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">id</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">string</code></td>
+              <td class="border border-gray-300 p-3"><em>requis</em></td>
+              <td class="border border-gray-300 p-3">Identifiant unique du dialog</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">title</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">string</code></td>
+              <td class="border border-gray-300 p-3"><em>requis</em></td>
+              <td class="border border-gray-300 p-3">Titre du dialog</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">description</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">string</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">undefined</code></td>
+              <td class="border border-gray-300 p-3">Description optionnelle</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">triggerLabel</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">string</code></td>
+              <td class="border border-gray-300 p-3"><em>requis</em></td>
+              <td class="border border-gray-300 p-3">Texte du bouton d'ouverture</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">triggerVariant</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'primary' | 'secondary' | 'ghost'</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'primary'</code></td>
+              <td class="border border-gray-300 p-3">Variante du bouton</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">triggerSize</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'sm' | 'md' | 'lg'</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'md'</code></td>
+              <td class="border border-gray-300 p-3">Taille du bouton</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Exemple basique -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Exemple basique</h2>
+
+      <div class="p-6 border border-gray-200 rounded-lg bg-gray-50">
+        <Dialog
+          id="example-basic"
+          title="Titre du dialog"
+          description="Ceci est une description optionnelle du dialog."
+          triggerLabel="Ouvrir le dialog"
+        >
+          <p class="text-gray-700 mb-4">
+            Contenu du dialog. Vous pouvez placer n'importe quel contenu ici.
+          </p>
+          <Button variant="primary">Action principale</Button>
+        </Dialog>
+      </div>
+
+      <pre class="mt-3 p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;Dialog
+  id="example-basic"
+  title="Titre du dialog"
+  description="Description optionnelle"
+  triggerLabel="Ouvrir le dialog"
+&gt;
+  &lt;p&gt;Contenu du dialog&lt;/p&gt;
+  &lt;Button&gt;Action&lt;/Button&gt;
+&lt;/Dialog&gt;</code></pre>
+    </section>
+
+    <!-- Variantes du bouton trigger -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Variantes du bouton trigger</h2>
+
+      <div class="p-6 border border-gray-200 rounded-lg bg-gray-50">
+        <div class="flex gap-4 flex-wrap">
+          <Dialog
+            id="trigger-primary"
+            title="Dialog Primary"
+            triggerLabel="Primary"
+            triggerVariant="primary"
+          >
+            <p>Contenu avec bouton primary</p>
+          </Dialog>
+
+          <Dialog
+            id="trigger-secondary"
+            title="Dialog Secondary"
+            triggerLabel="Secondary"
+            triggerVariant="secondary"
+          >
+            <p>Contenu avec bouton secondary</p>
+          </Dialog>
+
+          <Dialog
+            id="trigger-ghost"
+            title="Dialog Ghost"
+            triggerLabel="Ghost"
+            triggerVariant="ghost"
+          >
+            <p>Contenu avec bouton ghost</p>
+          </Dialog>
+        </div>
+      </div>
+
+      <pre class="mt-3 p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;Dialog id="..." title="..." triggerLabel="..." triggerVariant="primary" /&gt;
+&lt;Dialog id="..." title="..." triggerLabel="..." triggerVariant="secondary" /&gt;
+&lt;Dialog id="..." title="..." triggerLabel="..." triggerVariant="ghost" /&gt;</code></pre>
+    </section>
+
+    <!-- Tailles du bouton trigger -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Tailles du bouton trigger</h2>
+
+      <div class="p-6 border border-gray-200 rounded-lg bg-gray-50">
+        <div class="flex gap-4 items-center flex-wrap">
+          <Dialog
+            id="size-sm"
+            title="Small Dialog"
+            triggerLabel="Small"
+            triggerSize="sm"
+          >
+            <p>Contenu du dialog</p>
+          </Dialog>
+
+          <Dialog
+            id="size-md"
+            title="Medium Dialog"
+            triggerLabel="Medium"
+            triggerSize="md"
+          >
+            <p>Contenu du dialog</p>
+          </Dialog>
+
+          <Dialog
+            id="size-lg"
+            title="Large Dialog"
+            triggerLabel="Large"
+            triggerSize="lg"
+          >
+            <p>Contenu du dialog</p>
+          </Dialog>
+        </div>
+      </div>
+
+      <pre class="mt-3 p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;Dialog id="..." title="..." triggerLabel="..." triggerSize="sm" /&gt;
+&lt;Dialog id="..." title="..." triggerLabel="..." triggerSize="md" /&gt;
+&lt;Dialog id="..." title="..." triggerLabel="..." triggerSize="lg" /&gt;</code></pre>
+    </section>
+
+    <!-- Exemple d'usage -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Exemple d'usage complet</h2>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import Dialog from '@/components/primitives/Dialog.astro';
+import Button from '@/components/primitives/Button.astro';
+import Input from '@/components/primitives/Input.astro';
+---
+
+&lt;Dialog
+  id="contact-form"
+  title="Nous contacter"
+  description="Remplissez ce formulaire pour nous envoyer un message."
+  triggerLabel="Ouvrir le formulaire"
+  triggerVariant="primary"
+  triggerSize="lg"
+&gt;
+  &lt;form class="space-y-4"&gt;
+    &lt;Input
+      name="name"
+      label="Nom"
+      required
+    /&gt;
+
+    &lt;Input
+      name="email"
+      label="Email"
+      type="email"
+      required
+    /&gt;
+
+    &lt;div class="flex gap-2 justify-end mt-6"&gt;
+      &lt;Button type="submit" variant="primary"&gt;
+        Envoyer
+      &lt;/Button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/Dialog&gt;</code></pre>
+    </section>
+
+    <!-- Fonctionnalités -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Fonctionnalités</h2>
+      <ul class="list-disc pl-6 space-y-2 text-gray-700">
+        <li><strong>Backdrop semi-transparent</strong> : fond noir à 50% d'opacité</li>
+        <li><strong>Fermeture au clic extérieur</strong> : cliquer sur le backdrop ferme le dialog</li>
+        <li><strong>Fermeture à la touche ESC</strong> : comportement natif de l'élément <code class="text-sm bg-gray-100 px-1 rounded">&lt;dialog&gt;</code></li>
+        <li><strong>Focus trap</strong> : navigation au Tab limitée aux éléments du dialog</li>
+        <li><strong>Auto-focus</strong> : focus automatique sur le premier élément focusable</li>
+        <li><strong>Bouton de fermeture</strong> : icône X en haut à droite</li>
+      </ul>
+    </section>
+
+    <!-- Accessibilité -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Accessibilité</h2>
+      <ul class="list-disc pl-6 space-y-2 text-gray-700">
+        <li>Utilise l'élément HTML natif <code class="text-sm bg-gray-100 px-1 rounded">&lt;dialog&gt;</code></li>
+        <li>Attribut <code class="text-sm bg-gray-100 px-1 rounded">aria-labelledby</code> lié au titre</li>
+        <li>Attribut <code class="text-sm bg-gray-100 px-1 rounded">aria-describedby</code> lié à la description (si présente)</li>
+        <li>Bouton de fermeture avec <code class="text-sm bg-gray-100 px-1 rounded">aria-label="Close dialog"</code></li>
+        <li>Focus trap JavaScript pour une navigation au clavier correcte</li>
+        <li>Gestion native de la touche ESC</li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,94 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Features - Sections';
+const description = 'Features section documentation';
+
+const alternateUrls = {
+  fr: '/fr/library/sections/features',
+  en: '/en/library/sections/features'
+};
+---
+
+<BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/en/library/sections" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to sections</a>
+
+    <h1 class="text-4xl font-bold mb-6">Features</h1>
+    <p class="text-lg mb-8">Section to display product/service features or benefits.</p>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Props</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 p-3 text-left">Name</th>
+              <th class="border border-gray-300 p-3 text-left">Type</th>
+              <th class="border border-gray-300 p-3 text-left">Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>title</code></td>
+              <td class="border border-gray-300 p-3">string</td>
+              <td class="border border-gray-300 p-3">✓</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>subtitle</code></td>
+              <td class="border border-gray-300 p-3">string</td>
+              <td class="border border-gray-300 p-3">-</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>features</code></td>
+              <td class="border border-gray-300 p-3">Array&lt;{'{'} icon?, title, description {'}'}&gt;</td>
+              <td class="border border-gray-300 p-3">✓</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>layout</code></td>
+              <td class="border border-gray-300 p-3">'grid' | 'list'</td>
+              <td class="border border-gray-300 p-3">-</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>columns</code></td>
+              <td class="border border-gray-300 p-3">2 | 3</td>
+              <td class="border border-gray-300 p-3">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Usage example</h2>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import Features from '@/components/sections/Features.astro';
+---
+
+&lt;Features
+  title="Our features"
+  subtitle="Everything you need"
+  layout="grid"
+  columns={3}
+  features={[
+    {
+      title: "Fast",
+      description: "Optimal performance",
+      icon: "⚡"
+    },
+    {
+      title: "Secure",
+      description: "Data protection",
+      icon: "🔒"
+    },
+    {
+      title: "Scalable",
+      description: "Grows with your needs",
+      icon: "📈"
+    }
+  ]}
+/&gt;</code></pre>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Team - Sections';
+const description = 'Team section documentation';
+
+const alternateUrls = {
+  fr: '/fr/library/sections/team',
+  en: '/en/library/sections/team'
+};
+---
+
+<BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/en/library/sections" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Back to sections</a>
+
+    <h1 class="text-4xl font-bold mb-6">Team</h1>
+    <p class="text-lg mb-8">Section to present team members.</p>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Usage example</h2>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import Team from '@/components/sections/Team.astro';
+---
+
+&lt;Team
+  title="Our team"
+  subtitle="The people behind the project"
+  members={[
+    {
+      name: "Alice Smith",
+      role: "CEO & Founder",
+      image: "/team/alice.jpg",
+      bio: "10 years of experience...",
+      social: {
+        linkedin: "https://linkedin.com/in/alice",
+        twitter: "https://twitter.com/alice"
+      }
+    },
+    {
+      name: "Bob Johnson",
+      role: "CTO",
+      image: "/team/bob.jpg"
+    }
+  ]}
+  layout="grid"
+  columns={3}
+/&gt;</code></pre>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Notes</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Grid display of team members</li>
+        <li>Support for social links (LinkedIn, Twitter, etc.)</li>
+        <li>Optional bio for each member</li>
+        <li>Flexible layout (2 or 3 columns)</li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

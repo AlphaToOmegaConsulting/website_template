@@ -1,0 +1,84 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'CTA - Sections';
+const description = 'Documentation de la section Call-to-Action';
+
+const alternateUrls = {
+  fr: '/fr/library/sections/cta',
+  en: '/en/library/sections/cta'
+};
+---
+
+<BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <a href="/fr/library/sections" class="text-sm text-gray-600 hover:underline mb-4 inline-block">← Retour aux sections</a>
+
+    <h1 class="text-4xl font-bold mb-6">CTA (Call-to-Action)</h1>
+    <p class="text-lg mb-8">Section d'appel à l'action pour inciter l'utilisateur à effectuer une action.</p>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Props</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 p-3 text-left">Nom</th>
+              <th class="border border-gray-300 p-3 text-left">Type</th>
+              <th class="border border-gray-300 p-3 text-left">Requis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>title</code></td>
+              <td class="border border-gray-300 p-3">string</td>
+              <td class="border border-gray-300 p-3">✓</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>description</code></td>
+              <td class="border border-gray-300 p-3">string</td>
+              <td class="border border-gray-300 p-3">-</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>primaryCta</code></td>
+              <td class="border border-gray-300 p-3">{'{'} label, href}</td>
+              <td class="border border-gray-300 p-3">✓</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>secondaryCta</code></td>
+              <td class="border border-gray-300 p-3">{'{'} label, href}</td>
+              <td class="border border-gray-300 p-3">-</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code>variant</code></td>
+              <td class="border border-gray-300 p-3">'default' | 'emphasized'</td>
+              <td class="border border-gray-300 p-3">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Exemple d'usage</h2>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import CTA from '@/components/sections/CTA.astro';
+---
+
+&lt;CTA
+  title="Prêt à commencer ?"
+  description="Rejoignez-nous dès aujourd'hui"
+  variant="emphasized"
+  primaryCta={{
+    label: "S'inscrire maintenant",
+    href: "/signup"
+  }}
+  secondaryCta={{
+    label: "En savoir plus",
+    href: "/about"
+  }}
+/&gt;</code></pre>
+    </section>
+  </main>
+</BaseLayout>
