@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildUrl } from '@/utils/url';
 
 const lang = 'fr';
 const title = 'Guides';
@@ -31,7 +32,7 @@ const guides = [
 
     <div class="space-y-4">
       {guides.map(g => (
-        <a href={`/fr/guides/${g.slug}`} class="block p-6 border rounded-lg hover:shadow-lg transition">
+        <a href={buildUrl(`/fr/guides/${g.slug}`)} class="block p-6 border rounded-lg hover:shadow-lg transition">
           <h2 class="text-xl font-semibold mb-2">{g.title}</h2>
           <p class="text-sm text-gray-600">{g.description}</p>
         </a>

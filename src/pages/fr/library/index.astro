@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildUrl } from '@/utils/url';
 
 const lang = 'fr';
 const title = 'Bibliothèque Alpha WebCore';
@@ -25,17 +26,17 @@ const alternateUrls = {
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <a href="/fr/library/primitives" class="block p-6 border rounded-lg hover:shadow-lg transition">
+      <a href={buildUrl('/fr/library/primitives')} class="block p-6 border rounded-lg hover:shadow-lg transition">
         <h2 class="text-xl font-semibold mb-2">Primitives</h2>
         <p class="text-sm text-gray-600">Composants UI de base</p>
       </a>
 
-      <a href="/fr/library/sections" class="block p-6 border rounded-lg hover:shadow-lg transition">
+      <a href={buildUrl('/fr/library/sections')} class="block p-6 border rounded-lg hover:shadow-lg transition">
         <h2 class="text-xl font-semibold mb-2">Sections</h2>
         <p class="text-sm text-gray-600">Blocs de page complets</p>
       </a>
 
-      <a href="/fr/library/layout" class="block p-6 border rounded-lg hover:shadow-lg transition">
+      <a href={buildUrl('/fr/library/layout')} class="block p-6 border rounded-lg hover:shadow-lg transition">
         <h2 class="text-xl font-semibold mb-2">Layout</h2>
         <p class="text-sm text-gray-600">Composants de mise en page</p>
       </a>
