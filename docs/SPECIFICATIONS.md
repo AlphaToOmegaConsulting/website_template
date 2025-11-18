@@ -1,9 +1,10 @@
-# Alpha WebCore - Spécifications Complètes v3.1
+# Alpha WebCore - Spécifications Complètes v3.2
 
 > **Template Astro minimaliste, générique, neutre et multi-marque**
 
 **Date de création** : 2025-11-17
-**Version** : 3.1 (Post-audit, Post-refactoring)
+**Dernière mise à jour** : 2025-11-18
+**Version** : 3.2 (Post-audit, Post-refactoring, Validation GitHub Pages)
 **Build status** : ✅ Passed
 **Pages générées** : 11
 **Tests** : 136/136 passing ✓
@@ -106,7 +107,7 @@ website_template/
 │   └── utils/
 │       ├── date-formatter.ts
 │       ├── date-formatter.test.ts
-│       └── url.ts                # Gestion base path
+│       └── url.ts                # Gestion base path + buildUrl()
 ├── tests/
 │   ├── unit/
 │   │   ├── primitives/           # Tests des composants UI
@@ -120,7 +121,9 @@ website_template/
 │       └── base-path.spec.ts
 ├── scripts/
 │   ├── a11y-audit.ts             # Audit accessibilité
-│   └── check-links.ts            # Vérification liens
+│   ├── check-links.ts            # Vérification liens
+│   ├── validate-source-links.ts  # Validation liens sources .astro
+│   └── validate-build-links.ts   # Validation liens HTML générés
 ├── docs/                         # Documentation
 ├── astro.config.mjs
 ├── tailwind.config.mjs
@@ -617,6 +620,14 @@ pnpm test:coverage     # Avec couverture
 - ✅ Structure de dossiers identique
 - ✅ Absence de pages TWT
 
+#### base-path-validation.spec.ts (Amélioré)
+- ✅ Détection des liens hardcodés dans les fichiers HTML
+- ✅ Validation de l'utilisation de `buildUrl()` dans les sources
+- ✅ Test automatique de TOUS les fichiers HTML générés
+- ✅ Pages critiques étendues (library/primitives, sections, layout)
+- ✅ Messages d'erreur détaillés avec fichier et ligne
+- ✅ Scan récursif complet du répertoire `dist/`
+
 ### 8.4 Tests E2E (Playwright)
 
 **Localisation** : `tests/e2e/`
@@ -695,7 +706,9 @@ pnpm a11y-audit
 - `/fr/`, `/fr/events/`, `/fr/404`
 - `/en/`, `/en/events/`, `/en/404`
 
-### 9.2 Vérification des liens
+### 9.2 Vérification et validation des liens
+
+#### check-links.ts
 
 **Script** : `scripts/check-links.ts`
 
@@ -709,6 +722,60 @@ pnpm check-links
 - Rapporte les liens invalides
 
 **Prérequis** : Exécuter `pnpm build` avant
+
+#### validate-source-links.ts (Nouveau)
+
+**Script** : `scripts/validate-source-links.ts`
+
+```bash
+pnpm validate:source
+```
+
+**Objectif** : Détecter les liens hardcodés **avant** le build
+
+**Fonctionnalités** :
+- Scanne toutes les pages critiques `.astro`
+- Vérifie que `buildUrl()` est importé
+- Détecte les liens `<a href="/fr/..."` sans `buildUrl()`
+- Détecte les liens interpolés `href={\`/en/...\`}` sans `buildUrl()`
+- Indique le fichier et le numéro de ligne des violations
+
+**Pages critiques vérifiées** :
+- Toutes les pages de `library/` (primitives, sections, layout)
+- Toutes les pages de `guides/`
+- Toutes les pages de `demo/`
+- Pages 404
+
+#### validate-build-links.ts (Nouveau)
+
+**Script** : `scripts/validate-build-links.ts`
+
+```bash
+pnpm validate:build
+```
+
+**Objectif** : Détecter les liens hardcodés dans le HTML final
+
+**Fonctionnalités** :
+- Scanne **TOUS** les fichiers HTML générés (pas juste une liste)
+- Détecte automatiquement les patterns `href="/fr/..."` et `href="/en/..."`
+- Exclut les assets (`/assets/`, `/_astro/`)
+- Fournit le contexte et l'emplacement des violations
+- Groupe les violations par fichier
+
+**Prérequis** : Exécuter `pnpm build` avant
+
+#### Commande combinée
+
+```bash
+# Valider sources + build en une commande
+pnpm validate:links
+```
+
+Cette commande exécute :
+1. `validate:source` - Validation du code source
+2. `build` - Build du projet
+3. `validate:build` - Validation du HTML généré
 
 ### 9.3 Package manager
 
@@ -764,30 +831,82 @@ Le template supporte nativement :
    });
    ```
 
-### 10.2 Utilitaire URL
+### 10.2 Utilitaire URL et buildUrl()
 
 **Fichier** : `src/utils/url.ts`
 
-```typescript
-import { getBasePath } from './url';
+#### Fonction buildUrl()
 
-// URLs automatiquement préfixées
-const url = getBasePath('/about');
-// Racine : "/about"
-// GitHub Pages : "/repository-name/about"
+**RÈGLE CRITIQUE** : TOUJOURS utiliser `buildUrl()` pour les liens internes
+
+```typescript
+import { buildUrl } from '@/utils/url';
+
+// ❌ INCORRECT - Ne fonctionne pas sur GitHub Pages
+<a href="/fr/library">Library</a>
+
+// ✅ CORRECT - Fonctionne partout
+<a href={buildUrl('/fr/library')}>Library</a>
 ```
 
-### 10.3 Build et preview
+**Pourquoi c'est critique :**
+- En local (`base = '/'`) : `/fr/library` ✅
+- Sur GitHub Pages (`base = '/website_template/'`) : `/website_template/fr/library` ✅
+- Sans `buildUrl()`, les liens cassent sur GitHub Pages ❌
+
+**Fonctions disponibles :**
+
+```typescript
+// Construire une URL avec base path
+buildUrl('/fr/library')
+// → Local: '/fr/library'
+// → GitHub Pages: '/website_template/fr/library'
+
+// Liens avec interpolation
+buildUrl(`/en/guides/${slug}`)
+
+// Liens externes (retournés inchangés)
+buildUrl('https://example.com')
+// → 'https://example.com'
+
+// Normaliser un pathname
+normalizePathname('/website_template/fr/library/')
+// → '/fr/library'
+
+// Vérifier si un lien est actif
+isActivePath('/website_template/fr/library', '/fr/library')
+// → true
+
+// Vérifier si une URL est externe
+isExternalUrl('https://example.com')
+// → true
+```
+
+**Composants gérant buildUrl() automatiquement :**
+- `<ButtonLink>` - Gère le base path en interne
+- `<Navigation>` - Menu de navigation
+- `<LanguageSwitcher>` - Sélecteur de langue
+- `<Footer>` - Pied de page
+
+### 10.3 Build, preview et validation
 
 ```bash
+# Dev local
+pnpm dev
+
 # Build de production
 pnpm build
 
 # Preview local
 pnpm preview
 
-# Dev local
-pnpm dev
+# Validation des liens
+pnpm validate:source      # Valider les sources .astro
+pnpm validate:build       # Valider le HTML généré
+pnpm validate:links       # Valider source + build
+
+# Pipeline CI complet
+pnpm ci                   # test + validate:links + check-links + test:e2e
 ```
 
 **Résultat** : 11 pages générées, ~4.2s build time
@@ -835,6 +954,32 @@ pnpm dev
 - 🎯 Template 100% générique
 
 **Résultat** : Template v3.1 stabilisé, testé, documenté
+
+#### Phase 3.2 : Validation GitHub Pages (v3.2)
+
+**Date** : 2025-11-18
+
+**Problème résolu** :
+- ❌ Liens cassés sur GitHub Pages (erreurs 404)
+- ❌ Liens hardcodés sans base path dans certaines pages
+- ❌ Tests ne détectaient pas les liens hardcodés
+
+**Changements** :
+- 🔧 Correction : Ajout de `buildUrl()` dans `library/primitives/index.astro` (FR + EN)
+- 🧪 Nouveau : Script `validate-source-links.ts` - Validation des sources avant build
+- 🧪 Nouveau : Script `validate-build-links.ts` - Validation du HTML généré
+- 📋 Nouveau : Commandes `validate:source`, `validate:build`, `validate:links`
+- 📊 Amélioration : Extension des tests E2E (6 nouvelles pages de library)
+- 📚 Documentation : `RESOLUTION_REPORT_GITHUB_PAGES_LINKS.md`
+- 📚 Documentation : `DEVELOPMENT_BEST_PRACTICES.md`
+- 📚 Documentation : `TEST_GAP_ANALYSIS.md`
+
+**Résultat** :
+- ✅ Site fonctionnel sur GitHub Pages
+- ✅ Tous les liens utilisent `buildUrl()` correctement
+- ✅ Tests détectent automatiquement les liens hardcodés
+- ✅ Pipeline CI étendu avec validation des liens
+- ✅ Documentation complète des bonnes pratiques
 
 ### 11.2 Décisions anti-over-engineering
 
@@ -988,7 +1133,7 @@ Phase 1-2 : Stabilisation
 
 ## 14. Conclusion
 
-Alpha WebCore v3.1 est un **template Astro minimaliste, générique, neutre et multi-marque** parfaitement conforme au cahier des charges.
+Alpha WebCore v3.2 est un **template Astro minimaliste, générique, neutre et multi-marque** parfaitement conforme au cahier des charges.
 
 **État actuel** :
 - ✅ Noyau minimal, stable et extensible
@@ -998,11 +1143,20 @@ Alpha WebCore v3.1 est un **template Astro minimaliste, générique, neutre et m
 - ✅ Documentation exhaustive
 - ✅ Prêt pour la production
 - ✅ Prêt pour des extensions ciblées
+- ✅ **Fonctionnel sur GitHub Pages** avec gestion automatique du base path
+- ✅ **Validation automatique des liens** avant et après build
+- ✅ **Pipeline CI robuste** détectant les liens cassés
 
-**Le template est maintenant une base solide pour créer rapidement des sites web statiques pour différentes marques, avec la garantie d'un code propre, testé et maintenable.**
+**Le template est maintenant une base solide pour créer rapidement des sites web statiques pour différentes marques, avec la garantie d'un code propre, testé, maintenable et compatible GitHub Pages.**
+
+**Points clés de la v3.2** :
+- 🔗 Fonction `buildUrl()` pour tous les liens internes
+- 🧪 Scripts de validation automatique des liens
+- 📚 Documentation complète des bonnes pratiques
+- ✅ Tests étendus pour détecter les liens hardcodés
 
 ---
 
-**Dernière mise à jour** : 2025-11-17
-**Version du document** : 3.1
+**Dernière mise à jour** : 2025-11-18
+**Version du document** : 3.2
 **Auteur** : Claude Code avec François Rodriguez
