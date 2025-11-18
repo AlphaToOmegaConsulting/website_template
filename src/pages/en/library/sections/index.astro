@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildUrl } from '@/utils/url';
 import Hero from '@/components/sections/Hero.astro';
 import Features from '@/components/sections/Features.astro';
 import About from '@/components/sections/About.astro';
@@ -63,7 +64,6 @@ const sections = [
   alternateUrls={alternateUrls}
 >
   <div class="mb-8 container mx-auto px-4 max-w-6xl">
-    <a href="/en/library" class="text-sm text-gray-600 hover:underline inline-block">← Back to library</a>
     <h1 class="text-4xl font-bold mt-4 mb-2">Sections</h1>
     <p class="text-lg text-gray-600">Complete and reusable page blocks.</p>
   </div>
@@ -73,7 +73,7 @@ const sections = [
       <div class="container mx-auto px-4 max-w-6xl mb-8">
         <div class="flex items-center justify-between">
           <h2 class="text-3xl font-bold">Hero</h2>
-          <a href="/en/library/sections/hero" class="text-blue-600 hover:underline font-medium">
+          <a href={buildUrl('/en/library/sections/hero')} class="text-blue-600 hover:underline font-medium">
             View details →
           </a>
         </div>
@@ -96,7 +96,7 @@ const sections = [
       <div class="container mx-auto px-4 max-w-6xl mb-8">
         <div class="flex items-center justify-between">
           <h2 class="text-3xl font-bold">Features</h2>
-          <a href="/en/library/sections/features" class="text-blue-600 hover:underline font-medium">
+          <a href={buildUrl('/en/library/sections/features')} class="text-blue-600 hover:underline font-medium">
             View details →
           </a>
         </div>
@@ -131,7 +131,7 @@ const sections = [
       <div class="container mx-auto px-4 max-w-6xl mb-8">
         <div class="flex items-center justify-between">
           <h2 class="text-3xl font-bold">About</h2>
-          <a href="/en/library/sections/about" class="text-blue-600 hover:underline font-medium">
+          <a href={buildUrl('/en/library/sections/about')} class="text-blue-600 hover:underline font-medium">
             View details →
           </a>
         </div>
@@ -153,7 +153,7 @@ const sections = [
       <div class="container mx-auto px-4 max-w-6xl mb-8">
         <div class="flex items-center justify-between">
           <h2 class="text-3xl font-bold">Events</h2>
-          <a href="/en/library/sections/events" class="text-blue-600 hover:underline font-medium">
+          <a href={buildUrl('/en/library/sections/events')} class="text-blue-600 hover:underline font-medium">
             View details →
           </a>
         </div>
@@ -167,7 +167,7 @@ const sections = [
       <div class="container mx-auto px-4 max-w-6xl mb-8">
         <div class="flex items-center justify-between">
           <h2 class="text-3xl font-bold">CTA</h2>
-          <a href="/en/library/sections/cta" class="text-blue-600 hover:underline font-medium">
+          <a href={buildUrl('/en/library/sections/cta')} class="text-blue-600 hover:underline font-medium">
             View details →
           </a>
         </div>
@@ -188,7 +188,7 @@ const sections = [
       <div class="container mx-auto px-4 max-w-6xl mb-8">
         <div class="flex items-center justify-between">
           <h2 class="text-3xl font-bold">Team</h2>
-          <a href="/en/library/sections/team" class="text-blue-600 hover:underline font-medium">
+          <a href={buildUrl('/en/library/sections/team')} class="text-blue-600 hover:underline font-medium">
             View details →
           </a>
         </div>
