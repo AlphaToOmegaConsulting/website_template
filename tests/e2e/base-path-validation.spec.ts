@@ -158,6 +158,16 @@ test.describe('Base Path Validation', () => {
       'src/pages/fr/demo/index.astro',
       'src/pages/en/guides/index.astro',
       'src/pages/fr/guides/index.astro',
+      // Pages de guides détaillées
+      'src/pages/en/guides/add-page.astro',
+      'src/pages/fr/guides/add-page.astro',
+      'src/pages/en/guides/add-section.astro',
+      'src/pages/fr/guides/add-section.astro',
+      'src/pages/en/guides/site-usage/index.astro',
+      'src/pages/fr/guides/site-usage/index.astro',
+      // Pages 404
+      'src/pages/en/404.astro',
+      'src/pages/fr/404.astro',
     ];
 
     const issues: Array<{page: string; problem: string}> = [];
@@ -184,9 +194,10 @@ test.describe('Base Path Validation', () => {
         continue;
       }
 
-      // Vérifier qu'il n'y a pas de href="/ hardcodé dans les liens internes
+      // Vérifier qu'il n'y a pas de href="/ hardcodé dans les balises <a>
       // (à l'exception des liens racine comme href="/fr/" ou href="/en/")
-      const hardcodedLinkPattern = /href=["'](\/(?:fr|en)\/[^"'#]+)["']/g;
+      // IMPORTANT : On exclut ButtonLink car il gère buildUrl() en interne
+      const hardcodedLinkPattern = /<a\s[^>]*href=["'](\/(?: fr|en)\/[^"'#]+)["']/g;
       let match;
 
       while ((match = hardcodedLinkPattern.exec(content)) !== null) {
@@ -195,9 +206,14 @@ test.describe('Base Path Validation', () => {
         const surroundingCode = content.substring(Math.max(0, match.index - 20), match.index + 50);
 
         if (!surroundingCode.includes('buildUrl')) {
+          // Extraire un contexte plus large pour le message d'erreur
+          const lineStart = content.lastIndexOf('\n', match.index);
+          const lineEnd = content.indexOf('\n', match.index + 50);
+          const fullLine = content.substring(lineStart + 1, lineEnd > 0 ? lineEnd : undefined).trim();
+          
           issues.push({
             page,
-            problem: `Lien hardcodé trouvé sans buildUrl(): ${url}`
+            problem: `Lien <a> hardcodé trouvé sans buildUrl(): ${url}\n      Code: ${fullLine.substring(0, 100)}...`
           });
         }
       }

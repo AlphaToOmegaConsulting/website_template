@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildUrl } from '@/utils/url';
 
 const lang = 'fr';
 const title = 'Ajouter une page - Guide';
@@ -9,6 +10,10 @@ const alternateUrls = {
   fr: '/fr/guides/add-page',
   en: '/en/guides/add-page'
 };
+
+// Build navigation URLs
+const addSectionUrl = buildUrl('/fr/guides/add-section');
+const primitivesUrl = buildUrl('/fr/library/primitives');
 ---
 
 <BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}>
@@ -274,11 +279,11 @@ import CTA from '@/components/sections/CTA.astro';
     <section>
       <h2 class="text-3xl font-semibold mb-4">Prochaines étapes</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href="/fr/guides/add-section" class="border rounded-lg p-4 hover:shadow-lg transition">
+        <a href={addSectionUrl} class="border rounded-lg p-4 hover:shadow-lg transition">
           <h3 class="font-semibold mb-2">→ Ajouter une section</h3>
           <p class="text-sm text-gray-600">Créer un nouveau composant section réutilisable</p>
         </a>
-        <a href="/fr/library/primitives" class="border rounded-lg p-4 hover:shadow-lg transition">
+        <a href={primitivesUrl} class="border rounded-lg p-4 hover:shadow-lg transition">
           <h3 class="font-semibold mb-2">→ Voir les primitives</h3>
           <p class="text-sm text-gray-600">Découvrir tous les composants UI disponibles</p>
         </a>
