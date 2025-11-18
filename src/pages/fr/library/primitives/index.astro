@@ -5,6 +5,7 @@ import ButtonLink from '@/components/primitives/ButtonLink.astro';
 import Card from '@/components/primitives/Card.astro';
 import Input from '@/components/primitives/Input.astro';
 import Dialog from '@/components/primitives/Dialog.astro';
+import { buildUrl } from '@/utils/url';
 
 const lang = 'fr';
 const title = 'Primitives UI';
@@ -62,7 +63,7 @@ const primitives = [
           <div class="flex items-center justify-between mb-8">
             <h2 class="text-3xl font-bold">{p.name}</h2>
             <a
-              href={`/fr/library/primitives/${p.slug}`}
+              href={buildUrl(`/fr/library/primitives/${p.slug}`)}
               class="text-blue-600 hover:underline font-medium"
             >
               Voir détails →

@@ -165,6 +165,15 @@ test.describe('Base Path Validation', () => {
       'src/pages/fr/guides/add-section.astro',
       'src/pages/en/guides/site-usage/index.astro',
       'src/pages/fr/guides/site-usage/index.astro',
+      // Pages library - primitives
+      'src/pages/en/library/primitives/index.astro',
+      'src/pages/fr/library/primitives/index.astro',
+      // Pages library - sections
+      'src/pages/en/library/sections/index.astro',
+      'src/pages/fr/library/sections/index.astro',
+      // Pages library - layout
+      'src/pages/en/library/layout/index.astro',
+      'src/pages/fr/library/layout/index.astro',
       // Pages 404
       'src/pages/en/404.astro',
       'src/pages/fr/404.astro',
@@ -229,6 +238,79 @@ test.describe('Base Path Validation', () => {
         `Pour corriger:\n` +
         `  1. Importer buildUrl: import { buildUrl } from '@/utils/url';\n` +
         `  2. Wrapper tous les liens internes: href={buildUrl('/fr/library/primitives')}\n`
+      ).toEqual([]);
+    }
+  });
+
+  test('should scan all HTML files for hardcoded links without base path', async () => {
+    // Ce test scanne TOUS les fichiers HTML générés pour détecter les liens hardcodés
+    // C'est un filet de sécurité pour attraper les pages non listées dans criticalPages
+
+    if (!fs.existsSync(distDir)) {
+      throw new Error('Le répertoire dist n\'existe pas. Exécutez "pnpm build" d\'abord.');
+    }
+
+    const violations: Array<{file: string; link: string; context: string}> = [];
+
+    // Scanner récursivement tous les fichiers HTML
+    function scanAllHtmlFiles(dir: string) {
+      const files = fs.readdirSync(dir);
+
+      for (const file of files) {
+        const filePath = path.join(dir, file);
+        const stat = fs.statSync(filePath);
+
+        if (stat.isDirectory()) {
+          scanAllHtmlFiles(filePath);
+        } else if (file.endsWith('.html')) {
+          const content = fs.readFileSync(filePath, 'utf-8');
+          
+          // Pattern pour détecter les liens internes sans base path
+          // Cherche href="/fr/... ou href="/en/... (pas href="/website_template/...
+          const hrefPattern = /href=["'](\/(?:fr|en)\/[^"'#]+)["']/g;
+          let match;
+
+          while ((match = hrefPattern.exec(content)) !== null) {
+            const url = match[1];
+            
+            // Exclure les assets et autres exceptions
+            if (url.startsWith('/assets/') || url.startsWith('/_astro/')) {
+              continue;
+            }
+
+            // Extraire le contexte autour du lien
+            const contextStart = Math.max(0, match.index - 50);
+            const contextEnd = Math.min(content.length, match.index + 100);
+            const context = content.substring(contextStart, contextEnd)
+              .replace(/\n/g, ' ')
+              .replace(/\s+/g, ' ')
+              .trim();
+
+            violations.push({
+              file: path.relative(distDir, filePath),
+              link: url,
+              context: context.substring(0, 80) + '...'
+            });
+          }
+        }
+      }
+    }
+
+    scanAllHtmlFiles(distDir);
+
+    if (violations.length > 0) {
+      const errorMessage = violations
+        .map(v => `  📄 ${v.file}\n     🔗 ${v.link}\n     📝 ${v.context}\n`)
+        .join('\n');
+
+      expect(violations,
+        `❌ ${violations.length} lien(s) hardcodé(s) détecté(s) dans les fichiers HTML générés.\n` +
+        `Ces liens ne fonctionneront pas sur GitHub Pages avec base path.\n\n` +
+        `Violations trouvées:\n\n${errorMessage}\n` +
+        `🔧 Solution:\n` +
+        `  1. Trouver le fichier source .astro correspondant\n` +
+        `  2. Importer buildUrl: import { buildUrl } from '@/utils/url';\n` +
+        `  3. Wrapper le lien: href={buildUrl('${violations[0]?.link}')}\n`
       ).toEqual([]);
     }
   });

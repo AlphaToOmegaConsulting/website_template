@@ -17,6 +17,12 @@ test.describe('Link Integrity', () => {
     '/en/demo/',
     '/fr/library/',
     '/en/library/',
+    '/fr/library/primitives/',
+    '/en/library/primitives/',
+    '/fr/library/sections/',
+    '/en/library/sections/',
+    '/fr/library/layout/',
+    '/en/library/layout/',
     '/fr/guides/',
     '/en/guides/',
   ];
