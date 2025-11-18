@@ -9,10 +9,12 @@ test.describe('Header Links Validation', () => {
   const pagesToTest = [
     { url: '/fr/', lang: 'fr' },
     { url: '/en/', lang: 'en' },
-    { url: '/fr/events/', lang: 'fr' },
-    { url: '/en/events/', lang: 'en' },
-    { url: '/fr/partners/', lang: 'fr' },
-    { url: '/en/partners/', lang: 'en' },
+    { url: '/fr/demo/', lang: 'fr' },
+    { url: '/en/demo/', lang: 'en' },
+    { url: '/fr/library/', lang: 'fr' },
+    { url: '/en/library/', lang: 'en' },
+    { url: '/fr/guides/', lang: 'fr' },
+    { url: '/en/guides/', lang: 'en' },
   ];
 
   for (const pageConfig of pagesToTest) {
@@ -122,7 +124,7 @@ test.describe('Header Links Validation', () => {
   });
 
   test('should have consistent navigation links across French pages', async ({ page }) => {
-    const frenchPages = ['/fr/', '/fr/events/', '/fr/partners/'];
+    const frenchPages = ['/fr/', '/fr/demo/', '/fr/library/', '/fr/guides/'];
     let firstPageNavLinks: string[] | null = null;
 
     for (const pageUrl of frenchPages) {
@@ -146,7 +148,7 @@ test.describe('Header Links Validation', () => {
   });
 
   test('should have consistent navigation links across English pages', async ({ page }) => {
-    const englishPages = ['/en/', '/en/events/', '/en/partners/'];
+    const englishPages = ['/en/', '/en/demo/', '/en/library/', '/en/guides/'];
     let firstPageNavLinks: string[] | null = null;
 
     for (const pageUrl of englishPages) {

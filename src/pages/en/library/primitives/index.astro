@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/primitives/Button.astro';
+import ButtonLink from '@/components/primitives/ButtonLink.astro';
+import Card from '@/components/primitives/Card.astro';
+import Input from '@/components/primitives/Input.astro';
+import Dialog from '@/components/primitives/Dialog.astro';
+
+const lang = 'en';
+const title = 'UI Primitives';
+const description = 'Base design system components';
+
+const alternateUrls = {
+  fr: '/fr/library/primitives',
+  en: '/en/library/primitives'
+};
+
+const primitives = [
+  {
+    name: 'Button',
+    slug: 'button',
+    description: 'Base component for actions'
+  },
+  {
+    name: 'ButtonLink',
+    slug: 'button-link',
+    description: 'Button with link appearance'
+  },
+  {
+    name: 'Card',
+    slug: 'card',
+    description: 'Container to organize content'
+  },
+  {
+    name: 'Input',
+    slug: 'input',
+    description: 'Text input field'
+  },
+  {
+    name: 'Dialog',
+    slug: 'dialog',
+    description: 'Modal window for interactions'
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <div class="mb-8 container mx-auto px-4 max-w-6xl">
+    <h1 class="text-4xl font-bold mt-4 mb-2">UI Primitives</h1>
+    <p class="text-lg text-gray-600">Reusable base components.</p>
+  </div>
+
+  <div class="w-full">
+    {primitives.map((p, index) => (
+      <div class="py-12">
+        <div class="container mx-auto px-4 max-w-6xl">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl font-bold">{p.name}</h2>
+            <a
+              href={`/en/library/primitives/${p.slug}`}
+              class="text-blue-600 hover:underline font-medium"
+            >
+              View details →
+            </a>
+          </div>
+          <p class="text-gray-600 mb-8">{p.description}</p>
+
+          <div class="bg-gray-50 p-12 rounded-lg flex items-center justify-center">
+            {p.slug === 'button' && (
+              <Button variant="primary" size="md">Example Button</Button>
+            )}
+            {p.slug === 'button-link' && (
+              <ButtonLink href="#" variant="secondary" size="md">Example Link Button</ButtonLink>
+            )}
+            {p.slug === 'card' && (
+              <Card variant="bordered" padding="md" class="w-full max-w-md">
+                <h3 class="text-xl font-semibold mb-2">Card Title</h3>
+                <p class="text-gray-600">This is an example of card content. Cards are useful for organizing related information into contained sections.</p>
+              </Card>
+            )}
+            {p.slug === 'input' && (
+              <Input
+                type="text"
+                placeholder="Enter your text here..."
+                class="w-full max-w-md"
+              />
+            )}
+            {p.slug === 'dialog' && (
+              <div class="text-center space-y-4">
+                <p class="text-gray-600">Modal dialogs provide focused interactions</p>
+                <p class="text-sm text-gray-500">(See details page for interactive demo)</p>
+              </div>
+            )}
+          </div>
+        </div>
+        {index < primitives.length - 1 && (
+          <hr class="mt-12 border-gray-200" />
+        )}
+      </div>
+    ))}
+  </div>
+</BaseLayout>

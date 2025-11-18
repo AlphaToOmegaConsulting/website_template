@@ -1,0 +1,397 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Ajouter une section - Guide';
+const description = 'Guide pour créer un nouveau composant section';
+
+const alternateUrls = {
+  fr: '/fr/guides/add-section',
+  en: '/en/guides/add-section'
+};
+---
+
+<BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">Comment ajouter une section</h1>
+    <p class="text-lg text-gray-600 mb-12">
+      Guide complet pour créer et documenter un nouveau composant section réutilisable.
+    </p>
+
+    <!-- Quand créer -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Quand créer une nouvelle section ?</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-green-50 border-l-4 border-green-500 p-4">
+          <p class="font-semibold mb-2">✓ Créer une SECTION si :</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li>Représente une zone fonctionnelle complète d'une page</li>
+            <li>Contient plusieurs primitives assemblées</li>
+            <li>A une logique métier spécifique</li>
+            <li>Exemple : Galerie de témoignages, Section pricing, Newsletter signup</li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+          <p class="font-semibold mb-2">✓ Créer une PRIMITIVE si :</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li>Composant atomique et réutilisable</li>
+            <li>Utilisable dans multiples contextes</li>
+            <li>Pas de logique métier</li>
+            <li>Exemple : Badge, Avatar, Tooltip</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+        <p class="font-semibold mb-2">Règle d'or :</p>
+        <p class="text-sm">Si votre composant assemble plusieurs primitives pour créer un bloc de contenu cohérent → Section</p>
+      </div>
+    </section>
+
+    <!-- Étape 1 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Étape 1 : Créer le composant</h2>
+      <p class="mb-4">
+        Créer le fichier dans <code class="bg-gray-100 px-1 rounded">src/components/sections/</code>
+      </p>
+
+      <h3 class="text-xl font-semibold mb-3">Exemple : Section "Testimonials"</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-4"><code>src/components/sections/Testimonials.astro</code></pre>
+
+      <p class="mb-2 text-sm text-gray-600">Utilisez toujours <strong>PascalCase</strong> pour le nom du fichier.</p>
+    </section>
+
+    <!-- Étape 2 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Étape 2 : Définir les props</h2>
+      <p class="mb-4">
+        Utiliser TypeScript pour définir une interface Props claire avec valeurs par défaut.
+      </p>
+
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+interface Props {'{'}
+  title: string;
+  subtitle?: string;
+  testimonials: Array&lt;{'{'}
+    author: string;
+    role: string;
+    content: string;
+    avatar?: string;
+    rating?: number;
+  {'}'}&gt;;
+  layout?: 'grid' | 'carousel';
+  columns?: 2 | 3;
+  class?: string;
+{'}'}
+
+const {'{'}
+  title,
+  subtitle,
+  testimonials,
+  layout = 'grid',
+  columns = 3,
+  class: className = '',
+{'}'} = Astro.props;
+---</code></pre>
+
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
+        <p class="font-semibold mb-2">Bonnes pratiques :</p>
+        <ul class="list-disc pl-6 space-y-1 text-sm">
+          <li>Toujours typer les props avec TypeScript</li>
+          <li>Fournir des valeurs par défaut raisonnables</li>
+          <li>Permettre l'ajout de classes custom via <code>class</code></li>
+          <li>Utiliser des types union pour les variantes (<code>'grid' | 'carousel'</code>)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Étape 3 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Étape 3 : Utiliser SectionLayout (optionnel)</h2>
+      <p class="mb-4">
+        SectionLayout fournit un wrapper standard pour l'espacement et la largeur.
+      </p>
+
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import SectionLayout from '@/layouts/SectionLayout.astro';
+// ... props ...
+---
+
+&lt;SectionLayout class={'{'}className{'}'}&gt;
+  &lt;!-- Contenu de votre section --&gt;
+&lt;/SectionLayout&gt;</code></pre>
+
+      <p class="text-sm text-gray-600 mt-4">
+        💡 SectionLayout est optionnel. Utilisez-le pour la cohérence, ou créez votre propre structure si nécessaire.
+      </p>
+    </section>
+
+    <!-- Étape 4 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Étape 4 : Composer avec des primitives</h2>
+      <p class="mb-4">
+        Réutiliser les composants primitives existants autant que possible.
+      </p>
+
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import Card from '@/components/primitives/Card.astro';
+import Button from '@/components/primitives/Button.astro';
+
+// ... props ...
+
+const gridClasses = {'{'}
+  2: 'grid-cols-1 md:grid-cols-2',
+  3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+{'}'};
+---
+
+&lt;section class={'{'}&#96;py-16 bg-white &#36;{'{'}className{'}'}&#96;{'}'}&gt;
+  &lt;div class="container mx-auto px-4 max-w-7xl"&gt;
+    &lt;!-- En-tête --&gt;
+    &lt;div class="text-center mb-12"&gt;
+      &lt;h2 class="text-4xl font-bold text-brand-primary mb-4"&gt;
+        {'{'}title{'}'}
+      &lt;/h2&gt;
+      {'{'}subtitle &amp;&amp; (
+        &lt;p class="text-xl text-gray-600"&gt;{'{'}subtitle{'}'}&lt;/p&gt;
+      ){'}'}
+    &lt;/div&gt;
+
+    &lt;!-- Grille de témoignages --&gt;
+    &lt;div class={'{'}&#96;grid &#36;{'{'}gridClasses[columns]{'}'} gap-6&#96;{'}'}&gt;
+      {'{'}testimonials.map((testimonial) =&gt; (
+        &lt;Card variant="bordered" padding="lg"&gt;
+          &lt;p class="text-gray-700 mb-4"&gt;"{'{'}testimonial.content{'}'}"&lt;/p&gt;
+
+          &lt;div class="flex items-center"&gt;
+            {'{'}testimonial.avatar &amp;&amp; (
+              &lt;img
+                src={'{'}testimonial.avatar{'}'}
+                alt={'{'}testimonial.author{'}'}
+                class="w-12 h-12 rounded-full mr-3"
+              /&gt;
+            ){'}'}
+            &lt;div&gt;
+              &lt;p class="font-semibold"&gt;{'{'}testimonial.author{'}'}&lt;/p&gt;
+              &lt;p class="text-sm text-gray-600"&gt;{'{'}testimonial.role{'}'}&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/Card&gt;
+      )){'}'}
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </section>
+
+    <!-- Étape 5 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Étape 5 : Ajouter à la bibliothèque</h2>
+      <p class="mb-4">
+        Créer les pages de documentation FR et EN pour référencer votre nouvelle section.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-3">Créer les fichiers de documentation</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-4"><code>src/pages/fr/library/sections/testimonials.astro
+src/pages/en/library/sections/testimonials.astro</code></pre>
+
+      <h3 class="text-xl font-semibold mb-3">Structure de la page de doc</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Testimonials - Sections';
+const description = 'Documentation de la section Testimonials';
+
+const alternateUrls = {'{'}
+  fr: '/fr/library/sections/testimonials',
+  en: '/en/library/sections/testimonials'
+{'}'};
+---
+
+&lt;BaseLayout title={'{'}title{'}'} description={'{'}description{'}'} lang={'{'}lang{'}'} alternateUrls={'{'}alternateUrls{'}'}&gt;
+  &lt;main class="container mx-auto px-4 py-12 max-w-4xl"&gt;
+    &lt;h1&gt;Testimonials&lt;/h1&gt;
+
+    &lt;!-- Tableau des props --&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Props&lt;/h2&gt;
+      &lt;table&gt;...&lt;/table&gt;
+    &lt;/section&gt;
+
+    &lt;!-- Exemple d'usage --&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Exemple d'usage&lt;/h2&gt;
+      &lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+&lt;/BaseLayout&gt;</code></pre>
+
+      <p class="text-sm text-gray-600 mt-4">
+        💡 Consulter les pages existantes dans <code class="bg-gray-100 px-1 rounded">src/pages/fr/library/sections/</code> pour voir la structure complète.
+      </p>
+    </section>
+
+    <!-- Étape 6 -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Étape 6 : Utiliser dans une page</h2>
+      <p class="mb-4">
+        Importer et utiliser votre nouvelle section dans n'importe quelle page.
+      </p>
+
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Testimonials from '@/components/sections/Testimonials.astro';
+
+const testimonials = [
+  {'{'}
+    author: "Marie Dupont",
+    role: "CEO, TechCorp",
+    content: "Service excellent, équipe réactive et professionnelle !",
+    avatar: "/avatars/marie.jpg",
+    rating: 5
+  {'}'},
+  // ... autres témoignages
+];
+---
+
+&lt;BaseLayout {'{'}...props{'}'}&gt;
+  &lt;Hero title="Notre expertise" /&gt;
+
+  &lt;Testimonials
+    title="Ce que disent nos clients"
+    subtitle="Des centaines de clients satisfaits"
+    testimonials={'{'}testimonials{'}'}
+    layout="grid"
+    columns={'{'}3{'}'}
+  /&gt;
+&lt;/BaseLayout&gt;</code></pre>
+    </section>
+
+    <!-- Exemple complet -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Exemple complet</h2>
+      <p class="mb-4">
+        Voici le code complet d'une section simple "Stats".
+      </p>
+
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+// src/components/sections/Stats.astro
+interface Props {'{'}
+  title: string;
+  subtitle?: string;
+  stats: Array&lt;{'{'}
+    value: string;
+    label: string;
+    icon?: string;
+  {'}'}&gt;;
+  variant?: 'default' | 'compact';
+  class?: string;
+{'}'}
+
+const {'{'}
+  title,
+  subtitle,
+  stats,
+  variant = 'default',
+  class: className = '',
+{'}'} = Astro.props;
+
+const isCompact = variant === 'compact';
+---
+
+&lt;section class={'{'}&#96;py-16 bg-gray-50 &#36;{'{'}className{'}'}&#96;{'}'}&gt;
+  &lt;div class="container mx-auto px-4 max-w-6xl"&gt;
+    &lt;div class="text-center mb-12"&gt;
+      &lt;h2 class="text-4xl font-bold text-brand-primary mb-4"&gt;
+        {'{'}title{'}'}
+      &lt;/h2&gt;
+      {'{'}subtitle &amp;&amp; (
+        &lt;p class="text-xl text-gray-600"&gt;{'{'}subtitle{'}'}&lt;/p&gt;
+      ){'}'}
+    &lt;/div&gt;
+
+    &lt;div class={'{'}&#96;grid grid-cols-1 md:grid-cols-&#36;{'{'}stats.length{'}'} gap-8&#96;{'}'}&gt;
+      {'{'}stats.map((stat) =&gt; (
+        &lt;div class="text-center"&gt;
+          {'{'}stat.icon &amp;&amp; (
+            &lt;div class="text-4xl mb-3"&gt;{'{'}stat.icon{'}'}&lt;/div&gt;
+          ){'}'}
+          &lt;div class={'{'}isCompact ? 'text-3xl' : 'text-5xl'{'}'} class="font-bold text-brand-accent mb-2"&gt;
+            {'{'}stat.value{'}'}
+          &lt;/div&gt;
+          &lt;div class="text-gray-600"&gt;{'{'}stat.label{'}'}&lt;/div&gt;
+        &lt;/div&gt;
+      )){'}'}
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </section>
+
+    <!-- Checklist -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Checklist finale</h2>
+      <div class="bg-gray-50 p-6 rounded-lg">
+        <ul class="space-y-2">
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Composant créé dans <code class="bg-gray-100 px-1 rounded">src/components/sections/</code></span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Interface Props définie avec TypeScript</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Valeurs par défaut définies pour les props optionnelles</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Primitives réutilisées quand possible (Card, Button, etc.)</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Variantes testées (si applicable)</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Pages de documentation créées (FR + EN)</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Exemple d'usage documenté avec code snippets</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Section ajoutée à la liste dans <code class="bg-gray-100 px-1 rounded">src/pages/*/library/sections/index.astro</code></span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Section testée dans une page réelle</span>
+          </li>
+          <li class="flex items-start">
+            <span class="mr-2">☐</span>
+            <span>Responsive vérifié (mobile, tablet, desktop)</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section>
+      <h2 class="text-3xl font-semibold mb-4">Prochaines étapes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/fr/library/sections" class="border rounded-lg p-4 hover:shadow-lg transition">
+          <h3 class="font-semibold mb-2">→ Voir toutes les sections</h3>
+          <p class="text-sm text-gray-600">Explorer les sections existantes pour inspiration</p>
+        </a>
+        <a href="/fr/library/primitives" class="border rounded-lg p-4 hover:shadow-lg transition">
+          <h3 class="font-semibold mb-2">→ Voir les primitives</h3>
+          <p class="text-sm text-gray-600">Découvrir les composants de base disponibles</p>
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

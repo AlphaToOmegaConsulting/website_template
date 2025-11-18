@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Events from '@/components/sections/Events.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+const lang = 'en';
+const title = 'Events Demo';
+const description = 'Discover our upcoming events and workshops';
+
+const alternateUrls = {
+  fr: '/fr/demo/events',
+  en: '/en/demo/events'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <Hero
+    title="Join Our Community Events"
+    subtitle="Connect with like-minded professionals at our workshops, conferences, and networking sessions"
+    variant="centered"
+    cta={{
+      label: "View All Events",
+      href: "#events",
+      variant: "primary"
+    }}
+  />
+
+  <Events lang={lang} />
+
+  <CTA
+    title="Don't Miss Out"
+    description="Subscribe to our newsletter to stay informed about upcoming events and exclusive opportunities"
+    primaryCta={{
+      label: "Subscribe Now",
+      href: "#"
+    }}
+  />
+</BaseLayout>

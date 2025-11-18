@@ -32,38 +32,38 @@ const pageDescription = 'The page you are looking for does not exist or has been
 
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <ButtonLink 
+          <ButtonLink
             href="/en/"
-            variant="primary" 
+            variant="primary"
             size="lg"
           >
             Back to Home
           </ButtonLink>
-          <ButtonLink 
-            href="/en/events"
-            variant="secondary" 
+          <ButtonLink
+            href="/en/demo"
+            variant="secondary"
             size="lg"
           >
-            View Events
+            View Demo
           </ButtonLink>
         </div>
 
         <!-- Helpful Links -->
         <div class="mt-12 pt-8 border-t border-gray-200">
           <p class="text-sm text-gray-600 mb-4">Helpful links:</p>
-          <div class="flex flex-wrap justify-center gap-4 text-sm">
-            <a href="/en/" class="text-brand-accent hover:text-blue-700 hover:underline">
+          <div class="flex flex-wrap justify-center gap-4">
+            <ButtonLink href="/en/" variant="link" size="sm">
               Home
-            </a>
-            <a href="/en/twt/landing" class="text-brand-accent hover:text-blue-700 hover:underline">
-              Tech Women Together
-            </a>
-            <a href="/en/events" class="text-brand-accent hover:text-blue-700 hover:underline">
-              Events
-            </a>
-            <a href="/en/partners" class="text-brand-accent hover:text-blue-700 hover:underline">
-              Partners
-            </a>
+            </ButtonLink>
+            <ButtonLink href="/en/library" variant="link" size="sm">
+              Library
+            </ButtonLink>
+            <ButtonLink href="/en/guides" variant="link" size="sm">
+              Guides
+            </ButtonLink>
+            <ButtonLink href="/en/demo" variant="link" size="sm">
+              Demo
+            </ButtonLink>
           </div>
         </div>
       </div>

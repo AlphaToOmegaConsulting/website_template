@@ -1,0 +1,186 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ButtonLink from '@/components/primitives/ButtonLink.astro';
+
+const lang = 'fr';
+const title = 'ButtonLink - Primitives';
+const description = 'Documentation du composant ButtonLink';
+
+const alternateUrls = {
+  fr: '/fr/library/primitives/button-link',
+  en: '/en/library/primitives/button-link'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">ButtonLink</h1>
+    <p class="text-lg mb-8">Lien stylisé comme un bouton. Support des URLs internes et externes avec gestion automatique du base path.</p>
+
+    <!-- Props -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Props</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="border border-gray-300 p-3 text-left">Nom</th>
+              <th class="border border-gray-300 p-3 text-left">Type</th>
+              <th class="border border-gray-300 p-3 text-left">Défaut</th>
+              <th class="border border-gray-300 p-3 text-left">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">href</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">string</code></td>
+              <td class="border border-gray-300 p-3"><em>requis</em></td>
+              <td class="border border-gray-300 p-3">URL de destination</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">variant</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'primary' | 'secondary' | 'ghost'</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'primary'</code></td>
+              <td class="border border-gray-300 p-3">Style visuel du lien</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">size</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'sm' | 'md' | 'lg'</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'md'</code></td>
+              <td class="border border-gray-300 p-3">Taille du bouton</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">target</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">'_blank' | '_self'</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">undefined</code></td>
+              <td class="border border-gray-300 p-3">Cible de navigation</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">rel</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">string</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">undefined</code></td>
+              <td class="border border-gray-300 p-3">Relation du lien</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 p-3"><code class="text-sm bg-gray-100 px-1 rounded">class</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">string</code></td>
+              <td class="border border-gray-300 p-3"><code class="text-sm">''</code></td>
+              <td class="border border-gray-300 p-3">Classes CSS additionnelles</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Variantes -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Variantes</h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-lg font-medium mb-3">Primary</h3>
+          <div class="p-6 border border-gray-200 rounded-lg bg-gray-50">
+            <ButtonLink href="#" variant="primary">Lien Primary</ButtonLink>
+          </div>
+          <pre class="mt-3 p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;ButtonLink href="#" variant="primary"&gt;
+  Lien Primary
+&lt;/ButtonLink&gt;</code></pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-3">Secondary</h3>
+          <div class="p-6 border border-gray-200 rounded-lg bg-gray-50">
+            <ButtonLink href="#" variant="secondary">Lien Secondary</ButtonLink>
+          </div>
+          <pre class="mt-3 p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;ButtonLink href="#" variant="secondary"&gt;
+  Lien Secondary
+&lt;/ButtonLink&gt;</code></pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-medium mb-3">Ghost</h3>
+          <div class="p-6 border border-gray-200 rounded-lg bg-gray-50">
+            <ButtonLink href="#" variant="ghost">Lien Ghost</ButtonLink>
+          </div>
+          <pre class="mt-3 p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;ButtonLink href="#" variant="ghost"&gt;
+  Lien Ghost
+&lt;/ButtonLink&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tailles -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Tailles</h2>
+
+      <div class="p-6 border border-gray-200 rounded-lg bg-gray-50">
+        <div class="flex items-center gap-4 flex-wrap">
+          <ButtonLink href="#" size="sm">Small</ButtonLink>
+          <ButtonLink href="#" size="md">Medium</ButtonLink>
+          <ButtonLink href="#" size="lg">Large</ButtonLink>
+        </div>
+      </div>
+      <pre class="mt-3 p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;ButtonLink href="#" size="sm"&gt;Small&lt;/ButtonLink&gt;
+&lt;ButtonLink href="#" size="md"&gt;Medium&lt;/ButtonLink&gt;
+&lt;ButtonLink href="#" size="lg"&gt;Large&lt;/ButtonLink&gt;</code></pre>
+    </section>
+
+    <!-- Liens externes -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Liens externes</h2>
+
+      <div class="p-6 border border-gray-200 rounded-lg bg-gray-50">
+        <ButtonLink href="https://example.com" target="_blank" rel="noopener noreferrer">
+          Visiter le site externe
+        </ButtonLink>
+      </div>
+      <pre class="mt-3 p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>&lt;ButtonLink
+  href="https://example.com"
+  target="_blank"
+  rel="noopener noreferrer"
+&gt;
+  Visiter le site externe
+&lt;/ButtonLink&gt;</code></pre>
+    </section>
+
+    <!-- Exemple d'usage -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Exemple d'usage complet</h2>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import ButtonLink from '@/components/primitives/ButtonLink.astro';
+---
+
+&lt;!-- Lien interne (base path ajouté automatiquement) --&gt;
+&lt;ButtonLink href="#" variant="primary" size="lg"&gt;
+  Commencer maintenant
+&lt;/ButtonLink&gt;
+
+&lt;!-- Lien externe --&gt;
+&lt;ButtonLink
+  href="https://docs.example.com"
+  variant="secondary"
+  target="_blank"
+  rel="noopener noreferrer"
+&gt;
+  Documentation
+&lt;/ButtonLink&gt;</code></pre>
+    </section>
+
+    <!-- Notes -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Notes</h2>
+      <ul class="list-disc pl-6 space-y-2 text-gray-700">
+        <li>Les URLs internes sont automatiquement préfixées avec le base path (via <code class="text-sm bg-gray-100 px-1 rounded">buildUrl()</code>)</li>
+        <li>Les URLs externes (https://, http://) ne sont pas modifiées</li>
+        <li>Utilise <code class="text-sm bg-gray-100 px-1 rounded">no-underline</code> pour éviter le soulignement des liens</li>
+        <li>Même style visuel que Button pour la cohérence</li>
+        <li>Focus ring accessible identique à Button</li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'en';
+const title = 'Layouts';
+const description = 'Layout and structure components';
+
+const alternateUrls = {
+  fr: '/fr/library/layout',
+  en: '/en/library/layout'
+};
+
+const layouts = [
+  {
+    name: 'Header',
+    slug: 'header',
+    description: 'Main navigation header'
+  },
+  {
+    name: 'Footer',
+    slug: 'footer',
+    description: 'Footer with links and information'
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <div class="container mx-auto px-4 py-12 max-w-6xl">
+    <h1 class="text-4xl font-bold mb-6">Layouts</h1>
+    <p class="text-lg mb-8 text-gray-600">Layout and structure components.</p>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-12">
+      <p class="text-gray-700">
+        <strong>Note:</strong> The Header and Footer components are visible on this page.
+        Scroll to the top to see the Header, and to the bottom to see the Footer.
+      </p>
+    </div>
+
+    <div class="space-y-12">
+      {layouts.map(l => (
+        <div class="border-t pt-8">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-3xl font-bold">{l.name}</h2>
+            <span class="text-sm text-gray-500">Visible on this page</span>
+          </div>
+          <p class="text-gray-600 mb-4">{l.description}</p>
+          <p class="text-sm text-gray-500">
+            {l.slug === 'header' && 'Scroll to the top of this page to see the Header component in action.'}
+            {l.slug === 'footer' && 'Scroll to the bottom of this page to see the Footer component in action.'}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

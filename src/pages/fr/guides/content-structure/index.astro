@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Structure du contenu - Alpha WebCore';
+const description = 'Comprendre la structure du contenu dans Alpha WebCore';
+
+const alternateUrls = {
+  fr: '/fr/guides/content-structure',
+  en: '/en/guides/content-structure'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">Structure du contenu</h1>
+    <p class="text-lg text-gray-600 mb-12">
+      Documentation sur l'organisation et la structure du contenu dans le template.
+    </p>
+
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">À venir</h2>
+      <p>Cette page sera complétée prochainement avec des informations détaillées sur la structure du contenu.</p>
+    </section>
+  </main>
+</BaseLayout>

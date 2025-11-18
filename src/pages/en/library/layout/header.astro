@@ -1,0 +1,185 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+
+const lang = 'en';
+const title = 'Header - Layout';
+const description = 'Header component documentation';
+
+const alternateUrls = {
+  fr: '/fr/library/layout/header',
+  en: '/en/library/layout/header'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-5xl">
+    <h1 class="text-4xl font-bold mb-4">Header</h1>
+    <p class="text-xl text-gray-600 mb-12">Main navigation header with responsive menu and language switcher</p>
+
+    <!-- Props Table -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Props</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Name</th>
+              <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Type</th>
+              <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Required</th>
+              <th class="border border-gray-300 px-4 py-3 text-left font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 px-4 py-3 font-mono text-sm">lang</td>
+              <td class="border border-gray-300 px-4 py-3 font-mono text-sm">'fr' | 'en'</td>
+              <td class="border border-gray-300 px-4 py-3">Yes</td>
+              <td class="border border-gray-300 px-4 py-3">Current language</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-3 font-mono text-sm">currentPath</td>
+              <td class="border border-gray-300 px-4 py-3 font-mono text-sm">string</td>
+              <td class="border border-gray-300 px-4 py-3">No</td>
+              <td class="border border-gray-300 px-4 py-3">Current page path for active link highlighting</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 px-4 py-3 font-mono text-sm">alternateUrls</td>
+              <td class="border border-gray-300 px-4 py-3 font-mono text-sm">{'{ fr?: string, en?: string }'}</td>
+              <td class="border border-gray-300 px-4 py-3">No</td>
+              <td class="border border-gray-300 px-4 py-3">URLs for language switcher</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Visual Example -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Visual Example</h2>
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+        <p class="text-gray-700">
+          <strong>Note:</strong> The Header component is visible at the top of this page. Scroll up to see it in action.
+        </p>
+      </div>
+      <div class="border rounded-lg overflow-hidden">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 80'%3E%3Crect fill='%23ffffff' width='800' height='80'/%3E%3Ctext x='20' y='45' font-family='Arial' font-size='20' font-weight='bold' fill='%232563eb'%3ELogo%3C/text%3E%3Ctext x='600' y='45' font-family='Arial' font-size='14' fill='%23374151'%3EHome%3C/text%3E%3Ctext x='670' y='45' font-family='Arial' font-size='14' fill='%23374151'%3ELibrary%3C/text%3E%3Ctext x='740' y='45' font-family='Arial' font-size='14' fill='%23374151'%3EEN%3C/text%3E%3C/svg%3E" alt="Header component preview" class="w-full" />
+      </div>
+    </section>
+
+    <!-- Code Examples -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Usage Examples</h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Basic Usage</h3>
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code>{`---
+import Header from '@/components/Header.astro';
+---
+
+<Header lang="en" />`}</code></pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-3">With Language Switcher</h3>
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code>{`---
+import Header from '@/components/Header.astro';
+---
+
+<Header
+  lang="en"
+  currentPath="/en/library"
+  alternateUrls={{
+    fr: '/fr/library',
+    en: '/en/library'
+  }}
+/>`}</code></pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-3">Complete Layout Example</h3>
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code>{`---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+
+const lang = 'en';
+const alternateUrls = {
+  fr: '/fr/about',
+  en: '/en/about'
+};
+---
+
+<html lang={lang}>
+  <body>
+    <Header
+      lang={lang}
+      currentPath="/en/about"
+      alternateUrls={alternateUrls}
+    />
+
+    <main>
+      <!-- Page content -->
+    </main>
+
+    <Footer lang={lang} />
+  </body>
+</html>`}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Features</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="border rounded-lg p-4">
+          <h3 class="font-semibold mb-2">Responsive Navigation</h3>
+          <p class="text-sm text-gray-600">Mobile menu with hamburger icon for small screens</p>
+        </div>
+        <div class="border rounded-lg p-4">
+          <h3 class="font-semibold mb-2">Language Switcher</h3>
+          <p class="text-sm text-gray-600">Switch between FR/EN with alternate URLs</p>
+        </div>
+        <div class="border rounded-lg p-4">
+          <h3 class="font-semibold mb-2">Active Link Highlighting</h3>
+          <p class="text-sm text-gray-600">Current page highlighted in navigation</p>
+        </div>
+        <div class="border rounded-lg p-4">
+          <h3 class="font-semibold mb-2">Brand Colors</h3>
+          <p class="text-sm text-gray-600">Uses theme brand colors for consistency</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notes -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">Notes</h2>
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 space-y-4">
+        <div>
+          <h3 class="font-semibold mb-2">Accessibility</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-700">
+            <li>Semantic HTML with <code class="bg-white px-2 py-1 rounded">&lt;header&gt;</code> element</li>
+            <li>Proper ARIA labels for mobile menu button</li>
+            <li>Keyboard navigation support with focus rings</li>
+            <li>Skip to content link for screen readers</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">Best Practices</h3>
+          <ul class="list-disc list-inside space-y-1 text-gray-700">
+            <li>Always provide the <code class="bg-white px-2 py-1 rounded">lang</code> prop</li>
+            <li>Include <code class="bg-white px-2 py-1 rounded">alternateUrls</code> for bilingual sites</li>
+            <li>Use <code class="bg-white px-2 py-1 rounded">currentPath</code> to highlight active navigation items</li>
+            <li>Mobile menu requires client-side JavaScript for toggle functionality</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

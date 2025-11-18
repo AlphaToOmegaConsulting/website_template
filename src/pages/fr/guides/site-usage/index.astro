@@ -1,0 +1,360 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Guide d\'utilisation - Alpha WebCore';
+const description = 'Guide complet d\'utilisation du template Alpha WebCore';
+
+const alternateUrls = {
+  fr: '/fr/guides/site-usage',
+  en: '/en/guides/site-usage'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">Guide d'utilisation</h1>
+    <p class="text-lg text-gray-600 mb-12">
+      Documentation complète pour comprendre et utiliser le template Alpha WebCore.
+    </p>
+
+    <!-- Introduction -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Introduction</h2>
+      <p class="mb-4">
+        Alpha WebCore est un template Astro moderne conçu selon les principes de <strong>modularité</strong>,
+        <strong>granularité</strong> et <strong>neutralité</strong>. Il offre une base solide pour créer des sites web
+        multilingues performants et maintenables.
+      </p>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+        <p class="font-semibold mb-2">Philosophie du template :</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Chaque composant existe dans son propre fichier</li>
+          <li>Préférer plusieurs petits composants à un gros composant générique</li>
+          <li>Design neutre et extensible, non lié à un branding spécifique</li>
+          <li>Zéro sur-ingénierie, toujours privilégier la simplicité</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Architecture des dossiers</h2>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-4"><code>src/
+├── components/
+│   ├── primitives/      # Composants UI de base
+│   │   ├── Button.astro
+│   │   ├── Card.astro
+│   │   └── Input.astro
+│   ├── sections/        # Blocs de page complets
+│   │   ├── Hero.astro
+│   │   ├── Features.astro
+│   │   └── CTA.astro
+│   ├── Header.astro     # Navigation principale
+│   └── Footer.astro     # Pied de page
+├── content/             # Contenu structuré
+│   ├── events/          # Événements (Markdown)
+│   │   ├── fr/
+│   │   └── en/
+│   └── sections/        # Données de sections (JSON)
+├── layouts/
+│   ├── BaseLayout.astro # Layout principal
+│   └── SectionLayout.astro
+├── pages/
+│   ├── fr/              # Pages françaises
+│   ├── en/              # Pages anglaises
+│   └── index.astro      # Redirection racine
+└── utils/
+    ├── i18n.ts          # Utilitaires i18n
+    └── url.ts           # Gestion des URLs</code></pre>
+
+      <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4">
+        <p class="font-semibold mb-2">Convention importante :</p>
+        <p>Toujours créer les fichiers par paires FR/EN pour maintenir la cohérence multilingue.</p>
+      </div>
+    </section>
+
+    <!-- Routing -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Routing FR/EN</h2>
+      <p class="mb-4">
+        Le site utilise un routing basé sur les dossiers avec préfixe de langue :
+      </p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li><code class="bg-gray-100 px-2 py-1 rounded">/fr/*</code> → Pages françaises</li>
+        <li><code class="bg-gray-100 px-2 py-1 rounded">/en/*</code> → Pages anglaises</li>
+        <li><code class="bg-gray-100 px-2 py-1 rounded">/</code> → Redirige vers /fr ou /en selon la langue du navigateur</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mb-3 mt-6">Structure type d'une page</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const lang = 'fr';
+const title = 'Titre de la page';
+const description = 'Description pour le SEO';
+
+const alternateUrls = {'{'}
+  fr: '/fr/ma-page',
+  en: '/en/my-page'
+{'}'};
+---
+
+&lt;BaseLayout
+  title={'{'}title{'}'}
+  description={'{'}description{'}'}
+  lang={'{'}lang{'}'}
+  alternateUrls={'{'}alternateUrls{'}'}
+&gt;
+  &lt;!-- Contenu de la page --&gt;
+&lt;/BaseLayout&gt;</code></pre>
+
+      <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4">
+        <p class="font-semibold mb-2">Avantages :</p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>SEO optimisé avec balises hreflang automatiques</li>
+          <li>Language switcher fonctionnel sans configuration</li>
+          <li>URLs propres et prévisibles</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Content Collections -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Content Collections</h2>
+      <p class="mb-4">
+        Astro Content Collections permet de gérer du contenu structuré avec validation TypeScript.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-3">Collection "events"</h3>
+      <p class="mb-2">Fichiers Markdown dans <code class="bg-gray-100 px-2 py-1 rounded">src/content/events/fr/</code> et <code class="bg-gray-100 px-2 py-1 rounded">/en/</code></p>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto mb-4"><code>---
+title: "Nom de l'événement"
+date: 2025-03-15
+location: "Paris"
+category: "conference"
+---
+
+Contenu de l'événement en Markdown...</code></pre>
+
+      <h3 class="text-xl font-semibold mb-3 mt-6">Utilisation dans une page</h3>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import {'{'}  getCollection {'}'} from 'astro:content';
+
+// Récupérer tous les événements FR
+const events = await getCollection('events', (entry) =&gt; {'{'}
+  return entry.id.startsWith('fr/');
+{'}'});
+---
+
+{'{'}events.map(event =&gt; (
+  &lt;div&gt;
+    &lt;h2&gt;{'{'}event.data.title{'}'}&lt;/h2&gt;
+    &lt;p&gt;{'{'}event.data.date{'}'}&lt;/p&gt;
+  &lt;/div&gt;
+)){'}'}</code></pre>
+    </section>
+
+    <!-- Composants -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Composants : Primitives vs Sections</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="border rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-3">Primitives</h3>
+          <p class="text-sm text-gray-600 mb-3">Composants UI de base, atomiques et réutilisables</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li>Button, ButtonLink</li>
+            <li>Card</li>
+            <li>Input, Dialog</li>
+            <li>Généralement sans logique métier</li>
+            <li>Hautement configurables via props</li>
+          </ul>
+        </div>
+
+        <div class="border rounded-lg p-6">
+          <h3 class="text-xl font-semibold mb-3">Sections</h3>
+          <p class="text-sm text-gray-600 mb-3">Blocs de page complets composés de primitives</p>
+          <ul class="list-disc pl-6 space-y-1 text-sm">
+            <li>Hero, Features, CTA</li>
+            <li>About, Events, Team</li>
+            <li>Composées de plusieurs primitives</li>
+            <li>Représentent des zones fonctionnelles</li>
+            <li>Peuvent contenir de la logique métier</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+        <p class="font-semibold mb-2">Règle d'or :</p>
+        <p>Si un composant est utilisé dans plusieurs contextes différents → Primitive</p>
+        <p>Si un composant représente une zone spécifique d'une page → Section</p>
+      </div>
+    </section>
+
+    <!-- Workflows -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Workflows courants</h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">1. Modifier le contenu d'une page existante</h3>
+          <ol class="list-decimal pl-6 space-y-1">
+            <li>Localiser le fichier dans <code class="bg-gray-100 px-1 rounded">src/pages/fr/</code> ou <code class="bg-gray-100 px-1 rounded">/en/</code></li>
+            <li>Modifier le contenu HTML ou les props des composants</li>
+            <li>Vérifier avec <code class="bg-gray-100 px-1 rounded">npm run dev</code></li>
+            <li>Mettre à jour la version EN si nécessaire</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2">2. Ajouter une image</h3>
+          <ol class="list-decimal pl-6 space-y-1">
+            <li>Placer l'image dans <code class="bg-gray-100 px-1 rounded">public/images/</code></li>
+            <li>Référencer avec <code class="bg-gray-100 px-1 rounded">/images/mon-image.jpg</code></li>
+            <li>Toujours fournir un attribut <code class="bg-gray-100 px-1 rounded">alt</code> descriptif</li>
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2">3. Gérer les traductions</h3>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Les traductions sont gérées au niveau des fichiers (pas de fichier i18n centralisé)</li>
+            <li>Chaque page FR a sa version EN équivalente</li>
+            <li>Utiliser <code class="bg-gray-100 px-1 rounded">alternateUrls</code> pour lier les versions</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2">4. Déployer le site</h3>
+          <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>npm run build    # Génère le site statique dans /dist
+npm run preview  # Prévisualise le build</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conventions -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Conventions de code</h2>
+
+      <div class="space-y-4">
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Nommage des fichiers</h3>
+          <ul class="list-disc pl-6 space-y-1">
+            <li>Composants : PascalCase (<code class="bg-gray-100 px-1 rounded">Button.astro</code>)</li>
+            <li>Pages : kebab-case ou index (<code class="bg-gray-100 px-1 rounded">about-us/index.astro</code>)</li>
+            <li>Utilitaires : camelCase (<code class="bg-gray-100 px-1 rounded">buildUrl.ts</code>)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Organisation des imports</h3>
+          <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+// 1. Layouts
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+// 2. Composants
+import Hero from '@/components/sections/Hero.astro';
+import Button from '@/components/primitives/Button.astro';
+
+// 3. Utilitaires
+import {'{'}  buildUrl {'}'} from '@/utils/url';
+
+// 4. Data / Content
+import {'{'}  getCollection {'}'} from 'astro:content';
+
+// 5. Props et types
+const {'{'}  title, description {'}'} = Astro.props;
+---</code></pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Structure des composants Astro</h3>
+          <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+// 1. Interface Props (TypeScript)
+interface Props {'{'}
+  title: string;
+  optional?: boolean;
+{'}'}
+
+// 2. Extraction des props
+const {'{'}  title, optional = false {'}'} = Astro.props;
+
+// 3. Logique / calculs
+const classes = ['base', optional && 'optional'].filter(Boolean).join(' ');
+---
+
+&lt;!-- 4. Template HTML --&gt;
+&lt;div class={'{'}classes{'}'}&gt;
+  &lt;h1&gt;{'{'}title{'}'}&lt;/h1&gt;
+  &lt;slot /&gt;
+&lt;/div&gt;
+
+&lt;!-- 5. Styles scopés (si nécessaire) --&gt;
+&lt;style&gt;
+  /* Styles limités au composant */
+&lt;/style&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dépannage -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Dépannage</h2>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-red-500 bg-red-50 p-4">
+          <h3 class="font-semibold mb-2">Erreur : "Cannot find module '@/components/...'"</h3>
+          <p class="text-sm mb-2"><strong>Cause :</strong> Alias de chemin non résolu</p>
+          <p class="text-sm"><strong>Solution :</strong> Vérifier que <code class="bg-gray-100 px-1 rounded">tsconfig.json</code> contient la configuration des paths</p>
+        </div>
+
+        <div class="border-l-4 border-red-500 bg-red-50 p-4">
+          <h3 class="font-semibold mb-2">Erreur : "getCollection is not defined"</h3>
+          <p class="text-sm mb-2"><strong>Cause :</strong> Import manquant</p>
+          <p class="text-sm"><strong>Solution :</strong> Ajouter <code class="bg-gray-100 px-1 rounded">import {'{'}  getCollection {'}'} from 'astro:content';</code></p>
+        </div>
+
+        <div class="border-l-4 border-red-500 bg-red-50 p-4">
+          <h3 class="font-semibold mb-2">Language switcher ne fonctionne pas</h3>
+          <p class="text-sm mb-2"><strong>Cause :</strong> <code class="bg-gray-100 px-1 rounded">alternateUrls</code> manquant ou incorrect</p>
+          <p class="text-sm"><strong>Solution :</strong> S'assurer que chaque page définit <code class="bg-gray-100 px-1 rounded">alternateUrls</code> avec fr et en</p>
+        </div>
+
+        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4">
+          <h3 class="font-semibold mb-2">Le build est lent</h3>
+          <p class="text-sm mb-2"><strong>Cause :</strong> Cache Astro corrompu</p>
+          <p class="text-sm"><strong>Solution :</strong> Exécuter <code class="bg-gray-100 px-1 rounded">rm -rf node_modules/.astro && npm run build</code></p>
+        </div>
+      </div>
+
+      <div class="bg-gray-100 p-4 rounded mt-6">
+        <h3 class="font-semibold mb-2">Commandes utiles</h3>
+        <pre class="text-sm"><code>npm run dev          # Serveur de développement
+npm run build        # Build de production
+npm run preview      # Prévisualiser le build
+npm run astro check  # Vérification TypeScript</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-semibold mb-4">Prochaines étapes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="/fr/guides/add-page" class="border rounded-lg p-4 hover:shadow-lg transition">
+          <h3 class="font-semibold mb-2">→ Ajouter une page</h3>
+          <p class="text-sm text-gray-600">Guide étape par étape pour créer une nouvelle page</p>
+        </a>
+        <a href="/fr/guides/add-section" class="border rounded-lg p-4 hover:shadow-lg transition">
+          <h3 class="font-semibold mb-2">→ Ajouter une section</h3>
+          <p class="text-sm text-gray-600">Comment créer un nouveau composant section</p>
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

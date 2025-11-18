@@ -18,9 +18,10 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
-    "ci": "npm run test && npm run test:e2e",
+    "ci": "npm run test && npm run build && npm run check-links && npm run test:e2e",
     "lighthouse": "lhci autorun",
     "check-links": "tsx scripts/check-links.ts",
+    "validate-header-links": "tsx scripts/validate-header-links.ts",
     "a11y-audit": "tsx scripts/a11y-audit.ts",
     "test:keyboard": "tsx scripts/keyboard-nav-test.ts"
   },

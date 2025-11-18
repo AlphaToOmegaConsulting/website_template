@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildUrl } from '@/utils/url';
+
+const lang = 'fr';
+const title = 'Bibliothèque Alpha WebCore';
+const description = 'Documentation complète du template Astro';
+
+const alternateUrls = {
+  fr: '/fr/library',
+  en: '/en/library'
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">Library</h1>
+
+    <p class="text-lg mb-12">
+      Documentation complète des composants du template.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a href={buildUrl('/fr/library/primitives')} class="block p-6 border rounded-lg hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">Primitives</h2>
+        <p class="text-sm text-gray-600">Composants UI de base</p>
+      </a>
+
+      <a href={buildUrl('/fr/library/sections')} class="block p-6 border rounded-lg hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">Sections</h2>
+        <p class="text-sm text-gray-600">Blocs de page complets</p>
+      </a>
+
+      <a href={buildUrl('/fr/library/layout')} class="block p-6 border rounded-lg hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">Layout</h2>
+        <p class="text-sm text-gray-600">Composants de mise en page</p>
+      </a>
+    </div>
+  </main>
+</BaseLayout>
