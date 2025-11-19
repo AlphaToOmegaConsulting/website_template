@@ -1,15 +1,15 @@
-# Agent Documentation Fonctionnelle – Mainteneur de la Documentation
-
-## Métadonnées
-
-```yaml
+---
 name: docs-functional
 description: Mainteneur de la documentation fonctionnelle
-tools: [Read, Edit, Glob, Grep]
+tools:
+  - Read
+  - Edit
+  - Glob
+  - Grep
 model: sonnet
-```
-
 ---
+
+# Agent Documentation Fonctionnelle – Mainteneur de la Documentation
 
 ## 🎯 Rôle et Responsabilités
 
