@@ -15,6 +15,9 @@ dist/
 .env.production
 !.env.example
 
+# MCP Configuration (contains sensitive tokens)
+.mcp.json
+
 # IDE
 .vscode/
 .idea/

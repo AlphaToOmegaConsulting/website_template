@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "type": "stdio",
+      "command": "filesystem-mcp",
+      "args": [],
+      "env": {}
+    },
+    "github": {
+      "type": "http",
+      "url": "https://mcp.github.com/mcp",
+      "headers": {
+        "Authorization": "${GITHUB_TOKEN}"
+      }
+    },
+    "netlify": {
+      "type": "http",
+      "url": "https://mcp.netlify.com/mcp",
+      "headers": {
+        "Authorization": "${NETLIFY_TOKEN}"
+      }
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "playwright-mcp"],
+      "env": {}
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://api.context7.ai/mcp",
+      "headers": {
+        "Authorization": "${CONTEXT7_API_KEY}"
+      }
+    },
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "sequential-thinking-mcp",
+      "args": [],
+      "env": {}
+    }
+  }
+}
