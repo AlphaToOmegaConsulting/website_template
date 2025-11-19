@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildUrl } from '@/utils/url';
 import Hero from '@/components/sections/Hero.astro';
 import Features from '@/components/sections/Features.astro';
 import CTA from '@/components/sections/CTA.astro';
@@ -30,8 +31,8 @@ const ctaData = getSectionData('cta');
   description="Documentation pratique complète du template Alpha WebCore"
   lang="fr"
   alternateUrls={{
-    fr: '/fr/guides/',
-    en: '/en/guides/'
+    fr: buildUrl('/fr/guides/'),
+    en: buildUrl('/en/guides/')
   }}
 >
   {heroData && <Hero {...heroData} />}

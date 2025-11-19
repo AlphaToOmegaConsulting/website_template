@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildUrl } from '@/utils/url';
 import Hero from '@/components/sections/Hero.astro';
 import About from '@/components/sections/About.astro';
 import CTA from '@/components/sections/CTA.astro';
@@ -39,8 +40,8 @@ const { Content } = await pageEntry.render();
   description={pageEntry.data.description}
   lang={lang}
   alternateUrls={{
-    fr: '/fr/guides/${slug}',
-    en: '/en/guides/${slug}'
+    fr: buildUrl(`/fr/guides/${slug}`),
+    en: buildUrl(`/en/guides/${slug}`)
   }}
 >
   {heroData && <Hero {...heroData} />}
