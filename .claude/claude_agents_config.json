@@ -1,0 +1,78 @@
+{
+  "mcpServers": {
+    "orchestrator": {
+      "description": "Tech Lead - Gardien du Corpus Fonctionnel",
+      "command": "node",
+      "args": ["--loader", "ts-node/esm", "agents/orchestrator.md"],
+      "tools": ["read_file", "file_search", "manage_todo_list"],
+      "model": "claude-sonnet-4"
+    },
+    "frontend-astro": {
+      "description": "Spécialiste composants Astro",
+      "command": "node",
+      "args": ["--loader", "ts-node/esm", "agents/frontend-astro.md"],
+      "tools": ["read_file", "replace_string_in_file", "create_file", "file_search", "grep_search"],
+      "model": "claude-sonnet-4"
+    },
+    "style-tokens": {
+      "description": "Spécialiste style et tokens CSS",
+      "command": "node",
+      "args": ["--loader", "ts-node/esm", "agents/style-tokens.md"],
+      "tools": ["read_file", "replace_string_in_file", "file_search"],
+      "model": "claude-sonnet-4"
+    },
+    "content-collections": {
+      "description": "Spécialiste contenu structuré",
+      "command": "node",
+      "args": ["--loader", "ts-node/esm", "agents/content-collections.md"],
+      "tools": ["read_file", "create_file", "replace_string_in_file", "file_search", "grep_search"],
+      "model": "claude-sonnet-4"
+    },
+    "i18n-fr-en": {
+      "description": "Gardien parité linguistique",
+      "command": "node",
+      "args": ["--loader", "ts-node/esm", "agents/i18n-fr-en.md"],
+      "tools": ["read_file", "file_search", "grep_search", "replace_string_in_file"],
+      "model": "claude-sonnet-4"
+    },
+    "tests-qa": {
+      "description": "Gardien de la qualité - 100% vert obligatoire",
+      "command": "node",
+      "args": ["--loader", "ts-node/esm", "agents/tests-qa.md"],
+      "tools": ["read_file", "create_file", "replace_string_in_file", "file_search", "run_in_terminal"],
+      "model": "claude-sonnet-4"
+    }
+  },
+  "permissions": {
+    "orchestrator": {
+      "bash": false,
+      "write": false,
+      "edit": false
+    },
+    "frontend-astro": {
+      "bash": false,
+      "write": true,
+      "edit": true
+    },
+    "style-tokens": {
+      "bash": false,
+      "write": false,
+      "edit": true
+    },
+    "content-collections": {
+      "bash": false,
+      "write": true,
+      "edit": true
+    },
+    "i18n-fr-en": {
+      "bash": false,
+      "write": true,
+      "edit": true
+    },
+    "tests-qa": {
+      "bash": true,
+      "write": true,
+      "edit": true
+    }
+  }
+}

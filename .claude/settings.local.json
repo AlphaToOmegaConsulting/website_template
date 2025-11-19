@@ -1,0 +1,54 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm validate:source)",
+      "Bash(pnpm validate:build)",
+      "Bash(pnpm validate:links)",
+      "Bash(pnpm check-links)",
+      "Bash(pnpm test:unit)",
+      "Bash(pnpm test:e2e)",
+      "Bash(pnpm build)",
+      "Bash(pnpm preview)",
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(git log)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push --force)",
+      "Bash(npm publish)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(git commit*)",
+      "Bash(pnpm install*)",
+      "Bash(gh pr create*)"
+    ]
+  },
+  "agents": {
+    "orchestrator": {
+      "bash_access": false,
+      "description": "Coordination uniquement - pas d'exécution directe"
+    },
+    "frontend-astro": {
+      "bash_access": false,
+      "description": "Création/édition de composants uniquement"
+    },
+    "style-tokens": {
+      "bash_access": false,
+      "description": "Édition de styles uniquement"
+    },
+    "content-collections": {
+      "bash_access": false,
+      "description": "Création/édition de contenu uniquement"
+    },
+    "i18n-fr-en": {
+      "bash_access": false,
+      "description": "Vérification de parité uniquement"
+    },
+    "tests-qa": {
+      "bash_access": true,
+      "description": "SEUL agent autorisé à exécuter des commandes de test"
+    }
+  }
+}
