@@ -1,0 +1,17 @@
+{
+  "type": "cta",
+  "order": 3,
+  "visible": true,
+  "data": {
+    "title": "Besoin d'aide ?",
+    "description": "Consultez le Corpus Fonctionnel pour toutes les règles détaillées du template.",
+    "primaryCta": {
+      "label": "Voir le Corpus",
+      "href": "/guides/corpus"
+    },
+    "secondaryCta": {
+      "label": "Référentiel Complet",
+      "href": "/guides/reference"
+    }
+  }
+}

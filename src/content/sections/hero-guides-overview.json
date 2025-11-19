@@ -1,0 +1,9 @@
+{
+  "type": "hero",
+  "order": 1,
+  "visible": true,
+  "data": {
+    "title": "Vue d'Ensemble du Template",
+    "subtitle": "Architecture, principes et vue d'ensemble du template Alpha WebCore"
+  }
+}
