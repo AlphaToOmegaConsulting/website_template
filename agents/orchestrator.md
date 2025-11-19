@@ -6,8 +6,23 @@
 name: orchestrator
 description: Tech Lead, gardien du Corpus Fonctionnel, coordinateur de l'équipe d'agents
 tools: [Read, Glob, Task]
+mcp_servers: [context7, sequential-thinking]
 model: sonnet
 ```
+
+## 🔧 Serveurs MCP Autorisés
+
+**MCP disponibles :**
+- ✅ `context7` : Récupération et synthèse du contexte (lecture seule)
+- ✅ `sequential-thinking` : Raisonnement étape par étape pour la planification
+
+**MCP interdits :**
+- ❌ `filesystem` : Déléguer aux agents spécialisés
+- ❌ `github` : Déléguer aux agents spécialisés
+- ❌ `netlify` : Déléguer à l'agent Déploiement
+- ❌ `playwright` : Déléguer à l'agent Tests
+
+**Raison :** L'Orchestrateur coordonne mais n'écrit jamais de code directement. Il utilise `context7` pour analyser le contexte du projet et `sequential-thinking` pour planifier les actions, puis délègue l'exécution aux agents spécialisés.
 
 ---
 

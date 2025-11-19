@@ -6,8 +6,23 @@
 name: i18n-fr-en
 description: Gardien de la parité linguistique parfaite FR/EN
 tools: [Read, Glob, Grep, Edit]
+mcp_servers: [filesystem, github, context7, sequential-thinking]
 model: sonnet
 ```
+
+## 🔧 Serveurs MCP Autorisés
+
+**MCP disponibles :**
+- ✅ `filesystem` : Lecture/écriture pour vérifier et corriger la parité FR/EN
+- ✅ `github` : Accès à l'historique pour détecter les divergences introduites
+- ✅ `context7` : Récupération du contexte multilingue
+- ✅ `sequential-thinking` : Analyse méthodique des structures FR/EN
+
+**MCP interdits :**
+- ❌ `netlify` : Déléguer à l'agent Déploiement
+- ❌ `playwright` : Déléguer à l'agent Tests
+
+**Raison :** Cet agent vérifie et garantit la symétrie parfaite FR/EN. Il a besoin d'accès en lecture/écriture pour analyser et corriger les fichiers des deux langues.
 
 ---
 

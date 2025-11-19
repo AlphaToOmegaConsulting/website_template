@@ -6,8 +6,23 @@
 name: tests-qa
 description: Gardien de la qualité, exécuteur de tests, bloqueur si < 100% vert
 tools: [Read, Write, Edit, Glob, Bash]
+mcp_servers: [filesystem, github, netlify, playwright, sequential-thinking]
 model: sonnet
 ```
+
+## 🔧 Serveurs MCP Autorisés
+
+**MCP disponibles :**
+- ✅ `filesystem` : Lecture/écriture des fichiers de tests et scripts de validation
+- ✅ `github` : Accès aux branches et PR pour vérifier l'intégration continue
+- ✅ `netlify` : Accès aux logs de déploiement pour diagnostiquer les erreurs
+- ✅ `playwright` : Exécution des tests E2E et accessibilité
+- ✅ `sequential-thinking` : Analyse méthodique des résultats de tests
+
+**MCP interdits :**
+- ❌ `context7` : Non nécessaire pour les tests (lecture légère si absolument nécessaire)
+
+**Raison :** Cet agent exécute tous les tests (unitaires, E2E, validation). Il a besoin d'accès complet aux systèmes de fichiers, aux tests Playwright, aux logs Netlify pour diagnostiquer, et à GitHub pour l'intégration continue.
 
 ---
 

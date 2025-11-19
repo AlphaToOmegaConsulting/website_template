@@ -33,6 +33,7 @@ Orchestrateur (Tech Lead)
 - Exercer un VETO sur les violations
 
 **Outils :** Read, Glob, Task
+**MCP :** context7, sequential-thinking
 
 ---
 
@@ -47,6 +48,7 @@ Orchestrateur (Tech Lead)
 - Garantir buildUrl() partout
 
 **Outils :** Read, Write, Edit, Glob, Grep
+**MCP :** filesystem, github, context7, sequential-thinking
 
 **Limites strictes :**
 - Jamais de page unilingue
@@ -67,6 +69,7 @@ Orchestrateur (Tech Lead)
 - Générer rapports de symétrie
 
 **Outils :** Read, Glob, Grep, Edit
+**MCP :** filesystem, github, context7, sequential-thinking
 
 **Limites strictes :**
 - Jamais accepter de page/collection unilingue
@@ -85,6 +88,7 @@ Orchestrateur (Tech Lead)
 - Assets relatifs uniquement (`"logo.png"`)
 
 **Outils :** Read, Write, Edit, Glob, Grep
+**MCP :** filesystem, github, context7, sequential-thinking
 
 **Limites strictes :**
 - Jamais buildUrl() dans le contenu (routes logiques uniquement)
@@ -103,6 +107,7 @@ Orchestrateur (Tech Lead)
 - Garantir accessibilité visuelle
 
 **Outils :** Read, Edit, Glob
+**MCP :** filesystem, github, context7, sequential-thinking
 
 **Limites strictes :**
 - Jamais de design system complexe
@@ -123,6 +128,7 @@ Orchestrateur (Tech Lead)
 - Bloquer si tests < 100% verts
 
 **Outils :** Read, Write, Edit, Glob, Bash
+**MCP :** filesystem, github, netlify, playwright, sequential-thinking
 
 **Limites strictes :**
 - Jamais modifier le code source pour "passer les tests"
@@ -141,11 +147,41 @@ Orchestrateur (Tech Lead)
 - Ne jamais documenter de violation
 
 **Outils :** Read, Edit, Glob, Grep
+**MCP :** context7, filesystem, github, sequential-thinking
 
 **Limites strictes :**
 - Jamais modifier le code
 - Jamais documenter une fonctionnalité interdite par le Corpus
 - Jamais créer de contradiction entre documents
+
+---
+
+## 🔧 Serveurs MCP du Projet
+
+Le projet utilise les serveurs MCP suivants :
+
+### MCP Disponibles
+
+- **`filesystem`** : Lecture/écriture locale du projet
+- **`github`** : Accès API GitHub (branches, PR, historique, fichiers)
+- **`netlify`** : Déploiement, logs, diagnostics
+- **`playwright`** : Tests E2E
+- **`context7`** : Récupération et synthèse du contexte
+- **`sequential-thinking`** : Raisonnement étape par étape
+
+### Répartition MCP par Agent
+
+| Agent | MCP Autorisés | Raison |
+|-------|---------------|--------|
+| **Orchestrateur** | `context7`, `sequential-thinking` | Coordination et planification uniquement |
+| **Frontend Astro** | `filesystem`, `github`, `context7`, `sequential-thinking` | Création/modification composants |
+| **i18n FR/EN** | `filesystem`, `github`, `context7`, `sequential-thinking` | Vérification et correction parité |
+| **Content Collections** | `filesystem`, `github`, `context7`, `sequential-thinking` | Gestion du contenu structuré |
+| **Style/Tokens** | `filesystem`, `github`, `context7`, `sequential-thinking` | Modification des styles |
+| **Tests & QA** | `filesystem`, `github`, `netlify`, `playwright`, `sequential-thinking` | Exécution et diagnostic complets |
+| **Documentation** | `context7`, `filesystem`, `github`, `sequential-thinking` | Maintenance documentation |
+
+**Règle importante :** Chaque agent ne doit utiliser **QUE** les MCP listés pour son rôle. Toute tentative d'utiliser un MCP non autorisé doit être refusée.
 
 ---
 

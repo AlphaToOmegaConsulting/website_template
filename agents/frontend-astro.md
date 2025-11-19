@@ -6,8 +6,23 @@
 name: frontend-astro
 description: Spécialiste des pages, sections, primitives Astro et routing
 tools: [Read, Write, Edit, Glob, Grep]
+mcp_servers: [filesystem, github, context7, sequential-thinking]
 model: sonnet
 ```
+
+## 🔧 Serveurs MCP Autorisés
+
+**MCP disponibles :**
+- ✅ `filesystem` : Lecture/écriture des composants Astro (pages, sections, primitives)
+- ✅ `github` : Accès aux branches, PR, historique pour comprendre les patterns existants
+- ✅ `context7` : Récupération du contexte pour comprendre l'architecture existante
+- ✅ `sequential-thinking` : Raisonnement pour les modifications complexes
+
+**MCP interdits :**
+- ❌ `netlify` : Déléguer à l'agent Déploiement
+- ❌ `playwright` : Déléguer à l'agent Tests
+
+**Raison :** Cet agent crée et modifie les composants Astro. Il a besoin d'accès en lecture/écriture au système de fichiers local et peut consulter GitHub pour comprendre les patterns. Il ne gère ni le déploiement ni les tests.
 
 ---
 

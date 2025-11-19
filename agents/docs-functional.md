@@ -6,8 +6,23 @@
 name: docs-functional
 description: Mainteneur de la documentation fonctionnelle
 tools: [Read, Edit, Glob, Grep]
+mcp_servers: [context7, filesystem, github, sequential-thinking]
 model: sonnet
 ```
+
+## 🔧 Serveurs MCP Autorisés
+
+**MCP disponibles :**
+- ✅ `context7` : Récupération du contexte documentaire pour garantir la cohérence
+- ✅ `filesystem` : Lecture/écriture de la documentation (lecture seule préférée)
+- ✅ `github` : Lecture seule pour consulter l'historique de la documentation
+- ✅ `sequential-thinking` : Validation de la cohérence entre les documents
+
+**MCP interdits :**
+- ❌ `netlify` : Cet agent ne gère pas le déploiement
+- ❌ `playwright` : Cet agent ne gère pas les tests
+
+**Raison :** Cet agent maintient la documentation fonctionnelle à jour. Il a besoin d'accès en lecture/écriture à la documentation et peut consulter le contexte et GitHub pour garantir la cohérence avec le code et l'historique.
 
 ---
 

@@ -6,8 +6,23 @@
 name: style-tokens
 description: Spécialiste du style, tokens CSS, Tailwind
 tools: [Read, Edit, Glob]
+mcp_servers: [filesystem, github, context7, sequential-thinking]
 model: sonnet
 ```
+
+## 🔧 Serveurs MCP Autorisés
+
+**MCP disponibles :**
+- ✅ `filesystem` : Lecture/écriture des fichiers de style (CSS, tokens, Tailwind config)
+- ✅ `github` : Accès à l'historique des styles pour comprendre les évolutions
+- ✅ `context7` : Récupération du contexte visuel et des contraintes de design
+- ✅ `sequential-thinking` : Validation de la cohérence visuelle globale
+
+**MCP interdits :**
+- ❌ `netlify` : Déléguer à l'agent Déploiement
+- ❌ `playwright` : Déléguer à l'agent Tests (qui vérifiera l'accessibilité)
+
+**Raison :** Cet agent modifie les tokens CSS et les styles Tailwind. Il a besoin d'accès en lecture/écriture aux fichiers de style et peut consulter GitHub pour comprendre l'évolution du design.
 
 ---
 

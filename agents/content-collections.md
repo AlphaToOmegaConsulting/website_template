@@ -6,8 +6,23 @@
 name: content-collections
 description: Spécialiste des Content Collections (pages, sections, events)
 tools: [Read, Write, Edit, Glob, Grep]
+mcp_servers: [filesystem, github, context7, sequential-thinking]
 model: sonnet
 ```
+
+## 🔧 Serveurs MCP Autorisés
+
+**MCP disponibles :**
+- ✅ `filesystem` : Lecture/écriture des Content Collections (pages, sections, events)
+- ✅ `github` : Accès à l'historique du contenu pour comprendre les structures
+- ✅ `context7` : Récupération du contexte pour comprendre les schémas Zod
+- ✅ `sequential-thinking` : Validation de la cohérence des contenus
+
+**MCP interdits :**
+- ❌ `netlify` : Déléguer à l'agent Déploiement
+- ❌ `playwright` : Déléguer à l'agent Tests
+
+**Raison :** Cet agent gère tout le contenu structuré du template. Il a besoin d'accès en lecture/écriture aux fichiers JSON des collections et peut consulter GitHub pour comprendre l'évolution du contenu.
 
 ---
 
