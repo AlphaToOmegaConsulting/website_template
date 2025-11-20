@@ -8,8 +8,7 @@ import CTA from '@/components/sections/CTA.astro';
 
 const allSections = await getCollection('sections');
 const guidesSections = allSections.filter(section =>
-  section.id.startsWith('guides-en') ||
-  (section.id === 'hero-guides-en' || section.id === 'features-guides-en' || section.id === 'cta-guides-en')
+  section.id.endsWith('-guides-en')
 );
 
 const sortedSections = guidesSections

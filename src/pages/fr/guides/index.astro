@@ -8,9 +8,7 @@ import CTA from '@/components/sections/CTA.astro';
 
 const allSections = await getCollection('sections');
 const guidesSections = allSections.filter(section =>
-  section.id.startsWith('guides') && 
-  !section.id.includes('guides-') &&
-  !section.id.includes('-en')
+  section.id.endsWith('-guides')
 );
 
 const sortedSections = guidesSections
