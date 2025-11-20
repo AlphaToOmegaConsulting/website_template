@@ -24,17 +24,17 @@ const footerText = {
 
 const text = footerText[lang];
 
-// Footer links (relative paths only)
+// Footer links (logical paths without leading slash)
 const footerLinks = {
   fr: [
-    { href: '/fr/', label: 'Accueil' },
-    { href: '/fr/demo/events', label: 'Événements' },
-    { href: '/fr/demo/partners', label: 'Partenaires' },
+    { href: `/${lang}/`, label: 'Accueil' },
+    { href: `/${lang}/demo/events`, label: 'Événements' },
+    { href: `/${lang}/demo/partners`, label: 'Partenaires' },
   ],
   en: [
-    { href: '/en/', label: 'Home' },
-    { href: '/en/demo/events', label: 'Events' },
-    { href: '/en/demo/partners', label: 'Partners' },
+    { href: `/${lang}/`, label: 'Home' },
+    { href: `/${lang}/demo/events`, label: 'Events' },
+    { href: `/${lang}/demo/partners`, label: 'Partners' },
   ],
 };
 
