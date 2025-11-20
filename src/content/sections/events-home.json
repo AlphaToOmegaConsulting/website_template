@@ -1,7 +1,7 @@
 {
   "type": "events",
   "order": 4,
-  "visible": true,
+  "visible": false,
   "data": {
     "title": "Événements à venir",
     "displayMode": "upcoming",

@@ -1,14 +1,11 @@
 ---
 title: "Home"
-description: "Website home page"
+description: "Minimalist, multilingual, generic Astro template, 100% base path compatible"
 lang: "en"
-publishDate: 2024-01-15
+publishDate: 2025-01-01
 draft: false
-seo:
-  ogImage: "/images/og-home-en.jpg"
-  noindex: false
 ---
 
-# Welcome to our website
+# Alpha WebCore
 
-This is the home page content in English.
+Minimalist, neutral, multilingual Astro template.

@@ -3,32 +3,32 @@
   "order": 2,
   "visible": true,
   "data": {
-    "title": "What We Offer",
-    "subtitle": "Everything you need to succeed in tech",
+    "title": "Key Features",
+    "subtitle": "A modern, simple template following best practices",
     "features": [
       {
-        "title": "Networking",
-        "description": "Connect with tech professionals and expand your network"
+        "title": "Multilingual FR/EN",
+        "description": "Perfect French/English parity with strict content symmetry"
       },
       {
-        "title": "Training",
-        "description": "Participate in workshops and conferences to develop your skills"
+        "title": "Base Path Compatible",
+        "description": "Works in root or sub-folder thanks to buildUrl()"
       },
       {
-        "title": "Mentorship",
-        "description": "Benefit from the experience of expert mentors in your field"
+        "title": "4-Layer Architecture",
+        "description": "Pages → Sections → Primitives → Content for clear separation"
       },
       {
-        "title": "Events",
-        "description": "Join our regular events: conferences, hackathons, meetups"
+        "title": "6 Generic Sections",
+        "description": "Hero, Features, CTA, Events, About, Team ready to use"
       },
       {
-        "title": "Community",
-        "description": "Be part of a welcoming and inclusive community"
+        "title": "5 UI Primitives",
+        "description": "Button, ButtonLink, Card, Dialog, Input accessible and neutral"
       },
       {
-        "title": "Opportunities",
-        "description": "Access exclusive job offers and career opportunities"
+        "title": "Integrated Tests",
+        "description": "Source, build, links validation + E2E base path tests"
       }
     ],
     "layout": "grid",

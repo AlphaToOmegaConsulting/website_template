@@ -3,32 +3,32 @@
   "order": 2,
   "visible": true,
   "data": {
-    "title": "Ce que nous offrons",
-    "subtitle": "Tout ce dont vous avez besoin pour réussir dans la tech",
+    "title": "Fonctionnalités Principales",
+    "subtitle": "Un template moderne, simple et conforme aux meilleures pratiques",
     "features": [
       {
-        "title": "Networking",
-        "description": "Connectez-vous avec des professionnelles de la tech et élargissez votre réseau"
+        "title": "Multilingue FR/EN",
+        "description": "Parité parfaite français/anglais avec symétrie stricte des contenus"
       },
       {
-        "title": "Formation",
-        "description": "Participez à des ateliers et conférences pour développer vos compétences"
+        "title": "Base Path Compatible",
+        "description": "Fonctionne en racine ou sous-dossier grâce à buildUrl()"
       },
       {
-        "title": "Mentorat",
-        "description": "Bénéficiez de l'expérience de mentores expertes dans votre domaine"
+        "title": "Architecture 4 Couches",
+        "description": "Pages → Sections → Primitives → Contenu pour une séparation claire"
       },
       {
-        "title": "Événements",
-        "description": "Rejoignez nos événements réguliers : conférences, hackathons, meetups"
+        "title": "6 Sections Génériques",
+        "description": "Hero, Features, CTA, Events, About, Team prêtes à l'emploi"
       },
       {
-        "title": "Communauté",
-        "description": "Faites partie d'une communauté bienveillante et inclusive"
+        "title": "5 Primitives UI",
+        "description": "Button, ButtonLink, Card, Dialog, Input accessibles et neutres"
       },
       {
-        "title": "Opportunités",
-        "description": "Accédez à des offres d'emploi et opportunités de carrière exclusives"
+        "title": "Tests Intégrés",
+        "description": "Validation source, build, links + tests E2E base path"
       }
     ],
     "layout": "grid",

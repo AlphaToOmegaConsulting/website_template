@@ -3,15 +3,15 @@
   "order": 5,
   "visible": true,
   "data": {
-    "title": "Join Our Community",
-    "description": "Sign up today to receive our news and participate in our events.",
+    "title": "Ready to Start?",
+    "description": "Explore the Library to discover all components or check the functional documentation.",
     "primaryCta": {
-      "label": "Sign Up",
-      "href": "#"
+      "label": "View Library",
+      "href": "/en/library"
     },
     "secondaryCta": {
-      "label": "Learn More",
-      "href": "#"
+      "label": "Sample Page",
+      "href": "/en/page"
     },
     "variant": "emphasized"
   }

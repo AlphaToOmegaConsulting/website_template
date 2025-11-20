@@ -4,13 +4,13 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Hero from '@/components/sections/Hero.astro';
 
 // Fetch page metadata
-const pageData = await getEntry('pages', 'fr/demo');
-const heroData = await getEntry('sections', 'hero-demo');
+const pageData = await getEntry('pages', 'fr/page');
+const heroData = await getEntry('sections', 'hero-page');
 
 const lang = 'fr';
 const alternateUrls = {
-  fr: '/fr/demo',
-  en: '/en/demo'
+  fr: '/fr/page',
+  en: '/en/page'
 };
 ---
 
@@ -30,7 +30,7 @@ const alternateUrls = {
 
   <section class="container mx-auto px-4 py-16 text-center">
     <p class="text-gray-600 max-w-2xl mx-auto">
-      Ceci est une page de démonstration placeholder. Vous pouvez la personnaliser en ajoutant des sections depuis la Library.
+      Ceci est une page d'exemple placeholder. Vous pouvez la personnaliser en ajoutant des sections depuis la Library.
     </p>
   </section>
 </BaseLayout>

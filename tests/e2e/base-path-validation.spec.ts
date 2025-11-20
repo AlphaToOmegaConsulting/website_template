@@ -89,10 +89,10 @@ test.describe('Base Path Validation', () => {
     const indexPages = [
       'en/library/index.html',
       'fr/library/index.html',
+      'en/page/index.html',
+      'fr/page/index.html',
       'en/demo/index.html',
       'fr/demo/index.html',
-      'en/guides/index.html',
-      'fr/guides/index.html',
     ];
 
     const issues: Array<{page: string; problem: string}> = [];
@@ -154,26 +154,10 @@ test.describe('Base Path Validation', () => {
     const criticalPages = [
       'src/pages/en/library/index.astro',
       'src/pages/fr/library/index.astro',
+      'src/pages/en/page/index.astro',
+      'src/pages/fr/page/index.astro',
       'src/pages/en/demo/index.astro',
       'src/pages/fr/demo/index.astro',
-      'src/pages/en/guides/index.astro',
-      'src/pages/fr/guides/index.astro',
-      // Pages de guides détaillées
-      'src/pages/en/guides/add-page.astro',
-      'src/pages/fr/guides/add-page.astro',
-      'src/pages/en/guides/add-section.astro',
-      'src/pages/fr/guides/add-section.astro',
-      'src/pages/en/guides/site-usage/index.astro',
-      'src/pages/fr/guides/site-usage/index.astro',
-      // Pages library - primitives
-      'src/pages/en/library/primitives/index.astro',
-      'src/pages/fr/library/primitives/index.astro',
-      // Pages library - sections
-      'src/pages/en/library/sections/index.astro',
-      'src/pages/fr/library/sections/index.astro',
-      // Pages library - layout
-      'src/pages/en/library/layout/index.astro',
-      'src/pages/fr/library/layout/index.astro',
       // Pages 404
       'src/pages/en/404.astro',
       'src/pages/fr/404.astro',

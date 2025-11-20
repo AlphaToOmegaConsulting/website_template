@@ -3,25 +3,20 @@
   "order": 3,
   "visible": true,
   "data": {
-    "title": "À propos de Tech Women Together",
-    "content": "Tech Women Together est une communauté dynamique qui rassemble les femmes passionnées par la technologie. Notre mission est de créer un espace inclusif où chacune peut apprendre, partager et grandir professionnellement.\n\nNous organisons des événements, des ateliers et des sessions de networking pour favoriser les échanges et le développement de compétences dans tous les domaines de la tech.",
-    "image": {
-      "src": "/images/about-community.jpg",
-      "alt": "Communauté Tech Women Together",
-      "position": "right"
-    },
+    "title": "À propos du Template",
+    "content": "Alpha WebCore est un template Astro conçu pour la simplicité, la neutralité et la modularité. Il respecte une architecture stricte en 4 couches : Pages → Sections → Primitives → Contenu.\n\nParfaitement compatible avec le déploiement en sous-dossier (GitHub Pages), ce starter minimaliste vous permet de démarrer rapidement tout projet web multilingue.",
     "stats": [
       {
-        "value": "500+",
-        "label": "Membres actives"
+        "value": "6",
+        "label": "Sections"
       },
       {
-        "value": "50+",
-        "label": "Événements organisés"
+        "value": "5",
+        "label": "Primitives"
       },
       {
-        "value": "20+",
-        "label": "Partenaires"
+        "value": "FR/EN",
+        "label": "Multilingue"
       }
     ]
   }

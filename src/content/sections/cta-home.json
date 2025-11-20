@@ -3,15 +3,15 @@
   "order": 5,
   "visible": true,
   "data": {
-    "title": "Rejoignez notre communauté",
-    "description": "Inscrivez-vous dès aujourd'hui pour recevoir nos actualités et participer à nos événements.",
+    "title": "Prêt à démarrer ?",
+    "description": "Explorez la Library pour découvrir tous les composants ou consultez la documentation fonctionnelle.",
     "primaryCta": {
-      "label": "S'inscrire",
-      "href": "#"
+      "label": "Voir la Library",
+      "href": "/fr/library"
     },
     "secondaryCta": {
-      "label": "En savoir plus",
-      "href": "#"
+      "label": "Page d'exemple",
+      "href": "/fr/page"
     },
     "variant": "emphasized"
   }

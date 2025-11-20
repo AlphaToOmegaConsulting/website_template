@@ -3,13 +3,13 @@
   "order": 1,
   "visible": true,
   "data": {
-    "title": "Bienvenue chez Tech Women Together",
-    "subtitle": "La communauté qui connecte les femmes dans la tech",
+    "title": "Alpha WebCore",
+    "subtitle": "Template Astro minimaliste, multilingue, générique et 100% compatible base path",
     "cta": {
-      "label": "Découvrir",
-      "href": "#",
+      "label": "Voir la Library",
+      "href": "/fr/library",
       "variant": "primary"
     },
-    "variant": "default"
+    "variant": "centered"
   }
 }

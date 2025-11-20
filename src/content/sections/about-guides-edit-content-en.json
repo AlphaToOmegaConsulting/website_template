@@ -1,9 +1,0 @@
-{
-  "type": "about",
-  "order": 2,
-  "visible": true,
-  "data": {
-    "title": "Guide Content",
-    "description": "This guide details the rules and processes for Edit Content."
-  }
-}

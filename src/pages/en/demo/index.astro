@@ -1,40 +1,36 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { buildUrl } from '@/utils/url';
+import Hero from '@/components/sections/Hero.astro';
+
+// Fetch page metadata
+const pageData = await getEntry('pages', 'en/demo');
+const heroData = await getEntry('sections', 'hero-demo-en');
 
 const lang = 'en';
-const title = 'Demo';
-const description = 'Template demo pages';
-
 const alternateUrls = {
   fr: '/fr/demo',
   en: '/en/demo'
 };
-
-const demos = [
-  { title: 'Marketing', slug: 'marketing', description: 'Marketing demo pages' },
-  { title: 'Events', slug: 'events', description: 'Events listing page' },
-  { title: 'Partners', slug: 'partners', description: 'Partners presentation page' },
-];
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
+  title={pageData.data.title}
+  description={pageData.data.description}
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <main class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-4xl font-bold mb-6">Demo pages</h1>
-    <p class="text-lg mb-12">Example pages built with the template.</p>
+  {heroData && (
+    <Hero
+      title={heroData.data.data.title}
+      subtitle={heroData.data.data.subtitle}
+      variant={heroData.data.data.variant}
+    />
+  )}
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {demos.map(d => (
-        <a href={buildUrl(`/en/demo/${d.slug}`)} class="block p-6 border rounded-lg hover:shadow-lg transition">
-          <h2 class="text-xl font-semibold mb-2">{d.title}</h2>
-          <p class="text-sm text-gray-600">{d.description}</p>
-        </a>
-      ))}
-    </div>
-  </main>
+  <section class="container mx-auto px-4 py-16 text-center">
+    <p class="text-gray-600 max-w-2xl mx-auto">
+      This is a demonstration placeholder page. You can customize it by adding sections from the Library.
+    </p>
+  </section>
 </BaseLayout>

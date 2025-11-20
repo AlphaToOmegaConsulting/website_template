@@ -13,18 +13,12 @@ test.describe('Link Integrity', () => {
   const pages = [
     '/fr/',
     '/en/',
-    '/fr/demo/',
-    '/en/demo/',
     '/fr/library/',
     '/en/library/',
-    '/fr/library/primitives/',
-    '/en/library/primitives/',
-    '/fr/library/sections/',
-    '/en/library/sections/',
-    '/fr/library/layout/',
-    '/en/library/layout/',
-    '/fr/guides/',
-    '/en/guides/',
+    '/fr/page/',
+    '/en/page/',
+    '/fr/demo/',
+    '/en/demo/',
   ];
 
   for (const pageUrl of pages) {
@@ -149,17 +143,13 @@ test.describe('Link Integrity', () => {
   test('should not have any 404 pages in main navigation paths', async ({ page }) => {
     const paths = [
       '/fr/',
-      '/fr/demo/',
-      '/fr/demo/events/',
-      '/fr/demo/partners/',
       '/fr/library/',
-      '/fr/guides/',
+      '/fr/page/',
+      '/fr/demo/',
       '/en/',
-      '/en/demo/',
-      '/en/demo/events/',
-      '/en/demo/partners/',
       '/en/library/',
-      '/en/guides/',
+      '/en/page/',
+      '/en/demo/',
     ];
 
     for (const path of paths) {

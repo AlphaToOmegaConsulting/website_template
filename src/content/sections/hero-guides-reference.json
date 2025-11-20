@@ -1,9 +1,0 @@
-{
-  "type": "hero",
-  "order": 1,
-  "visible": true,
-  "data": {
-    "title": "Référentiel Composants",
-    "subtitle": "Guide pratique du template Alpha WebCore"
-  }
-}

@@ -1,14 +1,11 @@
 ---
 title: "Accueil"
-description: "Page d'accueil du site web"
+description: "Template Astro minimaliste, multilingue, générique et 100% compatible base path"
 lang: "fr"
-publishDate: 2024-01-15
+publishDate: 2025-01-01
 draft: false
-seo:
-  ogImage: "/images/og-home-fr.jpg"
-  noindex: false
 ---
 
-# Bienvenue sur notre site
+# Alpha WebCore
 
-Ceci est le contenu de la page d'accueil en français.
+Template Astro minimaliste, neutre et multilingue.

@@ -1,9 +1,0 @@
-{
-  "type": "hero",
-  "order": 1,
-  "visible": true,
-  "data": {
-    "title": "Base Path & Deployment",
-    "subtitle": "Practical guide for Alpha WebCore template"
-  }
-}

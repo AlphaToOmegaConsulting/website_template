@@ -1,45 +1,263 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { buildUrl } from '@/utils/url';
 
-const lang = 'en';
-const title = 'Alpha WebCore Library';
-const description = 'Complete Astro template documentation';
+// Import sections for gallery
+import Hero from '@/components/sections/Hero.astro';
+import Features from '@/components/sections/Features.astro';
+import CTA from '@/components/sections/CTA.astro';
+import Events from '@/components/sections/Events.astro';
+import About from '@/components/sections/About.astro';
+import Team from '@/components/sections/Team.astro';
 
+// Import primitives for gallery
+import Button from '@/components/primitives/Button.astro';
+import ButtonLink from '@/components/primitives/ButtonLink.astro';
+import Card from '@/components/primitives/Card.astro';
+import Input from '@/components/primitives/Input.astro';
+import Dialog from '@/components/primitives/Dialog.astro';
+
+// Fetch page metadata
+const pageData = await getEntry('pages', 'en/library');
+const heroData = await getEntry('sections', 'hero-library-en');
+
+const lang = 'en';
 const alternateUrls = {
   fr: '/fr/library',
   en: '/en/library'
 };
+
+// Example data for sections showcase
+const exampleFeatures = [
+  { title: "Feature 1", description: "Feature description" },
+  { title: "Feature 2", description: "Feature description" },
+  { title: "Feature 3", description: "Feature description" }
+];
+
+const exampleTeamMembers = [
+  { id: "1", name: "Full Name", role: "Role", avatar: "https://via.placeholder.com/128", bio: "Short biography of the person" },
+  { id: "2", name: "Full Name", role: "Role", avatar: "https://via.placeholder.com/128", bio: "Short biography of the person" }
+];
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
+  title={pageData.data.title}
+  description={pageData.data.description}
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <main class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-4xl font-bold mb-6">Library</h1>
+  {/* Hero section */}
+  {heroData && (
+    <Hero
+      title={heroData.data.data.title}
+      subtitle={heroData.data.data.subtitle}
+      variant={heroData.data.data.variant}
+    />
+  )}
 
-    <p class="text-lg mb-12">
-      Complete documentation of template components.
+  {/* Sections Gallery */}
+  <section class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-8 text-center">Sections (6)</h2>
+    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+      Reusable, generic, and neutral page blocks. All data comes from Content Collections.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <a href={buildUrl('/en/library/primitives')} class="block p-6 border rounded-lg hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">Primitives</h2>
-        <p class="text-sm text-gray-600">Base UI components</p>
-      </a>
+    <div class="space-y-16">
+      {/* Hero */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">Hero</h3>
+          <span class="text-sm text-gray-500">Introduction section</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <Hero
+            title="Main Title"
+            subtitle="Descriptive subtitle to present the page content"
+            variant="centered"
+            cta={{ label: "Action", href: "#", variant: "primary" }}
+          />
+        </div>
+      </div>
 
-      <a href={buildUrl('/en/library/sections')} class="block p-6 border rounded-lg hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">Sections</h2>
-        <p class="text-sm text-gray-600">Complete page blocks</p>
-      </a>
+      {/* Features */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">Features</h3>
+          <span class="text-sm text-gray-500">Features list</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <Features
+            title="Features"
+            subtitle="List of main features"
+            features={exampleFeatures}
+            layout="grid"
+            columns={3}
+          />
+        </div>
+      </div>
 
-      <a href={buildUrl('/en/library/layout')} class="block p-6 border rounded-lg hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">Layout</h2>
-        <p class="text-sm text-gray-600">Layout components</p>
-      </a>
+      {/* CTA */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">CTA</h3>
+          <span class="text-sm text-gray-500">Call to action</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <CTA
+            title="Call to Action"
+            description="Description inviting the user to take action"
+            primaryCta={{ label: "Primary Action", href: "#" }}
+            secondaryCta={{ label: "Secondary Action", href: "#" }}
+            variant="emphasized"
+          />
+        </div>
+      </div>
+
+      {/* Events */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">Events</h3>
+          <span class="text-sm text-gray-500">Events list</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <Events
+            title="Events"
+            displayMode="upcoming"
+            limit={3}
+            lang="en"
+          />
+        </div>
+      </div>
+
+      {/* About */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">About</h3>
+          <span class="text-sm text-gray-500">Presentation</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <About
+            title="About"
+            content="Descriptive content presenting the project, organization, or service. This text can be long and detailed."
+            stats={[
+              { value: "100+", label: "Statistic 1" },
+              { value: "50+", label: "Statistic 2" },
+              { value: "20+", label: "Statistic 3" }
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* Team */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">Team</h3>
+          <span class="text-sm text-gray-500">Team members</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <Team
+            title="Our Team"
+            authors={exampleTeamMembers}
+            columns={2}
+          />
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
+
+  {/* Primitives Gallery */}
+  <section class="container mx-auto px-4 py-16 bg-gray-50">
+    <h2 class="text-3xl font-bold mb-8 text-center">Primitives (5)</h2>
+    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+      Atomic, accessible, and neutral UI components. Used in sections to build the interface.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* Button */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">Button</h3>
+        <div class="space-y-3">
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Primary</p>
+            <Button variant="primary">Button</Button>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Secondary</p>
+            <Button variant="secondary">Button</Button>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Ghost</p>
+            <Button variant="ghost">Button</Button>
+          </div>
+        </div>
+      </div>
+
+      {/* ButtonLink */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">ButtonLink</h3>
+        <div class="space-y-3">
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Primary</p>
+            <ButtonLink href="#" variant="primary">Link</ButtonLink>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Secondary</p>
+            <ButtonLink href="#" variant="secondary">Link</ButtonLink>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Ghost</p>
+            <ButtonLink href="#" variant="ghost">Link</ButtonLink>
+          </div>
+        </div>
+      </div>
+
+      {/* Card */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">Card</h3>
+        <div class="space-y-3">
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Default</p>
+            <Card variant="default">
+              <p class="text-sm">Card content</p>
+            </Card>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Bordered</p>
+            <Card variant="bordered">
+              <p class="text-sm">Card content</p>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Input */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">Input</h3>
+        <div class="space-y-3">
+          <Input label="Email" type="email" id="email-demo" />
+          <Input label="Name" type="text" id="name-demo" />
+          <Input label="Message" type="text" id="message-demo" error="Error message" />
+        </div>
+      </div>
+
+      {/* Dialog */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">Dialog</h3>
+        <div class="space-y-3">
+          <Button id="open-dialog-demo">Open Dialog</Button>
+          <Dialog id="dialog-demo" title="Dialog Title">
+            <p class="text-sm">Modal dialog content. Accessible and responsive.</p>
+          </Dialog>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Footer note */}
+  <section class="container mx-auto px-4 py-8 text-center">
+    <p class="text-sm text-gray-500">
+      All components follow WebCore architecture: Pages → Sections → Primitives → Content
+    </p>
+  </section>
 </BaseLayout>

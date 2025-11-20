@@ -1,45 +1,263 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { buildUrl } from '@/utils/url';
 
-const lang = 'fr';
-const title = 'Bibliothèque Alpha WebCore';
-const description = 'Documentation complète du template Astro';
+// Import sections for gallery
+import Hero from '@/components/sections/Hero.astro';
+import Features from '@/components/sections/Features.astro';
+import CTA from '@/components/sections/CTA.astro';
+import Events from '@/components/sections/Events.astro';
+import About from '@/components/sections/About.astro';
+import Team from '@/components/sections/Team.astro';
 
+// Import primitives for gallery
+import Button from '@/components/primitives/Button.astro';
+import ButtonLink from '@/components/primitives/ButtonLink.astro';
+import Card from '@/components/primitives/Card.astro';
+import Input from '@/components/primitives/Input.astro';
+import Dialog from '@/components/primitives/Dialog.astro';
+
+// Fetch page metadata
+const pageData = await getEntry('pages', 'fr/library');
+const heroData = await getEntry('sections', 'hero-library');
+
+const lang = 'fr';
 const alternateUrls = {
   fr: '/fr/library',
   en: '/en/library'
 };
+
+// Example data for sections showcase
+const exampleFeatures = [
+  { title: "Feature 1", description: "Description de la fonctionnalité" },
+  { title: "Feature 2", description: "Description de la fonctionnalité" },
+  { title: "Feature 3", description: "Description de la fonctionnalité" }
+];
+
+const exampleTeamMembers = [
+  { id: "1", name: "Nom Prénom", role: "Rôle", avatar: "https://via.placeholder.com/128", bio: "Courte biographie de la personne" },
+  { id: "2", name: "Nom Prénom", role: "Rôle", avatar: "https://via.placeholder.com/128", bio: "Courte biographie de la personne" }
+];
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
+  title={pageData.data.title}
+  description={pageData.data.description}
   lang={lang}
   alternateUrls={alternateUrls}
 >
-  <main class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-4xl font-bold mb-6">Library</h1>
+  {/* Hero section */}
+  {heroData && (
+    <Hero
+      title={heroData.data.data.title}
+      subtitle={heroData.data.data.subtitle}
+      variant={heroData.data.data.variant}
+    />
+  )}
 
-    <p class="text-lg mb-12">
-      Documentation complète des composants du template.
+  {/* Sections Gallery */}
+  <section class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-8 text-center">Sections (6)</h2>
+    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+      Blocs de page réutilisables, génériques et neutres. Toutes les données viennent des Content Collections.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <a href={buildUrl('/fr/library/primitives')} class="block p-6 border rounded-lg hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">Primitives</h2>
-        <p class="text-sm text-gray-600">Composants UI de base</p>
-      </a>
+    <div class="space-y-16">
+      {/* Hero */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">Hero</h3>
+          <span class="text-sm text-gray-500">Section d'introduction</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <Hero
+            title="Titre Principal"
+            subtitle="Sous-titre descriptif pour présenter le contenu de la page"
+            variant="centered"
+            cta={{ label: "Action", href: "#", variant: "primary" }}
+          />
+        </div>
+      </div>
 
-      <a href={buildUrl('/fr/library/sections')} class="block p-6 border rounded-lg hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">Sections</h2>
-        <p class="text-sm text-gray-600">Blocs de page complets</p>
-      </a>
+      {/* Features */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">Features</h3>
+          <span class="text-sm text-gray-500">Liste de fonctionnalités</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <Features
+            title="Fonctionnalités"
+            subtitle="Liste des principales fonctionnalités"
+            features={exampleFeatures}
+            layout="grid"
+            columns={3}
+          />
+        </div>
+      </div>
 
-      <a href={buildUrl('/fr/library/layout')} class="block p-6 border rounded-lg hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">Layout</h2>
-        <p class="text-sm text-gray-600">Composants de mise en page</p>
-      </a>
+      {/* CTA */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">CTA</h3>
+          <span class="text-sm text-gray-500">Appel à l'action</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <CTA
+            title="Appel à l'Action"
+            description="Description invitant l'utilisateur à agir"
+            primaryCta={{ label: "Action Principale", href: "#" }}
+            secondaryCta={{ label: "Action Secondaire", href: "#" }}
+            variant="emphasized"
+          />
+        </div>
+      </div>
+
+      {/* Events */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">Events</h3>
+          <span class="text-sm text-gray-500">Liste d'événements</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <Events
+            title="Événements"
+            displayMode="upcoming"
+            limit={3}
+            lang="fr"
+          />
+        </div>
+      </div>
+
+      {/* About */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">About</h3>
+          <span class="text-sm text-gray-500">Présentation</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <About
+            title="À Propos"
+            content="Contenu descriptif présentant le projet, l'organisation ou le service. Ce texte peut être long et détaillé."
+            stats={[
+              { value: "100+", label: "Statistique 1" },
+              { value: "50+", label: "Statistique 2" },
+              { value: "20+", label: "Statistique 3" }
+            ]}
+          />
+        </div>
+      </div>
+
+      {/* Team */}
+      <div class="component-showcase">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-xl font-semibold">Team</h3>
+          <span class="text-sm text-gray-500">Équipe</span>
+        </div>
+        <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+          <Team
+            title="Notre Équipe"
+            authors={exampleTeamMembers}
+            columns={2}
+          />
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
+
+  {/* Primitives Gallery */}
+  <section class="container mx-auto px-4 py-16 bg-gray-50">
+    <h2 class="text-3xl font-bold mb-8 text-center">Primitives (5)</h2>
+    <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+      Composants UI atomiques, accessibles et neutres. Utilisés dans les sections pour construire l'interface.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {/* Button */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">Button</h3>
+        <div class="space-y-3">
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Primary</p>
+            <Button variant="primary">Bouton</Button>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Secondary</p>
+            <Button variant="secondary">Bouton</Button>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Ghost</p>
+            <Button variant="ghost">Bouton</Button>
+          </div>
+        </div>
+      </div>
+
+      {/* ButtonLink */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">ButtonLink</h3>
+        <div class="space-y-3">
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Primary</p>
+            <ButtonLink href="#" variant="primary">Lien</ButtonLink>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Secondary</p>
+            <ButtonLink href="#" variant="secondary">Lien</ButtonLink>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Ghost</p>
+            <ButtonLink href="#" variant="ghost">Lien</ButtonLink>
+          </div>
+        </div>
+      </div>
+
+      {/* Card */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">Card</h3>
+        <div class="space-y-3">
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Default</p>
+            <Card variant="default">
+              <p class="text-sm">Contenu de la carte</p>
+            </Card>
+          </div>
+          <div>
+            <p class="text-xs text-gray-500 mb-2">Bordered</p>
+            <Card variant="bordered">
+              <p class="text-sm">Contenu de la carte</p>
+            </Card>
+          </div>
+        </div>
+      </div>
+
+      {/* Input */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">Input</h3>
+        <div class="space-y-3">
+          <Input label="Email" type="email" id="email-demo" />
+          <Input label="Nom" type="text" id="name-demo" />
+          <Input label="Message" type="text" id="message-demo" error="Message d'erreur" />
+        </div>
+      </div>
+
+      {/* Dialog */}
+      <div class="bg-white p-6 rounded-xl shadow-sm border">
+        <h3 class="text-lg font-semibold mb-4">Dialog</h3>
+        <div class="space-y-3">
+          <Button id="open-dialog-demo">Ouvrir Dialog</Button>
+          <Dialog id="dialog-demo" title="Titre du Dialog">
+            <p class="text-sm">Contenu du dialog modal. Accessible et responsive.</p>
+          </Dialog>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Footer note */}
+  <section class="container mx-auto px-4 py-8 text-center">
+    <p class="text-sm text-gray-500">
+      Tous les composants respectent l'architecture WebCore : Pages → Sections → Primitives → Contenu
+    </p>
+  </section>
 </BaseLayout>

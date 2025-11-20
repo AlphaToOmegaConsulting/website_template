@@ -1,11 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/sections/Hero.astro';
 import About from '../../components/sections/About.astro';
 import Features from '../../components/sections/Features.astro';
-import Events from '../../components/sections/Events.astro';
 import CTA from '../../components/sections/CTA.astro';
+
+// Fetch page metadata
+const pageData = await getEntry('pages', 'en/home');
 
 // Fetch content from Content Collections
 const allSections = await getCollection('sections');
@@ -26,18 +28,14 @@ const getSectionData = (type: string) => {
 };
 
 const heroData = getSectionData('hero');
-const aboutData = getSectionData('about');
 const featuresData = getSectionData('features');
+const aboutData = getSectionData('about');
 const ctaData = getSectionData('cta');
-
-// Page metadata
-const pageTitle = 'Home - Tech Women Together';
-const pageDescription = 'Welcome to Tech Women Together, the community connecting women in tech.';
 ---
 
 <BaseLayout
-  title={pageTitle}
-  description={pageDescription}
+  title={pageData.data.title}
+  description={pageData.data.description}
   lang="en"
   alternateUrls={{
     fr: '/fr/',
@@ -49,17 +47,7 @@ const pageDescription = 'Welcome to Tech Women Together, the community connectin
       title={heroData.title}
       subtitle={heroData.subtitle}
       cta={heroData.cta}
-      image={heroData.image}
-      background={heroData.background}
-    />
-  )}
-
-  {aboutData && (
-    <About
-      title={aboutData.title}
-      content={aboutData.content}
-      image={aboutData.image}
-      stats={aboutData.stats}
+      variant={heroData.variant}
     />
   )}
 
@@ -73,12 +61,13 @@ const pageDescription = 'Welcome to Tech Women Together, the community connectin
     />
   )}
 
-  <Events
-    title="Upcoming Events"
-    displayMode="upcoming"
-    limit={3}
-    lang="en"
-  />
+  {aboutData && (
+    <About
+      title={aboutData.title}
+      content={aboutData.content}
+      stats={aboutData.stats}
+    />
+  )}
 
   {ctaData && (
     <CTA
@@ -86,7 +75,7 @@ const pageDescription = 'Welcome to Tech Women Together, the community connectin
       description={ctaData.description}
       primaryCta={ctaData.primaryCta}
       secondaryCta={ctaData.secondaryCta}
-      background={ctaData.background}
+      variant={ctaData.variant}
     />
   )}
 </BaseLayout>
