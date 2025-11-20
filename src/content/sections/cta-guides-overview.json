@@ -1,0 +1,17 @@
+{
+  "type": "cta",
+  "order": 3,
+  "visible": true,
+  "data": {
+    "title": "Explorer Plus",
+    "description": "Consultez le Corpus Fonctionnel pour tous les détails.",
+    "primaryCta": {
+      "label": "Corpus Fonctionnel",
+      "href": "/guides/corpus"
+    },
+    "secondaryCta": {
+      "label": "Retour aux Guides",
+      "href": "/guides"
+    }
+  }
+}

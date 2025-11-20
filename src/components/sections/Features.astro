@@ -1,11 +1,18 @@
 ---
+import { buildUrl } from '@/utils/url';
+
 interface Props {
   title: string;
   subtitle?: string;
   features: Array<{
     icon?: string;
     title: string;
-    description: string;
+    description?: string;
+    subtitle?: string;
+    links?: Array<{
+      text: string;
+      href: string;
+    }>;
   }>;
   layout?: 'grid' | 'list';
   columns?: 2 | 3;
@@ -67,9 +74,35 @@ const layoutClasses = layout === 'grid'
               {feature.title}
             </h3>
 
-            <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
-              {feature.description}
-            </p>
+            {feature.subtitle && (
+              <p class="text-base sm:text-lg text-gray-500 mb-3">
+                {feature.subtitle}
+              </p>
+            )}
+
+            {feature.description && (
+              <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+                {feature.description}
+              </p>
+            )}
+
+            {feature.links && feature.links.length > 0 && (
+              <ul class="mt-4 space-y-2">
+                {feature.links.map((link) => (
+                  <li>
+                    <a
+                      href={buildUrl(link.href)}
+                      class="text-brand-accent hover:text-brand-primary hover:underline transition-colors inline-flex items-center gap-1"
+                    >
+                      <span>{link.text}</span>
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       ))}
