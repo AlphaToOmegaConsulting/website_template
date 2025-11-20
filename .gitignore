@@ -1,5 +1,6 @@
 ﻿# Dependencies
 node_modules/
+package-lock.json
 
 # Build outputs
 dist/
@@ -13,6 +14,9 @@ dist/
 .env.development
 .env.production
 !.env.example
+
+# MCP Configuration (contains sensitive tokens)
+.mcp.json
 
 # IDE
 .vscode/
@@ -49,3 +53,12 @@ reports/
 # Misc
 .cache/
 nul
+
+# Backup files
+*.bak
+*.backup
+
+# Temporary files
+temp_*.html
+temp_*.htm
+temp_*

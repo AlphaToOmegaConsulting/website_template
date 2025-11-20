@@ -1,0 +1,9 @@
+{
+  "type": "about",
+  "order": 2,
+  "visible": true,
+  "data": {
+    "title": "Guide Content",
+    "description": "This guide presents the fundamental principles, 4-layer architecture and 6 immutable principles of the Alpha WebCore template."
+  }
+}

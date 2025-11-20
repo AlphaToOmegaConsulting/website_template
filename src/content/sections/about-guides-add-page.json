@@ -1,0 +1,9 @@
+{
+  "type": "about",
+  "order": 2,
+  "visible": true,
+  "data": {
+    "title": "Contenu du Guide",
+    "description": "Ce guide détaille les règles et processus pour Ajouter une Page."
+  }
+}

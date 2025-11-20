@@ -1,0 +1,76 @@
+{
+  "type": "features",
+  "order": 2,
+  "visible": true,
+  "data": {
+    "title": "Catégories de Guides",
+    "layout": "grid",
+    "columns": 2,
+    "features": [
+      {
+        "title": "📘 Fondamentaux",
+        "subtitle": "Vue d'ensemble et Corpus Fonctionnel",
+        "links": [
+          {
+            "text": "Vue d'Ensemble du Template",
+            "href": "/guides/overview"
+          },
+          {
+            "text": "Corpus Fonctionnel",
+            "href": "/guides/corpus"
+          }
+        ]
+      },
+      {
+        "title": "🏗️ Architecture",
+        "subtitle": "Ajouter pages, sections et primitives",
+        "links": [
+          {
+            "text": "Ajouter une Page",
+            "href": "/guides/add-page"
+          },
+          {
+            "text": "Ajouter une Section",
+            "href": "/guides/add-section"
+          },
+          {
+            "text": "Ajouter une Primitive",
+            "href": "/guides/add-primitive"
+          }
+        ]
+      },
+      {
+        "title": "✏️ Contenu & Style",
+        "subtitle": "Modifier le contenu et l'apparence",
+        "links": [
+          {
+            "text": "Modifier le Contenu",
+            "href": "/guides/edit-content"
+          },
+          {
+            "text": "Modifier le Style",
+            "href": "/guides/edit-style"
+          }
+        ]
+      },
+      {
+        "title": "🚀 Déploiement & Tests",
+        "subtitle": "Base Path et validation",
+        "links": [
+          {
+            "text": "Base Path & Déploiement",
+            "href": "/guides/base-path"
+          },
+          {
+            "text": "Tests & Validation",
+            "href": "/guides/tests"
+          },
+          {
+            "text": "Référentiel Composants",
+            "href": "/guides/reference"
+          }
+        ]
+      }
+    ]
+  }
+}

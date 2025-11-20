@@ -1,42 +1,41 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { buildUrl } from '@/utils/url';
+import Hero from '@/components/sections/Hero.astro';
+import Features from '@/components/sections/Features.astro';
+import CTA from '@/components/sections/CTA.astro';
 
-const lang = 'fr';
-const title = 'Guides';
-const description = 'Guides pratiques pour utiliser Alpha WebCore';
+const allSections = await getCollection('sections');
+const guidesSections = allSections.filter(section =>
+  section.id.startsWith('guides') && 
+  !section.id.includes('guides-') &&
+  !section.id.includes('-en')
+);
 
-const alternateUrls = {
-  fr: '/fr/guides',
-  en: '/en/guides'
+const sortedSections = guidesSections
+  .filter(section => section.data.visible)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const getSectionData = (type: string) => {
+  return sortedSections.find(section => section.data.type === type)?.data.data;
 };
 
-// Liste des guides
-const guides = [
-  { title: 'Utilisation du site', slug: 'site-usage', description: 'Vue d\'ensemble et workflows courants' },
-  { title: 'Ajouter une page', slug: 'add-page', description: 'Comment créer une nouvelle page' },
-  { title: 'Ajouter une section', slug: 'add-section', description: 'Comment créer un nouveau bloc de contenu' },
-  { title: 'Structure du contenu', slug: 'content-structure', description: 'Organisation et structure du contenu' },
-];
+const heroData = getSectionData('hero');
+const featuresData = getSectionData('features');
+const ctaData = getSectionData('cta');
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
-  lang={lang}
-  alternateUrls={alternateUrls}
+  title="Guides - Alpha WebCore"
+  description="Documentation pratique complète du template Alpha WebCore"
+  lang="fr"
+  alternateUrls={{
+    fr: buildUrl('/fr/guides/'),
+    en: buildUrl('/en/guides/')
+  }}
 >
-  <main class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-4xl font-bold mb-6">Guides</h1>
-    <p class="text-lg mb-12">Guides pratiques pour utiliser et étendre le template.</p>
-
-    <div class="space-y-4">
-      {guides.map(g => (
-        <a href={buildUrl(`/fr/guides/${g.slug}`)} class="block p-6 border rounded-lg hover:shadow-lg transition">
-          <h2 class="text-xl font-semibold mb-2">{g.title}</h2>
-          <p class="text-sm text-gray-600">{g.description}</p>
-        </a>
-      ))}
-    </div>
-  </main>
+  {heroData && <Hero {...heroData} />}
+  {featuresData && <Features {...featuresData} />}
+  {ctaData && <CTA {...ctaData} />}
 </BaseLayout>
