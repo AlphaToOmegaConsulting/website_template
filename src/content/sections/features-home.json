@@ -1,0 +1,37 @@
+{
+  "type": "features",
+  "order": 2,
+  "visible": true,
+  "data": {
+    "title": "Fonctionnalités Principales",
+    "subtitle": "Un template moderne, simple et conforme aux meilleures pratiques",
+    "features": [
+      {
+        "title": "Multilingue FR/EN",
+        "description": "Parité parfaite français/anglais avec symétrie stricte des contenus"
+      },
+      {
+        "title": "Base Path Compatible",
+        "description": "Fonctionne en racine ou sous-dossier grâce à buildUrl()"
+      },
+      {
+        "title": "Architecture 4 Couches",
+        "description": "Pages → Sections → Primitives → Contenu pour une séparation claire"
+      },
+      {
+        "title": "6 Sections Génériques",
+        "description": "Hero, Features, CTA, Events, About, Team prêtes à l'emploi"
+      },
+      {
+        "title": "5 Primitives UI",
+        "description": "Button, ButtonLink, Card, Dialog, Input accessibles et neutres"
+      },
+      {
+        "title": "Tests Intégrés",
+        "description": "Validation source, build, links + tests E2E base path"
+      }
+    ],
+    "layout": "grid",
+    "columns": 3
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "cta",
+  "order": 5,
+  "visible": true,
+  "data": {
+    "title": "Ready to Start?",
+    "description": "Explore the Library to discover all components or check the functional documentation.",
+    "primaryCta": {
+      "label": "View Library",
+      "href": "/en/library"
+    },
+    "secondaryCta": {
+      "label": "Sample Page",
+      "href": "/en/page"
+    },
+    "variant": "emphasized"
+  }
+}

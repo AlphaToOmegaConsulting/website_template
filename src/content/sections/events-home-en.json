@@ -1,0 +1,10 @@
+{
+  "type": "events",
+  "order": 4,
+  "visible": false,
+  "data": {
+    "title": "Upcoming Events",
+    "displayMode": "upcoming",
+    "limit": 3
+  }
+}

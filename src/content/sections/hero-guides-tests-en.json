@@ -1,0 +1,9 @@
+{
+  "type": "hero",
+  "order": 1,
+  "visible": true,
+  "data": {
+    "title": "Tests & Validation",
+    "subtitle": "Practical guide for Alpha WebCore template"
+  }
+}

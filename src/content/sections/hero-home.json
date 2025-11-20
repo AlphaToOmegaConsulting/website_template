@@ -1,0 +1,15 @@
+{
+  "type": "hero",
+  "order": 1,
+  "visible": true,
+  "data": {
+    "title": "Alpha WebCore",
+    "subtitle": "Template Astro minimaliste, multilingue, générique et 100% compatible base path",
+    "cta": {
+      "label": "Voir la Library",
+      "href": "/fr/library",
+      "variant": "primary"
+    },
+    "variant": "centered"
+  }
+}

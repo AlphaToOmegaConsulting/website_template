@@ -1,0 +1,36 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+
+// Fetch page metadata
+const pageData = await getEntry('pages', 'fr/demo');
+const heroData = await getEntry('sections', 'hero-demo');
+
+const lang = 'fr';
+const alternateUrls = {
+  fr: '/fr/demo',
+  en: '/en/demo'
+};
+---
+
+<BaseLayout
+  title={pageData.data.title}
+  description={pageData.data.description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  {heroData && (
+    <Hero
+      title={heroData.data.data.title}
+      subtitle={heroData.data.data.subtitle}
+      variant={heroData.data.data.variant}
+    />
+  )}
+
+  <section class="container mx-auto px-4 py-16 text-center">
+    <p class="text-gray-600 max-w-2xl mx-auto">
+      Ceci est une page de démonstration placeholder. Vous pouvez la personnaliser en ajoutant des sections depuis la Library.
+    </p>
+  </section>
+</BaseLayout>

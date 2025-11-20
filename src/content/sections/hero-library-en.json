@@ -1,0 +1,10 @@
+{
+  "type": "hero",
+  "order": 1,
+  "visible": true,
+  "data": {
+    "title": "Library",
+    "subtitle": "Visual gallery of Alpha WebCore template components",
+    "variant": "centered"
+  }
+}

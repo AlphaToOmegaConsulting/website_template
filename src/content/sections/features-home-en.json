@@ -1,0 +1,37 @@
+{
+  "type": "features",
+  "order": 2,
+  "visible": true,
+  "data": {
+    "title": "Key Features",
+    "subtitle": "A modern, simple template following best practices",
+    "features": [
+      {
+        "title": "Multilingual FR/EN",
+        "description": "Perfect French/English parity with strict content symmetry"
+      },
+      {
+        "title": "Base Path Compatible",
+        "description": "Works in root or sub-folder thanks to buildUrl()"
+      },
+      {
+        "title": "4-Layer Architecture",
+        "description": "Pages → Sections → Primitives → Content for clear separation"
+      },
+      {
+        "title": "6 Generic Sections",
+        "description": "Hero, Features, CTA, Events, About, Team ready to use"
+      },
+      {
+        "title": "5 UI Primitives",
+        "description": "Button, ButtonLink, Card, Dialog, Input accessible and neutral"
+      },
+      {
+        "title": "Integrated Tests",
+        "description": "Source, build, links validation + E2E base path tests"
+      }
+    ],
+    "layout": "grid",
+    "columns": 3
+  }
+}

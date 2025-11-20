@@ -1,0 +1,10 @@
+{
+  "type": "hero",
+  "order": 1,
+  "visible": true,
+  "data": {
+    "title": "Demo",
+    "subtitle": "Demonstration page of Alpha WebCore template",
+    "variant": "centered"
+  }
+}

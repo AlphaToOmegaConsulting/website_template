@@ -1,0 +1,23 @@
+{
+  "type": "about",
+  "order": 3,
+  "visible": true,
+  "data": {
+    "title": "À propos du Template",
+    "content": "Alpha WebCore est un template Astro conçu pour la simplicité, la neutralité et la modularité. Il respecte une architecture stricte en 4 couches : Pages → Sections → Primitives → Contenu.\n\nParfaitement compatible avec le déploiement en sous-dossier (GitHub Pages), ce starter minimaliste vous permet de démarrer rapidement tout projet web multilingue.",
+    "stats": [
+      {
+        "value": "6",
+        "label": "Sections"
+      },
+      {
+        "value": "5",
+        "label": "Primitives"
+      },
+      {
+        "value": "FR/EN",
+        "label": "Multilingue"
+      }
+    ]
+  }
+}

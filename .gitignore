@@ -1,0 +1,64 @@
+﻿# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+.astro/
+.output/
+
+# Environment variables
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+!.env.example
+
+# MCP Configuration (contains sensitive tokens)
+.mcp.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# Reports
+*-report.json
+reports/
+
+# Local settings
+.claude/
+.kiro/
+
+# Misc
+.cache/
+nul
+
+# Backup files
+*.bak
+*.backup
+
+# Temporary files
+temp_*.html
+temp_*.htm
+temp_*

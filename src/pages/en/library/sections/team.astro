@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Team from '@/components/sections/Team.astro';
+
+const lang = 'en';
+const title = 'Team - Sections';
+const description = 'Team section documentation';
+
+const alternateUrls = {
+  fr: '/fr/library/sections/team',
+  en: '/en/library/sections/team'
+};
+---
+
+<BaseLayout title={title} description={description} lang={lang} alternateUrls={alternateUrls}>
+  <main class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">Team</h1>
+    <p class="text-lg mb-8">Section to present team members.</p>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Usage example</h2>
+      <pre class="p-4 bg-gray-900 text-white rounded text-sm overflow-x-auto"><code>---
+import Team from '@/components/sections/Team.astro';
+---
+
+&lt;Team
+  title="Our team"
+  subtitle="The people behind the project"
+  authors={[
+    {
+      id: "alice",
+      name: "Alice Smith",
+      role: "CEO & Founder",
+      avatar: "/team/alice.jpg",
+      bio: "10 years of experience...",
+      social: {
+        linkedin: "alice",
+        twitter: "alice"
+      }
+    },
+    {
+      id: "bob",
+      name: "Bob Johnson",
+      role: "CTO",
+      avatar: "/team/bob.jpg",
+      bio: "Technical expert"
+    }
+  ]}
+  columns={3}
+/&gt;</code></pre>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Notes</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Grid display of team members</li>
+        <li>Support for social links (LinkedIn, Twitter, etc.)</li>
+        <li>Optional bio for each member</li>
+        <li>Flexible layout (2 or 3 columns)</li>
+      </ul>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6">Visual Previews</h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-3">Grid of 3 members</h3>
+          <p class="text-sm text-gray-600 mb-4">Team presentation with 3 columns.</p>
+          <div class="border rounded-xl overflow-hidden bg-white shadow-sm">
+            <Team
+              title="Our team"
+              subtitle="The talents that make the difference"
+              columns={3}
+              authors={[
+                {
+                  id: "alice",
+                  name: "Alice Smith",
+                  role: "CEO & Founder",
+                  avatar: "https://ui-avatars.com/api/?name=Alice+Smith&background=4F46E5&color=fff&size=256",
+                  bio: "Digital strategy expert with over 10 years of experience."
+                },
+                {
+                  id: "bob",
+                  name: "Bob Johnson",
+                  role: "CTO",
+                  avatar: "https://ui-avatars.com/api/?name=Bob+Johnson&background=4F46E5&color=fff&size=256",
+                  bio: "Passionate about technology and software architecture."
+                },
+                {
+                  id: "clara",
+                  name: "Clara Williams",
+                  role: "UX/UI Designer",
+                  avatar: "https://ui-avatars.com/api/?name=Clara+Williams&background=4F46E5&color=fff&size=256",
+                  bio: "Creative and user-focused, she designs memorable experiences."
+                }
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

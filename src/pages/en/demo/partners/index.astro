@@ -1,0 +1,82 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Card from '@/components/primitives/Card.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+const lang = 'en';
+const title = 'Partners Demo';
+const description = 'Trusted by leading organizations';
+
+const alternateUrls = {
+  fr: '/fr/demo/partners',
+  en: '/en/demo/partners'
+};
+
+// Simplified partners data
+const partners = [
+  { name: 'TechCorp', description: 'Cloud Solutions Leader' },
+  { name: 'InnovateLab', description: 'Product Development' },
+  { name: 'DataSolutions', description: 'Business Intelligence' },
+  { name: 'DevHub', description: 'Developer Platform' },
+  { name: 'CloudFirst', description: 'Cloud Infrastructure' },
+  { name: 'CodeAcademy', description: 'Online Training' },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  alternateUrls={alternateUrls}
+>
+  <Hero
+    title="Trusted by Industry Leaders"
+    subtitle="We collaborate with forward-thinking organizations to drive innovation and growth"
+    variant="centered"
+  />
+
+  <section class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Our Partners
+        </h2>
+        <p class="text-lg text-gray-600">
+          Companies that share our vision and values
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {partners.map((partner) => (
+          <Card variant="bordered" padding="md" class="text-center hover:shadow-lg transition">
+            <div class="flex flex-col items-center">
+              <div class="w-24 h-24 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                <span class="text-2xl font-bold text-gray-400">{partner.name.substring(0, 2)}</span>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                {partner.name}
+              </h3>
+              <p class="text-sm text-gray-600">
+                {partner.description}
+              </p>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Become a Partner"
+    description="Join our network of partners and help us build the future together"
+    primaryCta={{
+      label: "Contact Us",
+      href: "#"
+    }}
+    secondaryCta={{
+      label: "Learn More",
+      href: "#"
+    }}
+  />
+</BaseLayout>

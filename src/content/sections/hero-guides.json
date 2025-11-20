@@ -1,0 +1,10 @@
+{
+  "type": "hero",
+  "order": 1,
+  "visible": true,
+  "data": {
+    "title": "Guides Alpha WebCore",
+    "subtitle": "Documentation pratique complète pour maîtriser le template",
+    "variant": "default"
+  }
+}

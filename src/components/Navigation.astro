@@ -1,0 +1,66 @@
+---
+import { buildUrl, isActivePath } from '@/utils/url';
+
+interface Props {
+  lang: 'fr' | 'en';
+  currentPath?: string;
+  class?: string;
+  mobile?: boolean;
+}
+
+const {
+    lang,
+    currentPath = '',
+    class: className = '',
+    mobile = false
+} = Astro.props;
+
+// Navigation links based on language (logical paths without leading slash)
+const navLinks = {
+  fr: [
+    { href: `/${lang}/`, label: 'Accueil' },
+    { href: `/${lang}/library`, label: 'Library' },
+    { href: `/${lang}/page`, label: 'Page' },
+    { href: `/${lang}/demo`, label: 'Demo' },
+  ],
+  en: [
+    { href: `/${lang}/`, label: 'Home' },
+    { href: `/${lang}/library`, label: 'Library' },
+    { href: `/${lang}/page`, label: 'Page' },
+    { href: `/${lang}/demo`, label: 'Demo' },
+  ],
+};
+
+const links = navLinks[lang];
+
+// Check if a link is active using URL utility
+const isActive = (href: string) => isActivePath(currentPath, href);
+
+// Different styles for desktop vs mobile
+const getLinkClass = (href: string) => {
+  if (mobile) {
+    return `text-base font-medium px-3 py-2 rounded-md transition-colors focus-ring ${
+      isActive(href)
+        ? 'text-brand-primary bg-blue-50'
+        : 'text-gray-700 hover:text-brand-primary hover:bg-gray-50'
+    }`;
+  }
+  return `text-sm font-medium transition-colors focus-ring rounded px-2 py-1 ${
+    isActive(href)
+      ? 'text-brand-primary border-b-2 border-brand-primary'
+      : 'text-gray-700 hover:text-brand-primary'
+  }`;
+};
+---
+
+<nav class={className} aria-label={lang === 'fr' ? 'Navigation principale' : 'Main navigation'}>
+  {links.map((link) => (
+    <a
+      href={buildUrl(link.href)}
+      class={getLinkClass(link.href)}
+      aria-current={isActive(link.href) ? 'page' : undefined}
+    >
+      {link.label}
+    </a>
+  ))}
+</nav>

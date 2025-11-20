@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildUrl } from '@/utils/url';
+import Hero from '@/components/sections/Hero.astro';
+import Features from '@/components/sections/Features.astro';
+import CTA from '@/components/sections/CTA.astro';
+
+const allSections = await getCollection('sections');
+const guidesSections = allSections.filter(section =>
+  section.id.endsWith('-guides')
+);
+
+const sortedSections = guidesSections
+  .filter(section => section.data.visible)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const getSectionData = (type: string) => {
+  return sortedSections.find(section => section.data.type === type)?.data.data;
+};
+
+const heroData = getSectionData('hero');
+const featuresData = getSectionData('features');
+const ctaData = getSectionData('cta');
+---
+
+<BaseLayout
+  title="Guides - Alpha WebCore"
+  description="Documentation pratique complète du template Alpha WebCore"
+  lang="fr"
+  alternateUrls={{
+    fr: buildUrl('/fr/guides/'),
+    en: buildUrl('/en/guides/')
+  }}
+>
+  {heroData && <Hero {...heroData} />}
+  {featuresData && <Features {...featuresData} />}
+  {ctaData && <CTA {...ctaData} />}
+</BaseLayout>

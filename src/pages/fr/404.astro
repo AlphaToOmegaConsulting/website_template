@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ButtonLink from '../../components/primitives/ButtonLink.astro';
+import { buildUrl } from '@/utils/url';
+
+// Page metadata
+const pageTitle = 'Page non trouvée - 404';
+const pageDescription = 'La page que vous recherchez n\'existe pas ou a été déplacée.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  lang="fr"
+  noindex={true}
+>
+  <div class="bg-gray-50 min-h-[60vh] flex items-center justify-center py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto text-center">
+        <!-- 404 Illustration -->
+        <div class="mb-8">
+          <h1 class="text-9xl font-bold text-brand-primary mb-4">404</h1>
+          <div class="w-32 h-1 bg-brand-primary mx-auto mb-8"></div>
+        </div>
+
+        <!-- Error Message -->
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Page non trouvée
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Vérifiez l'URL ou retournez à la page d'accueil.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <ButtonLink
+            href="/fr/"
+            variant="primary"
+            size="lg"
+          >
+            Retour à l'accueil
+          </ButtonLink>
+          <ButtonLink
+            href="/fr/demo"
+            variant="secondary"
+            size="lg"
+          >
+            Voir la démo
+          </ButtonLink>
+        </div>
+
+        <!-- Helpful Links -->
+        <div class="mt-12 pt-8 border-t border-gray-200">
+          <p class="text-sm text-gray-600 mb-4">Liens utiles :</p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <ButtonLink href="/fr/" variant="link" size="sm">
+              Accueil
+            </ButtonLink>
+            <ButtonLink href="/fr/library" variant="link" size="sm">
+              Library
+            </ButtonLink>
+            <ButtonLink href="/fr/page" variant="link" size="sm">
+              Page
+            </ButtonLink>
+            <ButtonLink href="/fr/demo" variant="link" size="sm">
+              Démo
+            </ButtonLink>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
